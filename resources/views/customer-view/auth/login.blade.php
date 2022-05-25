@@ -10,9 +10,6 @@
             margin: auto;
             text-align: center;
         }
-    </style>
-    
-    <style>
         .input-icons i {
             /* position: absolute; */
             cursor: pointer;
@@ -21,11 +18,6 @@
         .input-icons {
             width: 100%;
             margin-bottom: 10px;
-        }
-
-        .icon {
-            padding: 9% 0 0 0;
-            min-width: 40px;
         }
 
         .input-field {
@@ -37,16 +29,19 @@
     </style>
 @endpush
 @section('content')
-    <div class="container py-4 py-lg-5 my-4"
+<div class="col-12 p-4">
+<div class="container"
          style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card border-0 box-shadow">
-                    <div class="card-body">
-                        <h2 class="h4 mb-1">{{\App\CPU\translate('sing_in')}}</h2>
-                        <hr class="mt-2">
+                    <div class="card-header bg-light p-5">
+                    <h2 class="h4 mb-1">{{\App\CPU\translate('sing_in')}}</h2>
+
+                    </div>
+                    <div class="card-body p-0">
                         {{-- <h3 class="font-size-base pt-4 pb-2">{{\App\CPU\translate('or_using_form_below')}}</h3> --}}
-                        <form class="needs-validation mt-2" autocomplete="off" action="{{route('customer.auth.login')}}"
+                        <form class="needs-validation mt-2 col-12" autocomplete="off" action="{{route('customer.auth.login')}}"
                               method="post" id="form-id">
                             @csrf
                             <div class="form-group">
@@ -107,27 +102,32 @@
                                     </div>
                                 </div>
                             @endif
-                            <button class="btn btn-primary btn-block btn-shadow"
-                                    type="submit">{{\App\CPU\translate('sign_in')}}</button>
+                            <p class="text-center col-12 p-0">
+                            <button class="btn btn-primary btn-block btn-round col-7"
+                                    type="submit"> <i class="icon-cursor"></i> {{\App\CPU\translate('sign_in')}}</button>
+                            </p>
+                            
                         </form>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer mt-2 bg-light">
                         <div class="row">
-                            <div class="col-12 flex-between row p-0" style="direction: {{ Session::get('direction') }}">
-                                <div class="mb-3 {{Session::get('direction') === "rtl" ? '' : 'ml-2'}}">
-                                    <h6>{{ \App\CPU\translate('no_account_Sign_up_now') }}</h6>
+                            <div class="col-12 p-3 text-center">
+                                <div class="">
+                                    <h6>No Account? Sign up now!</h6>
                                 </div>
-                                <div class="mb-3 {{Session::get('direction') === "rtl" ? 'ml-2' : ''}}">
-                                    <a class="btn btn-outline-primary"
+                                <br>
+                                <div class="12">
+                                    <a class="btn btn-primary btn-round col-6"
                                        href="{{route('customer.auth.register')}}">
-                                        <i class="fa fa-user-circle"></i> {{\App\CPU\translate('sing_up')}}
+                                        <i class="icon-user"></i> {{\App\CPU\translate('sing_up')}}
                                     </a>
                                 </div>
                             </div>
+                            <p class="col-12 text-center">OR</p>
                             @foreach (\App\CPU\Helpers::get_business_settings('social_login') as $socialLoginService)
                                 @if (isset($socialLoginService) && $socialLoginService['status']==true)
                                     <div class="col-sm-6 text-center mb-1">
-                                        <a class="btn btn-outline-primary"
+                                        <a class="btn btn-dark btn-round"
                                            href="{{route('customer.auth.service-login', $socialLoginService['login_medium'])}}"
                                            style="width: 100%">
                                             <i class="czi-{{ $socialLoginService['login_medium'] }} mr-2 ml-n1"></i>{{\App\CPU\translate('sing_in_with_'.$socialLoginService['login_medium'])}}
@@ -141,6 +141,8 @@
             </div>
         </div>
     </div>
+</div>
+
 @endsection
 
 @push('script')

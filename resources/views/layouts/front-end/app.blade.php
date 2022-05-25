@@ -19,7 +19,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('storage/app/public/company')}}/{{$web_config['fav_icon']->value}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('storage/app/public/company')}}/{{$web_config['fav_icon']->value}}">
 
-    <link rel="manifest" href="{{asset('public/assets/front-end/v91f/')}}assets/images/icons/site.html">
+    <link rel="manifest" href="{{asset('public/assets/front-end/v91f')}}/assets/images/icons/site.html">
     <link rel="mask-icon" href="{{asset('public/assets/front-end/v91f/')}}assets/images/icons/safari-pinned-tab.svg" color="#666666">
     <link rel="shortcut icon" href="{{asset('public/assets/front-end/v91f/')}}assets/images/icons/favicon.ico">
 

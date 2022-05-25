@@ -1,8 +1,7 @@
 @extends('layouts.front-end.app')
 
 @section('title', \App\CPU\translate('Register'))
-
-@push('css_or_js')
+<!-- @push('css_or_js')
     <style>
         @media (max-width: 500px) {
             #sign_in {
@@ -11,19 +10,20 @@
 
         }
     </style>
-@endpush
+@endpush -->
 
 @section('content')
-    <div class="container py-4 py-lg-5 my-4"
-         style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card border-0 box-shadow">
-                    <div class="card-body">
-                        <h2 class="h4 mb-1">{{\App\CPU\translate('no_account')}}</h2>
-                        <p class="font-size-sm text-muted mb-4">{{\App\CPU\translate('register_control_your_order')}}
-                            .</p>
-                        <form class="needs-validation_" action="{{route('customer.auth.register')}}"
+            <div class="col-md-7 mt-4">
+                <div class="card border-0">
+                    <div class="card-header bg-light p-5">
+                    <h2 class="h4 mb-1">{{\App\CPU\translate('no_account')}}?</h2>
+
+                    </div>
+                    <div class="card-body p-0">
+                        <p class="font-size-sm text-muted mb-4">{{\App\CPU\translate('register_control_your_order')}}</p>
+                        <form class="needs-validation_ col-12 p-2" action="{{route('customer.auth.register')}}"
                               method="post" id="sign-up-form">
                             @csrf
                             <div class="row">
@@ -55,9 +55,9 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="reg-phone">{{\App\CPU\translate('phone_number')}}
-                                            <small class="text-primary">( * {{\App\CPU\translate('country_code_is_must')}} {{\App\CPU\translate('like_for_BD_880')}} )</small></label>
-                                        <input class="form-control" type="number"  value="{{old('phone')}}"  name="phone"
-                                               style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
+                                            <small class="text-primary">( * {{\App\CPU\translate('country_code_is_must')}} )</small></label>
+                                        <input class="form-control" type="text"  value="{{old('phone')}}"  name="phone"
+                                               placeholder="Ex: 910000000000"
                                                required>
                                         <div class="invalid-feedback">{{\App\CPU\translate('Please enter your phone number')}}!</div>
                                     </div>
@@ -122,26 +122,27 @@
                                 </div>
 
                             </div>
-                            <div class="flex-between row" style="direction: {{ Session::get('direction') }}">
+                            <div class="row">
                                 <div class="mx-1">
                                     <div class="text-right">
-                                        <button class="btn btn-primary" id="sign-up" type="submit" disabled>
-                                            <i class="czi-user {{Session::get('direction') === "rtl" ? 'ml-2 mr-n1' : 'mr-2 ml-n1'}}"></i>
+                                        <button class="btn btn-primary btn-round" id="sign-up" type="submit" disabled>
+                                            <i class="icon-plus"></i>
                                             {{\App\CPU\translate('sing_up')}}
                                         </button>
                                     </div>
                                 </div>
                                 <div class="mx-1">
-                                    <a class="btn btn-outline-primary" href="{{route('customer.auth.login')}}">
+                                    <a class="btn btn-outline-info btn-round" href="{{route('customer.auth.login')}}">
                                         <i class="fa fa-sign-in"></i> {{\App\CPU\translate('sing_in')}}
                                     </a>
                                 </div>
-                                <div class="col-12 mt-3">
-                                    <div class="row">
+                                <p class="col-12 text-center mt-2">OR</p>
+                                <div class="col-12 mt-3 mb-3">
+                                    <div class="row justify-content-between">
                                         @foreach (\App\CPU\Helpers::get_business_settings('social_login') as $socialLoginService)
                                             @if (isset($socialLoginService) && $socialLoginService['status']==true)
-                                                <div class="col-sm-6 text-center mt-1">
-                                                    <a class="btn btn-outline-primary"
+                                                <div class="col-sm-6 mt-1 p-0">
+                                                    <a class="btn btn-dark btn-round col-11"
                                                        href="{{route('customer.auth.service-login', $socialLoginService['login_medium'])}}"
                                                        style="width: 100%">
                                                         <i class="czi-{{ $socialLoginService['login_medium'] }} {{Session::get('direction') === "rtl" ? 'ml-2 mr-n1' : 'mr-2 ml-n1'}}"></i>
