@@ -45,6 +45,11 @@
     <!-- token -->
     <meta name="_token" content="{{csrf_token()}}">
 
+    <!-- font awesome icons -->
+    <link rel="stylesheet" media="screen" href="{{asset('public/assets/front-end')}}/css/font-awesome.min.css">
+
+    <script src="{{asset('public/assets/front-end/v91f')}}/assets/js/jquery.min.js"></script>
+
     <!-- Analytics -->
     {!! \App\CPU\Helpers::get_business_settings('pixel_analytics') !!}
 </head>
@@ -62,7 +67,7 @@
         @endif
 
         <!-- header -->
-        <header class="header header-intro-clearance header-4">
+        <header class="header header-intro-clearance header-3">
             <div class="header-top">
                 <div class="container">
                     <div class="header-left">

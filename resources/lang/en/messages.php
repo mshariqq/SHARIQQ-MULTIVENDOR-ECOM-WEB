@@ -1950,4 +1950,7 @@
   'shipping_input_by_customer' => 'Shipping input by customer',
   'no_data_found' => 'No data found',
   'No_data_to_show<' => 'No data to show ',
+  '
+                    //     no more review remain to load ' => '
+                    //     no more review remain to load ',
 );

@@ -10,6 +10,23 @@ $productReviews = \App\CPU\ProductManager::get_product_review($product->id);
         max-height: 400px;
         overflow: scroll;
     }
+    .SelectColorSpan{
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 1px solid #eee;
+        margin: 5px;
+        transition: ease-in-out;
+        transition-duration: 0.5s;
+    }
+    .selectChoiceSpan{
+        /* width: auto; */
+        color: black;
+        border: 1px solid #54595f;
+        padding: 5px;
+        border-radius: 30px;
+        cursor: pointer;
+    }
 </style>
 <!-- <div class="modal-header rtl">
     <div>
@@ -35,14 +52,11 @@ $productReviews = \App\CPU\ProductManager::get_product_review($product->id);
                 <div class="row">
                     @if($product->images!=null && json_decode($product->images)>0)
                     <?
-
-
                     $photo = json_decode($product->images);
                     $photo = $photo['0'];
                     ?>
                     <figure class="product-main-image">
-                        <img id="product-zoom" src="{{asset("storage/app/public/product/$photo")}}" data-zoom-image="assets/images/products/single/1-big.jpg" alt="product image">
-
+                        <img id="product-zoom" src="{{asset("storage/app/public/product/$photo")}}" data-zoom-image="{{asset("storage/app/public/product/$photo")}}" alt="{{$product['name']}}">
                         <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                             <i class="icon-arrows"></i>
                         </a>
@@ -54,9 +68,10 @@ $productReviews = \App\CPU\ProductManager::get_product_review($product->id);
                     <div id="product-zoom-gallery" class="product-image-gallery">
                         @if($product->images!=null && json_decode($product->images)>0)
                         @foreach (json_decode($product->images) as $key => $photo)
-                        <a class="product-gallery-item active" href="#" data-image="assets/images/products/single/1.jpg" data-zoom-image="assets/images/products/single/1-big.jpg">
+                        <a class="product-gallery-item" href="#" data-image="{{asset("storage/app/public/product/$photo")}}" data-zoom-image="{{asset("storage/app/public/product/$photo")}}">
                             <img src="{{asset("storage/app/public/product/$photo")}}" alt="product side">
                         </a>
+
                         @endforeach
                         @endif
 
@@ -102,40 +117,51 @@ $productReviews = \App\CPU\ProductManager::get_product_review($product->id);
                 @endif
 
                 <form id="add-to-cart-form" class="mb-2">
-                    @csrf
-                    <input type="hidden" name="id" value="{{ $product->id }}">
+                @csrf
+                                    <input type="hidden" name="id" value="{{ $product->id }}">
+                                    <input type="hidden" name="color" value="" id="colorInput" autocomplete="off"/>
 
-                    <!-- colors -->
+                                    <div class="col-12 row align-items-center">
+                                        <label class="col-md-3">Colors:</label>
+                                        <div class="col-md-9">
+                                        
+                                            <div class="row">
 
-                    <div class="details-filter-row details-row-size mt-2">
-                        <label>Color:</label>
+                                                @foreach (json_decode($product->colors) as $key => $color)
+                                                <span onclick="addColorToForm(this, '{{$color}}', 'colorInput', 'SelectColorSpan')" class="SelectColorSpan" style="background-color: {{$color}};"></span>
+                                                @endforeach
+                                            </div>
 
-                        <div class="product-nav product-nav-thumbs">
-                            <div class="row">
-                                @foreach (json_decode($product->colors) as $key => $color)
+                                        </div><!-- End .product-nav -->
+                                    </div><!-- End .details-filter-row -->
+                                    <br>
+                                    @foreach (json_decode($product->choice_options) as $key => $choice)
+                                    <input type="hidden" id="{{ $choice->name }}-choiceFormInput" name="{{ $choice->name }}">
 
-                                <div class="col-2">
-                                    <div class="card" style="background-color: {{ $color }};">
-                                        <input type="radio" id="{{ $product->id }}-color-{{ $key }}" name="color" value="{{ $color }}" @if($key==0) checked @endif>
-                                        <label class="btn" for="{{ $product->id }}-color-{{ $key }}" data-toggle="tooltip"></label>
-
+                                    <div class="col-12 row align-items-center mb-3">
+                                        <div class="col-md-3 col-12">
+                                            {{ $choice->title }}:
+                                        </div>
+                                        <div class="col-md-9 col-12 row align-items-center">
+                                                
+                                                @foreach ($choice->options as $key => $option)
+                                                <!-- <span>
+                                                    <input type="radio" id="{{ $choice->name }}-{{ $option }}" name="{{ $choice->name }}" value="{{ $option }}" @if($key==0) checked @endif>
+                                                    <label for="{{ $choice->name }}-{{ $option }}">{{ $option }}</label>
+                                                </span> -->
+                                                    <span onclick="addChoiceToForm(this, '{{ $option }}', '{{ $choice->name }}-choiceFormInput', '{{ $choice->name }}-selectChoiceSpan')" class="selectChoiceSpan {{ $choice->name }}-selectChoiceSpan col-3 text-wrap text-center">{{ $option }}</span>
+                                                @endforeach
+                                        </div>
                                     </div>
-
-                                </div>
-                                @endforeach
-                            </div>
-
-                        </div><!-- End .product-nav -->
-                    </div><!-- End .details-filter-row -->
-                    <hr>
+                                    @endforeach
 
                     <!-- Quantity + Add to cart -->
                     @php
-                            $qty = 0;
-                            foreach (json_decode($product->variation) as $key => $variation) {
-                            $qty += $variation->qty;
-                            }
-                            @endphp
+                    $qty = 0;
+                    foreach (json_decode($product->variation) as $key => $variation) {
+                    $qty += $variation->qty;
+                    }
+                    @endphp
                     <div class="row no-gutters">
                         <div class="col-2">
                             <div class="product-description-label">{{\App\CPU\translate('Quantity')}}:</div>
@@ -158,26 +184,7 @@ $productReviews = \App\CPU\ProductManager::get_product_review($product->id);
                             </div>
                         </div>
                     </div>
-                    
-                    @foreach (json_decode($product->choice_options) as $key => $choice)
-                    <div class="flex-start">
-                        <div class="product-description-label mt-2 ">
-                            {{ $choice->title }}:
-                        </div>
-                        <div>
-                            <ul class=" checkbox-alphanumeric checkbox-alphanumeric--style-1 mb-2">
-                                @foreach ($choice->options as $key => $option)
-                                <span>
-                                    <input type="radio" id="{{ $choice->name }}-{{ $option }}" name="{{ $choice->name }}" value="{{ $option }}" @if($key==0) checked @endif>
-                                    <label for="{{ $choice->name }}-{{ $option }}">{{ $option }}</label>
-                                </span>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                    @endforeach
 
-                    <hr>
                     <div class="row no-gutters d-none mt-2" id="chosen_price_div">
                         <div class="col-2">
                             <div class="product-description-label">{{\App\CPU\translate('Total Price')}}:</div>
@@ -192,18 +199,22 @@ $productReviews = \App\CPU\ProductManager::get_product_review($product->id);
                                 @endif
                         </div>
                     </div>
-                    <div class="d-flex justify-content-space-around mt-2">
-                        <button class="btn btn-secondary btn-round mr-md-2" onclick="buy_now()" type="button">
+                    <div class="row justify-content-space-around mt-2">
+                        <button class="btn btn-secondary btn-round mr-md-2 mb-md-2" onclick="buy_now()" type="button">
                             {{\App\CPU\translate('buy_now')}}
                         </button>
-                        <button class="btn btn-secondary btn-round string-limit mr-md-2" onclick="addToCart()" type="button">
+                        <button class="btn btn-secondary btn-round string-limit mr-md-2 mb-md-2" onclick="addToCart()" type="button">
                             <i class="icon-cart"></i>
                             {{\App\CPU\translate('add_to_cart')}}
                         </button>
-                        <button type="button" onclick="addWishlist('{{$product['id']}}')" class="btn btn-dark btn-round for-hover-bg string-limit">
+                        <button type="button" onclick="addWishlist('{{$product['id']}}')" class="mb-md-2 btn btn-dark btn-round for-hover-bg string-limit">
                             <i class="icon-heart" aria-hidden="true"></i>
                             <span class="countWishlist-{{$product['id']}}">{{$countWishlist}}</span>
                         </button>
+                        <a type="button" href="{{route('product',$product->slug)}}" class="mb-md-2  btn btn-dark btn-round for-hover-bg string-limit">
+                            <i class="icon-eye" aria-hidden="true"></i>
+                            <span class="countWishlist-{{$product['id']}}">Full Product View</span>
+                        </a>
                     </div>
                 </form>
 
@@ -211,20 +222,20 @@ $productReviews = \App\CPU\ProductManager::get_product_review($product->id);
                     <div class="product-cat">
                         <span>Category:</span>
                         <?php
-                            $cats = json_decode($product['category_ids']);
-                            $categories = [];
+                        $cats = json_decode($product['category_ids']);
+                        $categories = [];
 
                         foreach ($cats as $cat) {
                             $ca = Category::find($cat->id);
-                            echo "<a class='p-1' href='#'>".$ca['name']."</a>";
+                            echo "<a class='p-1' href='#'>" . $ca['name'] . "</a>";
                         }
-                            
+
                         ?>
 
                     </div><!-- End .product-cat -->
 
                     <div class="social-icons social-icons-sm">
-                        
+
                         <span class="social-label">Share:</span>
                         <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
                         <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
@@ -238,6 +249,34 @@ $productReviews = \App\CPU\ProductManager::get_product_review($product->id);
 </div><!-- End .product-details-top -->
 
 <script type="text/javascript">
+
+
+// choices function 
+function addChoiceToForm(el, val, formID, classes){
+    // change all the elements color back to normal
+    var spans = $('.'+classes);
+    $(spans).css('border', '1px solid #54595f');
+    // change this item color
+    $(el).css('border', "2px solid blue");
+    // add the value to input
+    var fInput = $("#"+formID).val(val);
+}
+
+function addColorToForm(el, val, formID, classes){
+    // change all the elements color back to normal
+    var spans = $('.'+classes);
+    $(spans).css('border', '1px solid #54595f');
+    $(spans).css('height', "35px");
+    $(spans).css('width', "35px");
+
+    // change this item color
+    $(el).css('border', "2px solid blue");
+    $(el).css('height', "40px");
+    $(el).css('width', "40px");
+    // add the value to input
+    var fInput = $("#"+formID).val(val);
+}
+
     cartQuantityInitialize();
     getVariantPrice();
     $('#add-to-cart-form input').on('change', function() {
@@ -250,5 +289,142 @@ $productReviews = \App\CPU\ProductManager::get_product_review($product->id);
             var srcimg = $(this).attr('src');
             $(".show-imag").attr('src', srcimg);
         });
+        // Product Image Zoom plugin - product pages
+        if ($.fn.elevateZoom) {
+            $('#product-zoom').elevateZoom({
+                gallery: 'product-zoom-gallery',
+                galleryActiveClass: 'active',
+                zoomType: "inner",
+                cursor: "crosshair",
+                zoomWindowFadeIn: 400,
+                zoomWindowFadeOut: 400,
+                responsive: true
+            });
+
+            // On click change thumbs active item
+            $('.product-gallery-item').on('click', function(e) {
+                $('#product-zoom-gallery').find('a').removeClass('active');
+                $(this).addClass('active');
+
+                e.preventDefault();
+            });
+
+            var ez = $('#product-zoom').data('elevateZoom');
+
+            // Open popup - product images
+            $('#btn-product-gallery').on('click', function(e) {
+                if ($.fn.magnificPopup) {
+                    $.magnificPopup.open({
+                        items: ez.getGalleryList(),
+                        type: 'image',
+                        gallery: {
+                            enabled: true
+                        },
+                        fixedContentPos: false,
+                        removalDelay: 600,
+                        closeBtnInside: false
+                    }, 0);
+
+                    e.preventDefault();
+                }
+            });
+        }
+
+        // Product Gallery - product-gallery.html 
+        if ($.fn.owlCarousel && $.fn.elevateZoom) {
+            var owlProductGallery = $('.product-gallery-carousel');
+
+            owlProductGallery.on('initialized.owl.carousel', function() {
+                owlProductGallery.find('.active img').elevateZoom({
+                    zoomType: "inner",
+                    cursor: "crosshair",
+                    zoomWindowFadeIn: 400,
+                    zoomWindowFadeOut: 400,
+                    responsive: true
+                });
+            });
+
+            owlProductGallery.owlCarousel({
+                loop: false,
+                margin: 0,
+                responsiveClass: true,
+                nav: true,
+                navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
+                dots: false,
+                smartSpeed: 400,
+                autoplay: false,
+                autoplayTimeout: 15000,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    560: {
+                        items: 2
+                    },
+                    992: {
+                        items: 3
+                    },
+                    1200: {
+                        items: 3
+                    }
+                }
+            });
+
+            owlProductGallery.on('change.owl.carousel', function() {
+                $('.zoomContainer').remove();
+            });
+
+            owlProductGallery.on('translated.owl.carousel', function() {
+                owlProductGallery.find('.active img').elevateZoom({
+                    zoomType: "inner",
+                    cursor: "crosshair",
+                    zoomWindowFadeIn: 400,
+                    zoomWindowFadeOut: 400,
+                    responsive: true
+                });
+            });
+        }
+
+        // Product Gallery Separeted- product-sticky.html 
+        if ($.fn.elevateZoom) {
+            $('.product-separated-item').find('img').elevateZoom({
+                zoomType: "inner",
+                cursor: "crosshair",
+                zoomWindowFadeIn: 400,
+                zoomWindowFadeOut: 400,
+                responsive: true
+            });
+
+            // Create Array for gallery popup
+            var galleryArr = [];
+            $('.product-gallery-separated').find('img').each(function() {
+                var $this = $(this),
+                    imgSrc = $this.attr('src'),
+                    imgTitle = $this.attr('alt'),
+                    obj = {
+                        'src': imgSrc,
+                        'title': imgTitle
+                    };
+
+                galleryArr.push(obj);
+            })
+
+            $('#btn-separated-gallery').on('click', function(e) {
+                if ($.fn.magnificPopup) {
+                    $.magnificPopup.open({
+                        items: galleryArr,
+                        type: 'image',
+                        gallery: {
+                            enabled: true
+                        },
+                        fixedContentPos: false,
+                        removalDelay: 600,
+                        closeBtnInside: false
+                    }, 0);
+
+                    e.preventDefault();
+                }
+            });
+        }
     });
 </script>

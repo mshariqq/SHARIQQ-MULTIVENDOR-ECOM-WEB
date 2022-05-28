@@ -414,7 +414,7 @@
 
 
     <!-- Plugins JS File -->
-    <script src="{{asset('public/assets/front-end/v91f')}}/assets/js/jquery.min.js"></script>
+    <script src="{{asset('public/assets/front-end/v91f')}}/assets/js/jquery.elevateZoom.min.js"></script>
     <script src="{{asset('public/assets/front-end/v91f')}}/assets/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('public/assets/front-end/v91f')}}/assets/js/jquery.hoverIntent.min.js"></script>
     <script src="{{asset('public/assets/front-end/v91f')}}/assets/js/jquery.waypoints.min.js"></script>
@@ -427,6 +427,7 @@
     <!-- Main JS File -->
     <script src="{{asset('public/assets/front-end/v91f')}}/assets/js/main.js"></script>
     <script src="{{asset('public/assets/front-end/v91f')}}/assets/js/demos/demo-4.js"></script>
+
     <script>
     function addWishlist(product_id) {
         $.ajaxSetup({
