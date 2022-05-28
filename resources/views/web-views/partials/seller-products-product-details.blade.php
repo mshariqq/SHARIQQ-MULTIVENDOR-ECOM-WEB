@@ -1,6 +1,6 @@
 @if(isset($product))
     @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
-    <div class="flash_deal_product rtl" style="cursor: pointer; height:155px; margin-bottom:10px;"
+    <div class="flash_deal_product rtl border border-bottom" style="cursor: pointer; margin-bottom:10px;"
          onclick="location.href='{{route('product',$product->slug)}}'">
         @if($product->discount > 0)
         <div class="d-flex" style="position:absolute;z-index:2;">
@@ -25,7 +25,7 @@
             <div class=" flash_deal_product_details pl-3 pr-3 pr-1 d-flex align-items-center">
                 <div>
                     <div>
-                        <span class="flash-product-title">
+                        <span class="flash-product-title text-primary">
                             {{$product['name']}}
                         </span>
                     </div>
@@ -37,8 +37,8 @@
                                 <i class="sr-star czi-star" style="color:#fea569 !important"></i>
                             @endif
                         @endfor
-                        <label class="badge-style2">
-                            ( {{$product->reviews->count()}} )
+                        <label class="badge-style2 m-0">
+                            Reviews ( {{$product->reviews->count()}} )
                         </label>
                     </div>
                     <div>
@@ -49,7 +49,7 @@
                             </strike>
                         @endif
                     </div>
-                    <div class="flash-product-price">
+                    <div class="flash-product-price text-success">
                         {{\App\CPU\Helpers::currency_converter($product->unit_price-\App\CPU\Helpers::get_product_discount($product,$product->unit_price))}}
                         
                     </div>

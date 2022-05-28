@@ -497,6 +497,11 @@ $rating = \App\CPU\ProductManager::get_rating($product->reviews);
                                 </div>
                             </div>
 
+                            <div class="col-12">
+                            @if($product['current_stock']<=0) <p class="mt-3 text-body text-danger" >{{\App\CPU\translate('out_of_stock')}}</p>
+                                        @endif
+                            </div>
+
                             <div class="row justify-content-space-around mt-2">
                                 <button class="btn btn-secondary btn-round mr-md-2 mb-md-2" onclick="buy_now()" type="button">
                                     {{\App\CPU\translate('buy_now')}}
@@ -513,7 +518,6 @@ $rating = \App\CPU\ProductManager::get_rating($product->reviews);
                             </div>
 
                         </form>
-
 
                         <div class="product-details-footer">
                             <div class="product-cat">
@@ -741,7 +745,7 @@ $rating = \App\CPU\ProductManager::get_rating($product->reviews);
             </div><!-- End .tab-content -->
         </div><!-- End .product-details-tab -->
 
-        <div class="jumbotron bg-light">
+        <br>
         <!-- Seller Info if available -->
         @if($product->added_by=='seller')
             @if(isset($product->seller->shop))
@@ -845,35 +849,7 @@ $rating = \App\CPU\ProductManager::get_rating($product->reviews);
             </div>
             @endif
         @else
-            <div class="row">
-                <div class="col-md-3 col-12 ">
-                <div class="card">
-                        <div class="card-header bg-primary text-white p-3">
-                            Seller Info
-                        </div>
-                        <div class="card-body p-4">
-                            <img 
-                            class="img-responsive border rounded shadow"
-                            width="100px"
-                            height="auto" 
-                            src="{{asset("storage/app/public/company")}}/{{$web_config['fav_icon']->value}}" 
-                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" 
-                            alt="{{$web_config['name']->value}}" />
-                            <span>
-                            {{$web_config['name']->value}}
-                                </span><br>
-                                <br>
-                        <a class="btn btn-round btn-secondary" href="{{ route('shopView',[0]) }}">
-                            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                    {{\App\CPU\translate('Visit Store')}}
-                        </a>
-                        </div>
-                        
-                    </div>
-
-                </div>
-
-                <?php 
+        <?php 
                 $products_for_review = App\Model\Product::where('added_by','admin')->where('user_id',$product->user_id)->withCount('reviews')->get();
 
                 $total_reviews = 0;
@@ -881,651 +857,65 @@ $rating = \App\CPU\ProductManager::get_rating($product->reviews);
                     $total_reviews += $item->reviews_count;
                 }
                 ?>
-                <div class="col-12 mt-2">
-                    <div class="row d-flex justify-content-between">
-                        <div class="col-6 ">
-                            <div class="d-flex justify-content-center align-items-center" style="height: 79px;background:{{$web_config['primary_color']}}10;border-radius:5px;">
-                                <div class="text-center">
-                                    <span style="color: {{$web_config['primary_color']}};font-weight: 700;
-                                            font-size: 26px;">
-                                        {{$total_reviews}}
-                                    </span><br>
-                                    <span style="font-size: 12px;">
-                                        {{\App\CPU\translate('reviews')}}
-                                    </span>
-                                </div>
-                            </div>
+            <div class="row">
+                <div class="col-md-3 col-12 ">
+                    <div class="card border">
+                        <div class="card-header bg-light text-primary p-3">
+                            Seller Info
                         </div>
-                        <div class="col-6">
-                            <div class="d-flex justify-content-center align-items-center" style="height: 79px;background:{{$web_config['primary_color']}}10;border-radius:5px;">
-                                <div class="text-center">
-                                    <span style="color: {{$web_config['primary_color']}};font-weight: 700;
-                                            font-size: 26px;">
-                                        {{$products_for_review->count()}}
-                                    </span><br>
-                                    <span style="font-size: 12px;">
-                                        {{\App\CPU\translate('products')}}
-                                    </span>
-                                </div>
-                            </div>
+                        <div class="card-body p-4">
+                            <img 
+                            class="img-responsive border rounded"
+                            width="100px"
+                            height="auto" 
+                            src="{{asset("storage/app/public/company")}}/{{$web_config['fav_icon']->value}}" 
+                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" 
+                            alt="{{$web_config['name']->value}}" />
+                            <br>
+                            <h4>
+                            {{$web_config['name']->value}}
+                            </h4>
+                            <p class="">
+                                <span>Reviews  ( {{$total_reviews}} )</span>
+                            </p>
+                            <p class="">
+                                <span>Products  ( {{$products_for_review->count()}} )</span>
+                            </p>
+                        
                         </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-2">
-                    <div class="row">
-                        <a href="{{ route('shopView',[0]) }}" style="display: block;width:100%;text-align: center">
-                            <button class="btn btn-primary">
+                        <div class="card-footer">
+                            <p>You can Browse all products listed by this seller on their store below</p>
+                            <br>
+                            <a class="btn btn-round btn-secondary" href="{{ route('shopView',[0]) }}">
                                 <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                {{\App\CPU\translate('Visit Store')}}
-                            </button>
-                        </a>
+                                        {{\App\CPU\translate('Visit Store')}}
+                            </a>
+                        </div>
+                        
                     </div>
+                    
                 </div>
+                <div class="col-md-9 col-12">
+                    <h4>More Products by this Seller</h4>
+                    <?
+                    $more_product_from_seller = App\Model\Product::where('added_by',$product->added_by)->where('user_id',$product->user_id)->latest()->take(3)->get();
+                    ?>
+
+                        @foreach($more_product_from_seller as $item)
+
+                        @include('web-views.partials.seller-products-product-details',['product'=>$item])
+                        
+
+                        @endforeach
+
+                 </div>
             </div>
        
         @endif
-        </div>
-
 
 
     </div><!-- End .container -->
 </div><!-- End .page-content -->
-<!-- Page Content-->
-<div class="container mt-4 rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-    <!-- General info tab-->
-    <div class="row" style="direction: ltr">
-        <!-- Product gallery-->
-        <div class="col-md-9 col-12">
-            <div class="row">
-                <div class="col-lg-5 col-md-4 col-12">
-                    <div class="cz-product-gallery">
-                        <div class="cz-preview">
-                            @if($product->images!=null)
-                            @foreach (json_decode($product->images) as $key => $photo)
-                            <div class="cz-preview-item d-flex align-items-center justify-content-center {{$key==0?'active':''}}" id="image{{$key}}">
-                                <img class="cz-image-zoom img-responsive" style="width:100%;height:auto" onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" src="{{asset("storage/app/public/product/$photo")}}" data-zoom="{{asset("storage/app/public/product/$photo")}}" alt="Product image" width="">
-                                <div class="cz-image-zoom-pane"></div>
-                            </div>
-                            @endforeach
-                            @endif
-                        </div>
-                        <div class="cz">
-                            <div>
-                                <div class="row">
-                                    <div class="table-responsive" data-simplebar style="max-height: 515px; padding: 1px;">
-                                        <div class="d-flex" style="padding-left: 3px;">
-                                            @if($product->images!=null)
-                                            @foreach (json_decode($product->images) as $key => $photo)
-                                            <div class="cz-thumblist">
-                                                <a class="cz-thumblist-item  {{$key==0?'active':''}} d-flex align-items-center justify-content-center " href="#image{{$key}}">
-                                                    <img onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" src="{{asset("storage/app/public/product/$photo")}}" alt="Product thumb">
-                                                </a>
-                                            </div>
-                                            @endforeach
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product details-->
-                <div class="col-lg-7 col-md-8 col-12 mt-md-0 mt-sm-3" style="direction: {{ Session::get('direction') }}">
-                    <div class="details">
-                        <span class="mb-2" style="font-size: 22px;font-weight:700;">{{$product->name}}</span>
-                        <div class="d-flex align-items-center mb-2 pro">
-                            <span class="d-inline-block  align-middle mt-1 {{Session::get('direction') === "rtl" ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2'}}" style="color: #FE961C">{{$overallRating[0]}}</span>
-                            <div class="star-rating" style="{{Session::get('direction') === "rtl" ? 'margin-left: 25px;' : 'margin-right: 25px;'}}">
-                                @for($inc=0;$inc<5;$inc++) @if($inc<$overallRating[0]) <i class="sr-star czi-star-filled active"></i>
-                                    @else
-                                    <i class="sr-star czi-star"></i>
-                                    @endif
-                                    @endfor
-                            </div>
-                            <span style="font-weight: 400;" class="font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">{{$overallRating[1]}} {{\App\CPU\translate('Reviews')}}</span>
-                            <span style="width: 0px;height: 10px;border: 0.5px solid #707070; margin-top: 6px;font-weight: 400 !important;"></span>
-                            <span style="font-weight: 400;" class="font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">{{$countOrder}} {{\App\CPU\translate('orders')}} </span>
-                            <span style="width: 0px;height: 10px;border: 0.5px solid #707070; margin-top: 6px;font-weight: 400;"> </span>
-                            <span style="font-weight: 400;" class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}} text-capitalize"> {{$countWishlist}} {{\App\CPU\translate('wish_listed')}} </span>
-
-                        </div>
-                        <div class="mb-3">
-                            @if($product->discount > 0)
-                            <strike style="color: #E96A6A;" class="{{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-3'}}">
-                                {{\App\CPU\Helpers::currency_converter($product->unit_price)}}
-                            </strike>
-                            @endif
-                            <span class="h3 font-weight-normal text-accent ">
-                                {{\App\CPU\Helpers::get_price_range($product) }}
-                            </span>
-                            <span class="{{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}" style="font-size: 12px;font-weight:400">
-                                (<span>{{\App\CPU\translate('tax')}} : </span>
-                                <span id="set-tax-amount"></span>)
-                            </span>
-                        </div>
-
-                        <form id="add-to-cart-form" class="mb-2">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $product->id }}">
-                            <div class="position-relative {{Session::get('direction') === "rtl" ? 'ml-n4' : 'mr-n4'}} mb-2">
-                                @if (count(json_decode($product->colors)) > 0)
-                                <div class="flex-start">
-                                    <div class="product-description-label mt-2 text-body">{{\App\CPU\translate('color')}}:
-                                    </div>
-                                    <div>
-                                        <ul class="list-inline checkbox-color mb-1 flex-start {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}" style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 0;">
-                                            @foreach (json_decode($product->colors) as $key => $color)
-                                            <div>
-                                                <li>
-                                                    <input type="radio" id="{{ $product->id }}-color-{{ $key }}" name="color" value="{{ $color }}" @if($key==0) checked @endif>
-                                                    <label style="background: {{ $color }};" for="{{ $product->id }}-color-{{ $key }}" data-toggle="tooltip"></label>
-                                                </li>
-                                            </div>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
-                                @endif
-                                @php
-                                $qty = 0;
-                                if(!empty($product->variation)){
-                                foreach (json_decode($product->variation) as $key => $variation) {
-                                $qty += $variation->qty;
-                                }
-                                }
-                                @endphp
-                            </div>
-                            @foreach (json_decode($product->choice_options) as $key => $choice)
-                            <div class="row flex-start mx-0">
-                                <div class="product-description-label text-body mt-2 {{Session::get('direction') === "rtl" ? 'pl-2' : 'pr-2'}}">{{ $choice->title }}
-                                    :
-                                </div>
-                                <div>
-                                    <ul class="list-inline checkbox-alphanumeric checkbox-alphanumeric--style-1 mb-2 mx-1 flex-start row" style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 0;">
-                                        @foreach ($choice->options as $key => $option)
-                                        <div>
-                                            <li class="for-mobile-capacity">
-                                                <input type="radio" id="{{ $choice->name }}-{{ $option }}" name="{{ $choice->name }}" value="{{ $option }}" @if($key==0) checked @endif>
-                                                <label style="font-size: 12px;" for="{{ $choice->name }}-{{ $option }}">{{ $option }}</label>
-                                            </li>
-                                        </div>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                            @endforeach
-
-                            <!-- Quantity + Add to cart -->
-                            <!-- <div class="row no-gutters">
-                                <div>
-                                    <div class="product-description-label text-body" style="margin-top: 10px;">{{\App\CPU\translate('Quantity')}}:</div>
-                                </div>
-                                <div>
-                                    <div class="product-quantity d-flex justify-content-between align-items-center">
-                                        <div class="d-flex justify-content-center align-items-center" style="width: 160px;color: {{$web_config['primary_color']}}">
-                                            <span class="input-group-btn" style="">
-                                                <button class="btn btn-number" type="button" data-type="minus" data-field="quantity" disabled="disabled" style="padding: 10px;color: {{$web_config['primary_color']}}">
-                                                    -
-                                                </button>
-                                            </span>
-                                            <input type="text" name="quantity" class="form-control input-number text-center cart-qty-field" placeholder="1" value="1" min="1" max="100" style="padding: 0px !important;width: 40%;height: 25px;">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-number" type="button" data-type="plus" data-field="quantity" style="padding: 10px;color: {{$web_config['primary_color']}}">
-                                                    +
-                                                </button>
-                                            </span>
-                                        </div>
-                                        <div class="float-right" id="chosen_price_div">
-                                            <div class="d-flex justify-content-center align-items-center {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}">
-                                                <div class="product-description-label"><strong>{{\App\CPU\translate('total_price')}}</strong> : </div>
-                                                <strong id="chosen_price"></strong>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div> -->
-
-                            <div class="row flex-start no-gutters d-none mt-2">
-
-
-                                <div class="col-12">
-                                    @if($product['current_stock']<=0) <h5 class="mt-3 text-body" style="color: red">{{\App\CPU\translate('out_of_stock')}}</h5>
-                                        @endif
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-start mt-2 mb-3">
-                                <button class="btn element-center btn-gap-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}" onclick="buy_now()" type="button" style="width:37%; height: 45px; background: #FFA825 !important; color: #ffffff;">
-                                    <span class="string-limit">{{\App\CPU\translate('buy_now')}}</span>
-                                </button>
-                                <button class="btn btn-primary element-center btn-gap-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}" onclick="addToCart()" type="button" style="width:37%; height: 45px;{{Session::get('direction') === "rtl" ? 'margin-right: 20px;' : 'margin-left: 20px;'}}">
-                                    <span class="string-limit">{{\App\CPU\translate('add_to_cart')}}</span>
-                                </button>
-                                <button type="button" onclick="addWishlist('{{$product['id']}}')" class="btn for-hover-bg" style="color:{{$web_config['secondary_color']}};font-size: 18px;">
-                                    <i class="fa fa-heart-o " aria-hidden="true"></i>
-                                    <span class="countWishlist-{{$product['id']}}">{{$countWishlist}}</span>
-                                </button>
-                            </div>
-                        </form>
-
-                        <div style="text-align:{{Session::get('direction') === "rtl" ? 'right' : 'left'}};" class="sharethis-inline-share-buttons"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="mt-4 rtl col-12" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class=" mt-1">
-                                <!-- Tabs-->
-                                <ul class="nav nav-tabs d-flex justify-content-center" role="tablist" style="margin-top:35px;">
-                                    <li class="nav-item">
-                                        <a class="nav-link active " href="#overview" data-toggle="tab" role="tab" style="color: black !important;font-weight: 400;font-size: 24px;">
-                                            {{\App\CPU\translate('overview')}}
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#reviews" data-toggle="tab" role="tab" style="color: black !important;font-weight: 400;font-size: 24px;">
-                                            {{\App\CPU\translate('reviews')}}
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="px-4 pt-lg-3 pb-3 mb-3 mr-0 mr-md-2" style="background: #ffffff;border-radius:10px;min-height: 817px;">
-                                    <div class="tab-content px-lg-3">
-                                        <!-- Tech specs tab-->
-                                        <div class="tab-pane fade show active" id="overview" role="tabpanel">
-                                            <div class="row pt-2 specification">
-                                                @if($product->video_url!=null)
-                                                <div class="col-12 mb-4">
-                                                    <iframe width="420" height="315" src="{{$product->video_url}}">
-                                                    </iframe>
-                                                </div>
-                                                @endif
-
-                                                <div class="text-body col-lg-12 col-md-12" style="overflow: scroll;">
-                                                    {!! $product['details'] !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @php($reviews_of_product = App\Model\Review::where('product_id',$product->id)->paginate(2))
-                                        <!-- Reviews tab-->
-                                        <div class="tab-pane fade" id="reviews" role="tabpanel">
-                                            <div class="row pt-2 pb-3">
-                                                <div class="col-lg-4 col-md-5 ">
-                                                    <div class=" row d-flex justify-content-center align-items-center">
-                                                        <div class="col-12 d-flex justify-content-center align-items-center">
-                                                            <h2 class="overall_review mb-2" style="font-weight: 500;font-size: 50px;">
-                                                                {{$overallRating[1]}}
-                                                            </h2>
-                                                        </div>
-                                                        <div class="d-flex justify-content-center align-items-center star-rating ">
-                                                            @if (round($overallRating[0])==5)
-                                                            @for ($i = 0; $i < 5; $i++) <i class="czi-star-filled font-size-sm text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
-                                                                @endfor
-                                                                @endif
-                                                                @if (round($overallRating[0])==4)
-                                                                @for ($i = 0; $i < 4; $i++) <i class="czi-star-filled font-size-sm text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
-                                                                    @endfor
-                                                                    <i class="czi-star font-size-sm text-muted {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
-                                                                    @endif
-                                                                    @if (round($overallRating[0])==3)
-                                                                    @for ($i = 0; $i < 3; $i++) <i class="czi-star-filled font-size-sm text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
-                                                                        @endfor
-                                                                        @for ($j = 0; $j < 2; $j++) <i class="czi-star font-size-sm text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
-                                                                            @endfor
-                                                                            @endif
-                                                                            @if (round($overallRating[0])==2)
-                                                                            @for ($i = 0; $i < 2; $i++) <i class="czi-star-filled font-size-sm text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
-                                                                                @endfor
-                                                                                @for ($j = 0; $j < 3; $j++) <i class="czi-star font-size-sm text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
-                                                                                    @endfor
-                                                                                    @endif
-                                                                                    @if (round($overallRating[0])==1)
-                                                                                    @for ($i = 0; $i < 4; $i++) <i class="czi-star font-size-sm text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
-                                                                                        @endfor
-                                                                                        <i class="czi-star-filled font-size-sm text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
-                                                                                        @endif
-                                                                                        @if (round($overallRating[0])==0)
-                                                                                        @for ($i = 0; $i < 5; $i++) <i class="czi-star font-size-sm text-muted {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
-                                                                                            @endfor
-                                                                                            @endif
-                                                        </div>
-                                                        <div class="col-12 d-flex justify-content-center align-items-center mt-2">
-                                                            <span class="text-center">
-                                                                {{$reviews_of_product->total()}} {{\App\CPU\translate('ratings')}}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 col-md-7 pt-sm-3 pt-md-0">
-                                                    <div class="row d-flex align-items-center mb-2 font-size-sm">
-                                                        <div class="col-3 text-nowrap "><span class="d-inline-block align-middle text-body">{{\App\CPU\translate('Excellent')}}</span>
-                                                        </div>
-                                                        <div class="col-8">
-                                                            <div class="progress text-body" style="height: 5px;">
-                                                                <div class="progress-bar " role="progressbar" style="background-color: {{$web_config['primary_color']}} !important;width: <?php echo $widthRating = ($rating[0] != 0) ? ($rating[0] / $overallRating[1]) * 100 : (0); ?>%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-1 text-body">
-                                                            <span class=" {{Session::get('direction') === "rtl" ? 'mr-3 float-left' : 'ml-3 float-right'}} ">
-                                                                {{$rating[0]}}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row d-flex align-items-center mb-2 text-body font-size-sm">
-                                                        <div class="col-3 text-nowrap "><span class="d-inline-block align-middle ">{{\App\CPU\translate('Good')}}</span>
-                                                        </div>
-                                                        <div class="col-8">
-                                                            <div class="progress" style="height: 5px;">
-                                                                <div class="progress-bar" role="progressbar" style="background-color: {{$web_config['primary_color']}} !important;width: <?php echo $widthRating = ($rating[1] != 0) ? ($rating[1] / $overallRating[1]) * 100 : (0); ?>%; background-color: #a7e453;" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-1">
-                                                            <span class="{{Session::get('direction') === "rtl" ? 'mr-3 float-left' : 'ml-3 float-right'}}">
-                                                                {{$rating[1]}}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row d-flex align-items-center mb-2 text-body font-size-sm">
-                                                        <div class="col-3 text-nowrap"><span class="d-inline-block align-middle ">{{\App\CPU\translate('Average')}}</span>
-                                                        </div>
-                                                        <div class="col-8">
-                                                            <div class="progress" style="height: 5px;">
-                                                                <div class="progress-bar" role="progressbar" style="background-color: {{$web_config['primary_color']}} !important;width: <?php echo $widthRating = ($rating[2] != 0) ? ($rating[2] / $overallRating[1]) * 100 : (0); ?>%; background-color: #ffda75;" aria-valuenow="17" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-1">
-                                                            <span class="{{Session::get('direction') === "rtl" ? 'mr-3 float-left' : 'ml-3 float-right'}}">
-                                                                {{$rating[2]}}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row d-flex align-items-center mb-2 text-body font-size-sm">
-                                                        <div class="col-3 text-nowrap "><span class="d-inline-block align-middle">{{\App\CPU\translate('Below Average')}}</span>
-                                                        </div>
-                                                        <div class="col-8">
-                                                            <div class="progress" style="height: 5px;">
-                                                                <div class="progress-bar" role="progressbar" style="background-color: {{$web_config['primary_color']}} !important;width: <?php echo $widthRating = ($rating[3] != 0) ? ($rating[3] / $overallRating[1]) * 100 : (0); ?>%; background-color: #fea569;" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-1">
-                                                            <span class="{{Session::get('direction') === "rtl" ? 'mr-3 float-left' : 'ml-3 float-right'}}">
-                                                                {{$rating[3]}}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row d-flex align-items-center text-body font-size-sm">
-                                                        <div class="col-3 text-nowrap"><span class="d-inline-block align-middle ">{{\App\CPU\translate('Poor')}}</span>
-                                                        </div>
-                                                        <div class="col-8">
-                                                            <div class="progress" style="height: 5px;">
-                                                                <div class="progress-bar" role="progressbar" style="background-color: {{$web_config['primary_color']}} !important;backbround-color:{{$web_config['primary_color']}};width: <?php echo $widthRating = ($rating[4] != 0) ? ($rating[4] / $overallRating[1]) * 100 : (0); ?>%;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-1">
-                                                            <span class="{{Session::get('direction') === "rtl" ? 'mr-3 float-left' : 'ml-3 float-right'}}">
-                                                                {{$rating[4]}}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row pb-4 mb-3">
-                                                <div style="display: block;width:100%;text-align: center;background: #F3F4F5;border-radius: 5px;padding:5px;">
-                                                    <span class="text-capitalize">{{\App\CPU\translate('Product Review')}}</span>
-                                                </div>
-                                            </div>
-                                            <div class="row pb-4">
-                                                <div class="col-12" id="product-review-list">
-                                                    {{-- @foreach($reviews_of_product as $productReview) --}}
-                                                    {{-- @include('web-views.partials.product-reviews',['productRevie'=>$productRevie]) --}}
-                                                    {{-- @endforeach --}}
-                                                    @if(count($product->reviews)==0)
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h6 class="text-danger text-center">{{\App\CPU\translate('product_review_not_available')}}</h6>
-                                                        </div>
-                                                    </div>
-                                                    @endif
-
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="card-footer d-flex justify-content-center align-items-center">
-                                                        <button class="btn" style="background: {{$web_config['primary_color']}}; color: #ffffff" onclick="load_review()">{{\App\CPU\translate('view more')}}</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-md-3 ">
-            <div class="product-details-shipping-details">
-                <div class="shipping-details-bottom-border">
-                    <div style="padding: 25px;">
-                        <img class="{{Session::get('direction') === "rtl" ? 'float-right ml-2' : 'mr-2'}}" style="height: 20px;width:20px;" src="{{asset("public/assets/front-end/png/Payment.png")}}" alt="">
-                        <span>{{\App\CPU\translate('Safe Payment')}}</span>
-                    </div>
-                </div>
-                <div class="shipping-details-bottom-border">
-                    <div style="padding: 25px;">
-                        <img class="{{Session::get('direction') === "rtl" ? 'float-right ml-2' : 'mr-2'}}" style="height: 20px;width:20px;" src="{{asset("public/assets/front-end/png/money.png")}}" alt="">
-                        <span>{{ \App\CPU\translate('7 Days Return Policy')}}</span>
-                    </div>
-                </div>
-                <div class="shipping-details-bottom-border">
-                    <div style="padding: 25px;">
-                        <img class="{{Session::get('direction') === "rtl" ? 'float-right ml-2' : 'mr-2'}}" style="height: 20px;width:20px;" src="{{asset("public/assets/front-end/png/Genuine.png")}}" alt="">
-                        <span>{{ \App\CPU\translate('100% Authentic Products')}}</span>
-                    </div>
-                </div>
-            </div>
-            <div style="background: #ffffff; padding: 25px;border-radius: 5px;
-                    font-weight: 400;color: #212629;margin-top: 10px;">
-                {{--seller section--}}
-                @if($product->added_by=='seller')
-                @if(isset($product->seller->shop))
-                <div class="row d-flex justify-content-between">
-                    <div class="col-8">
-                        <div class="row d-flex ">
-                            <div>
-                                <img style="height: 65px; width: 65px; border-radius: 50%" src="{{asset('storage/app/public/shop')}}/{{$product->seller->shop->image}}" onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" alt="">
-                            </div>
-                            <div class="{{Session::get('direction') === "rtl" ? 'right' : 'ml-3'}}">
-                                <span style="font-weight: 700;font-size: 16px;">
-                                    {{$product->seller->shop->name}}
-                                </span><br>
-                                <span>{{\App\CPU\translate('Seller_info')}}</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-4">
-                        @if (auth('customer')->id() == '')
-                        <a href="{{route('customer.auth.login')}}">
-                            <div class="float-left" style="color:{{$web_config['primary_color']}};background: {{$web_config['primary_color']}}10;padding: 6px 15px 6px 15px;font-size:12px;">
-                                <i class="fa fa-envelope"></i>
-                                <span>{{\App\CPU\translate('chat')}}</span>
-                            </div>
-                        </a>
-                        @else
-                        <div id="contact-seller" style="color:{{$web_config['primary_color']}};background: {{$web_config['primary_color']}}10;padding: 6px 15px 6px 15px;font-size:12px;">
-                            <i class="fa fa-envelope"></i>
-                            <span>{{\App\CPU\translate('chat')}}</span>
-                        </div>
-                        @endif
-
-                    </div>
-                    <div class="col-12 msg-option mt-2" id="msg-option">
-
-                        <form action="">
-                            <input type="text" class="seller_id" hidden seller-id="{{$product->seller->id }}">
-                            <textarea shop-id="{{$product->seller->shop->id}}" class="chatInputBox" id="chatInputBox" rows="5"> </textarea>
-
-
-                            <div class="row">
-                                <button class="btn btn-secondary" style="color: white;display: block;width: 47%;margin: 3px;" id="cancelBtn">{{\App\CPU\translate('cancel')}}
-                                </button>
-                                <button class="btn btn-success " style="color: white;display: block;width: 47%;margin: 3px;" id="sendBtn">{{\App\CPU\translate('send')}}</button>
-                            </div>
-
-                        </form>
-
-                    </div>
-
-                    @php($products_for_review = App\Model\Product::where('added_by',$product->added_by)->where('user_id',$product->user_id)->withCount('reviews')->get())
-
-                    <?php
-                    $total_reviews = 0;
-                    foreach ($products_for_review as $item) {
-                        $total_reviews += $item->reviews_count;
-                    }
-                    ?>
-                    <div class="col-12 mt-2">
-                        <div class="row d-flex justify-content-between">
-                            <div class="col-6 ">
-                                <div class="d-flex justify-content-center align-items-center" style="height: 79px;background:{{$web_config['primary_color']}}10;border-radius:5px;">
-                                    <div class="text-center">
-                                        <span style="color: {{$web_config['primary_color']}};font-weight: 700;
-                                                    font-size: 26px;">
-                                            {{$total_reviews}}
-                                        </span><br>
-                                        <span style="font-size: 12px;">
-                                            {{\App\CPU\translate('reviews')}}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="d-flex justify-content-center align-items-center" style="height: 79px;background:{{$web_config['primary_color']}}10;border-radius:5px;">
-                                    <div class="text-center">
-                                        <span style="color: {{$web_config['primary_color']}};font-weight: 700;
-                                                    font-size: 26px;">
-                                            {{$products_for_review->count()}}
-                                        </span><br>
-                                        <span style="font-size: 12px;">
-                                            {{\App\CPU\translate('products')}}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-3">
-                        <div>
-                            <a href="{{ route('shopView',[$product->seller->id]) }}" style="display: block;width:100%;text-align: center">
-                                <button class="btn" style="display: block;width:100%;text-align: center;background: {{$web_config['primary_color']}};color:#ffffff">
-                                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                    {{\App\CPU\translate('Visit Store')}}
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                @endif
-                @else
-                <div class="row d-flex justify-content-between">
-                    <div class="col-9 ">
-                        <div class="row d-flex ">
-                            <div>
-                                <img style="height: 65px; width: 65px; border-radius: 50%" src="{{asset("storage/app/public/company")}}/{{$web_config['fav_icon']->value}}" onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" alt="">
-                            </div>
-                            <div class="{{Session::get('direction') === "rtl" ? 'right' : 'ml-3'}}">
-                                <span style="font-weight: 700;font-size: 16px;">
-                                    {{$web_config['name']->value}}
-                                </span><br>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    @php($products_for_review = App\Model\Product::where('added_by','admin')->where('user_id',$product->user_id)->withCount('reviews')->get())
-
-                    <?php
-                    $total_reviews = 0;
-                    foreach ($products_for_review as $item) {
-                        $total_reviews += $item->reviews_count;
-                    }
-                    ?>
-                    <div class="col-12 mt-2">
-                        <div class="row d-flex justify-content-between">
-                            <div class="col-6 ">
-                                <div class="d-flex justify-content-center align-items-center" style="height: 79px;background:{{$web_config['primary_color']}}10;border-radius:5px;">
-                                    <div class="text-center">
-                                        <span style="color: {{$web_config['primary_color']}};font-weight: 700;
-                                                font-size: 26px;">
-                                            {{$total_reviews}}
-                                        </span><br>
-                                        <span style="font-size: 12px;">
-                                            {{\App\CPU\translate('reviews')}}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="d-flex justify-content-center align-items-center" style="height: 79px;background:{{$web_config['primary_color']}}10;border-radius:5px;">
-                                    <div class="text-center">
-                                        <span style="color: {{$web_config['primary_color']}};font-weight: 700;
-                                                font-size: 26px;">
-                                            {{$products_for_review->count()}}
-                                        </span><br>
-                                        <span style="font-size: 12px;">
-                                            {{\App\CPU\translate('products')}}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <div class="row">
-                            <a href="{{ route('shopView',[0]) }}" style="display: block;width:100%;text-align: center">
-                                <button class="btn" style="display: block;width:100%;text-align: center;background: {{$web_config['primary_color']}};color:#ffffff">
-                                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                    {{\App\CPU\translate('Visit Store')}}
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                @endif
-            </div>
-            @php($more_product_from_seller = App\Model\Product::where('added_by',$product->added_by)->where('user_id',$product->user_id)->latest()->take(5)->get())
-            <div style="padding: 25px;">
-                <div class="row d-flex justify-content-center">
-                    <span style="text-align: center;font-weight: 700;
-                        font-size: 16px;">
-                        {{ \App\CPU\translate('More From The Store')}}
-                    </span>
-                </div>
-            </div>
-            <div style="">
-
-                @foreach($more_product_from_seller as $item)
-
-                @include('web-views.partials.seller-products-product-details',['product'=>$item])
-
-                @endforeach
-
-            </div>
-        </div>
-
-
-    </div>
-</div>
 
 <!-- Product carousel (You may also like)-->
 <div class="container  mb-3 rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
