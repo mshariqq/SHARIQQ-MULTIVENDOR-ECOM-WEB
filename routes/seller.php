@@ -13,7 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['namespace' => 'Seller', 'prefix' => 'seller', 'as' => 'seller.'], function () {
+Route::group(['namespace' => 'Seller', 'prefix' => 'cp-seller', 'as' => 'seller.'], function () {
 
     /*authentication*/
     Route::group(['namespace' => 'Auth', 'prefix' => 'auth', 'as' => 'auth.'], function () {

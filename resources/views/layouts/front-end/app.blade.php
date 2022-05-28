@@ -159,7 +159,10 @@
                         </button>
 
                         <a href="index.html" class="logo">
-                            <img src="{{asset('public/assets/front-end/v91f')}}/assets/images/demos/demo-4/logo.png" alt="Molla Logo" width="105" height="25">
+                            <img 
+                            src="{{asset("storage/app/public/company")."/".$web_config['web_logo']->value}}"
+                         onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                         alt="{{$web_config['name']->value}}" width="70" height="auto">
                         </a>
                     </div><!-- End .header-left -->
 
