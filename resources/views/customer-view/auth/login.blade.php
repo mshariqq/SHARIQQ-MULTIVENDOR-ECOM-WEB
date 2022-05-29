@@ -33,13 +33,28 @@
 <div class="container"
          style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="row justify-content-center">
+
             <div class="col-md-6">
                 <div class="card border-0 box-shadow">
                     <div class="card-header bg-light p-5">
                     <h2 class="h4 mb-1">{{\App\CPU\translate('sing_in')}}</h2>
-
+                                    <!-- errors -->
+                                    @if($errors->any())
+            <div class="col-12">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <p class="text-white">
+                    {{$errors->first()}}
+                    </p>
+                </div>
+            </div>
+            @endif
                     </div>
                     <div class="card-body p-0">
+
                         {{-- <h3 class="font-size-base pt-4 pb-2">{{\App\CPU\translate('or_using_form_below')}}</h3> --}}
                         <form class="needs-validation mt-2 col-12" autocomplete="off" action="{{route('customer.auth.login')}}"
                               method="post" id="form-id">

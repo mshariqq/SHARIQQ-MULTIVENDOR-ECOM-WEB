@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Gregwar\Captcha\CaptchaBuilder;
 use Illuminate\Support\Facades\Session;
 use Gregwar\Captcha\PhraseBuilder;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -90,8 +91,11 @@ class LoginController extends Controller
         $user = User::where(['phone' => $request->user_id])->orWhere(['email' => $request->user_id])->first();
 
         if (isset($user) == false) {
-            Toastr::error('Credentials do not match or account has been suspended.');
-            return back()->withInput();
+            // Toastr::error('Credentials do not match or account has been suspended.');
+            // return back()->withInput();
+            
+            return Redirect::back()->withErrors(['errors' => 'Credentials do not match or account has been suspended']);
+
         }
 
         $phone_verification = Helpers::get_business_settings('phone_verification');
@@ -109,6 +113,8 @@ class LoginController extends Controller
             CartManager::cart_to_db();
             return redirect(session('keep_return_url'));
         }
+
+        return Redirect::back()->withErrors(['errors' => 'Credentials do not match or account has been suspended']);
 
         Toastr::error('Credentials do not match or account has been suspended.');
         return back()->withInput();

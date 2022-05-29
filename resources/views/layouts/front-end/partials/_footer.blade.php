@@ -431,6 +431,10 @@
     <script src="{{asset('public/assets/front-end/v91f')}}/assets/js/main.js"></script>
     <script src="{{asset('public/assets/front-end/v91f')}}/assets/js/demos/demo-4.js"></script>
 
+    <script src="{{asset('public/assets/back-end/js/toastr.js')}}"></script>
+
+    <script src="{{asset('public/assets/back-end/js/toastr.js')}}"></script>
+    {!! Toastr::message() !!}
     <script>
     function addWishlist(product_id) {
         $.ajaxSetup({

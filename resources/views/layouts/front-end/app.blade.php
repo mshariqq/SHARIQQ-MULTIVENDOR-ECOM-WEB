@@ -49,6 +49,9 @@
     <link rel="stylesheet" media="screen" href="{{asset('public/assets/front-end')}}/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/vendor/icon-set/style.css">
 
+    <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/css/toastr.css"/>
+    <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/css/toastr.css"/>
+
     <script src="{{asset('public/assets/front-end/v91f')}}/assets/js/jquery.min.js"></script>
 
     <!-- Analytics -->

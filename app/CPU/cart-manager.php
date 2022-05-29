@@ -21,7 +21,6 @@ class CartManager
         if (session()->has('offline_cart')) {
             $cart = session('offline_cart');
             $storage = [];
-            dd($cart);
             foreach ($cart as $item) {
                 $db_cart = Cart::where(['customer_id' => $user->id, 'seller_id' => $item['seller_id'], 'seller_is' => $item['seller_is']])->first();
                 $storage[] = [

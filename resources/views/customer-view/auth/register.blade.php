@@ -172,7 +172,7 @@
             }
 
         });
-        $('#sign-up-form').submit(function (e) {
+        /*$('#sign-up-form').submit(function (e) {
             e.preventDefault();
             $.ajaxSetup({
                 headers: {
@@ -186,8 +186,10 @@
                 beforeSend: function () {
                     $('#loading').show();
                 },
-                success: function () {
+                success: function (res) {
+                    console.log(res);
                     alert("Success, Please wait...");
+                    // location.href = data.url;
                         // toastr.success(data.message, {
                         //     CloseButton: true,
                         //     ProgressBar: true
@@ -200,12 +202,16 @@
                     $('#loading').hide();
                 },
                 error: function (data) {
+                    console.log(data);
+                    if(data.status == 200 || data.status == "200"){
+                        location.href = "{{url('user-account')}}";
+                    }
                     $('#FormErrors').show();
                         var edata = "<ul class='text-white'>";
                             // edata += data.errors[i].message; 
                             // console.log(data.responseJSON.errors);
-
-                        $(data.responseJSON.errors).each(function(index, value){
+                        if(data.responseJSON.errors){
+                            $(data.responseJSON.errors).each(function(index, value){
                             $(value).each(function(i, k){
                                 if(k.email){
                                     console.log("YES EMAIL IS THERE");
@@ -228,8 +234,10 @@
                         edata += "</ul>";
                         $('#FormErrorsContent').html(edata);
                         $('#loading').hide();
+                        }
+                       
                 }
             });
-        });
+        });*/
     </script>
 @endsection
