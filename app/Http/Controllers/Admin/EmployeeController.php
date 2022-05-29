@@ -50,7 +50,7 @@ class EmployeeController extends Controller
             'admin_role_id' => $request->role_id,
             'password' => bcrypt($request->password),
             'status'=>1,
-            'image' => ImageManager::upload('admin/', 'png', $request->file('image')),
+            'image' => ImageManager::upload('cp-admin/', 'png', $request->file('image')),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -109,7 +109,7 @@ class EmployeeController extends Controller
         }
 
         if ($request->has('image')) {
-            $e['image'] = ImageManager::update('admin/', $e['image'], 'png', $request->file('image'));
+            $e['image'] = ImageManager::update('cp-admin/', $e['image'], 'png', $request->file('image'));
         }
 
         DB::table('admins')->where(['id' => $id])->update([

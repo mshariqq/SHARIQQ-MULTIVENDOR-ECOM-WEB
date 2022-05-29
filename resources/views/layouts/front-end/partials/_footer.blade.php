@@ -412,6 +412,9 @@
         </div><!-- End .modal-dialog -->
     </div><!-- End .modal -->
 
+    <div id="loading">
+    </div>
+
 
     <!-- Plugins JS File -->
     <script src="{{asset('public/assets/front-end/v91f')}}/assets/js/jquery.elevateZoom.min.js"></script>

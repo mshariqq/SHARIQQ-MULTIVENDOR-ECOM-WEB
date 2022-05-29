@@ -47,6 +47,7 @@
 
     <!-- font awesome icons -->
     <link rel="stylesheet" media="screen" href="{{asset('public/assets/front-end')}}/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/vendor/icon-set/style.css">
 
     <script src="{{asset('public/assets/front-end/v91f')}}/assets/js/jquery.min.js"></script>
 

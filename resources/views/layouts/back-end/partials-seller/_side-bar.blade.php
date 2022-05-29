@@ -90,7 +90,7 @@
                                         class="nav-subtitle">{{\App\CPU\translate('pos')}} {{\App\CPU\translate('system')}} </small>
                                     <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                                 </li>
-                                <li class="navbar-vertical-aside-has-menu {{Request::is('admin/pos/*')?'active':''}}">
+                                <li class="navbar-vertical-aside-has-menu {{Request::is('cp-admin/pos/*')?'active':''}}">
                                     <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:">
                                         <i class="tio-shopping nav-icon"></i>
                                         <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('POS')}}</span>

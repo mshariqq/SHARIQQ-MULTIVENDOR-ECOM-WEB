@@ -1,25 +1,13 @@
 @extends('layouts.front-end.app')
 
 @section('title', \App\CPU\translate('Register'))
-<!-- @push('css_or_js')
-    <style>
-        @media (max-width: 500px) {
-            #sign_in {
-                margin-top: -23% !important;
-            }
-
-        }
-    </style>
-@endpush -->
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7 mt-4">
                 <div class="card border-0">
                     <div class="card-header bg-light p-5">
-                    <h2 class="h4 mb-1">{{\App\CPU\translate('no_account')}}?</h2>
-
+                        <h2 class="h4 mb-1">{{\App\CPU\translate('no_account')}}?</h2>
                     </div>
                     <div class="card-body p-0">
                         <p class="font-size-sm text-muted mb-4">{{\App\CPU\translate('register_control_your_order')}}</p>
@@ -27,6 +15,16 @@
                               method="post" id="sign-up-form">
                             @csrf
                             <div class="row">
+                                <div class="col-12" id="FormErrors" style="display: none;">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                      <p class="text-white" id="FormErrorsContent"></p> 
+                                    </div>
+                                    
+
+                                </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="reg-fn">{{\App\CPU\translate('first_name')}}</label>
@@ -57,7 +55,7 @@
                                         <label for="reg-phone">{{\App\CPU\translate('phone_number')}}
                                             <small class="text-primary">( * {{\App\CPU\translate('country_code_is_must')}} )</small></label>
                                         <input class="form-control" type="text"  value="{{old('phone')}}"  name="phone"
-                                               placeholder="Ex: 910000000000"
+                                               placeholder="Ex: 91 XXXXXXXXXX"
                                                required>
                                         <div class="invalid-feedback">{{\App\CPU\translate('Please enter your phone number')}}!</div>
                                     </div>
@@ -67,8 +65,9 @@
                                         <label for="si-password">{{\App\CPU\translate('password')}}</label>
                                         <div class="password-toggle">
                                             <input class="form-control" name="password" type="password" id="si-password"
-                                                   style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
+                                                   style="text-align:"
                                                    placeholder="{{\App\CPU\translate('minimum_8_characters_long')}}"
+                                                   autocomplete="false"
                                                    required>
                                             <label class="password-toggle-btn">
                                                 <input class="custom-control-input" type="checkbox"><i
@@ -136,16 +135,21 @@
                                         <i class="fa fa-sign-in"></i> {{\App\CPU\translate('sing_in')}}
                                     </a>
                                 </div>
-                                <p class="col-12 text-center mt-2">OR</p>
+                                
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer bg-light p-3">
+                        <p class="col-12 text-center mt-2">You can also sign up with social accounts</p>
                                 <div class="col-12 mt-3 mb-3">
                                     <div class="row justify-content-between">
                                         @foreach (\App\CPU\Helpers::get_business_settings('social_login') as $socialLoginService)
                                             @if (isset($socialLoginService) && $socialLoginService['status']==true)
-                                                <div class="col-sm-6 mt-1 p-0">
+                                                <div class="col-sm-6 p-0">
                                                     <a class="btn btn-dark btn-round col-11"
                                                        href="{{route('customer.auth.service-login', $socialLoginService['login_medium'])}}"
-                                                       style="width: 100%">
-                                                        <i class="czi-{{ $socialLoginService['login_medium'] }} {{Session::get('direction') === "rtl" ? 'ml-2 mr-n1' : 'mr-2 ml-n1'}}"></i>
+                                                       >
+                                                        <i class="czi-{{ $socialLoginService['login_medium'] }}"></i>
                                                         {{\App\CPU\translate('sing_up_with_'.$socialLoginService['login_medium'])}}
                                                     </a>
                                                 </div>
@@ -153,16 +157,11 @@
                                         @endforeach
                                     </div>
                                 </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
-
-@push('script')
     <script>
         $('#inputCheckd').change(function () {
             // console.log('jell');
@@ -173,7 +172,7 @@
             }
 
         });
-        /*$('#sign-up-form').submit(function (e) {
+        $('#sign-up-form').submit(function (e) {
             e.preventDefault();
             $.ajaxSetup({
                 headers: {
@@ -187,31 +186,50 @@
                 beforeSend: function () {
                     $('#loading').show();
                 },
-                success: function (data) {
-                    if (data.errors) {
-                        for (var i = 0; i < data.errors.length; i++) {
-                            toastr.error(data.errors[i].message, {
-                                CloseButton: true,
-                                ProgressBar: true
-                            });
-                        }
-                    } else {
-                        toastr.success(data.message, {
-                            CloseButton: true,
-                            ProgressBar: true
-                        });
+                success: function () {
+                    alert("Success, Please wait...");
+                        // toastr.success(data.message, {
+                        //     CloseButton: true,
+                        //     ProgressBar: true
+                        // });
                         setInterval(function () {
                             location.href = data.url;
                         }, 2000);
-                    }
                 },
                 complete: function () {
                     $('#loading').hide();
                 },
-                error: function () {
-                  console.log(response)
+                error: function (data) {
+                    $('#FormErrors').show();
+                        var edata = "<ul class='text-white'>";
+                            // edata += data.errors[i].message; 
+                            // console.log(data.responseJSON.errors);
+
+                        $(data.responseJSON.errors).each(function(index, value){
+                            $(value).each(function(i, k){
+                                if(k.email){
+                                    console.log("YES EMAIL IS THERE");
+                                    for (var i = 0; i < k.email.length; i++) {
+                                        edata += "<li>"+k.email[i] + "</li>"; 
+                                    }
+                                }
+                                if(k.phone){
+                                    for (var i = 0; i < k.phone.length; i++) {
+                                        edata += "<li>"+k.phone[i] + "</p>"; 
+                                    }
+                                }
+                                if(k.password){
+                                    for (var i = 0; i < k.password.length; i++) {
+                                        edata += "<li>"+k.password[i] + "</p>"; 
+                                    }
+                                }
+                            });
+                        });
+                        edata += "</ul>";
+                        $('#FormErrorsContent').html(edata);
+                        $('#loading').hide();
                 }
             });
-        });*/
+        });
     </script>
-@endpush
+@endsection

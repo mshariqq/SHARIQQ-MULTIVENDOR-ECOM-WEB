@@ -544,6 +544,6 @@ class UpdateController extends Controller
             ]);
         }
 
-        return redirect('/admin/auth/login');
+        return redirect('/cp-admin/auth/login');
     }
 }

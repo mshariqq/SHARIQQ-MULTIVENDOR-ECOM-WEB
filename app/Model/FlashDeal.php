@@ -32,7 +32,7 @@ class FlashDeal extends Model
 
     public function getTitleAttribute($title)
     {
-        if (strpos(url()->current(), '/admin') || strpos(url()->current(), '/seller')) {
+        if (strpos(url()->current(), '/cp-admin') || strpos(url()->current(), '/seller')) {
             return $title;
         }
 

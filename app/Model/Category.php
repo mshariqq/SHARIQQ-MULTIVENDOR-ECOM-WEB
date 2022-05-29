@@ -36,7 +36,7 @@ class Category extends Model
 
     public function getNameAttribute($name)
     {
-        if (strpos(url()->current(), '/admin') || strpos(url()->current(), '/seller')) {
+        if (strpos(url()->current(), '/cp-admin') || strpos(url()->current(), '/seller')) {
             return $name;
         }
 
