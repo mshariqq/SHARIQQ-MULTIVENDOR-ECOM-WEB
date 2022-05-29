@@ -140,7 +140,7 @@ class SellerController extends Controller
         $old_image = Seller::where(['id' => $seller['id']])->first()->image;
         $image = $request->file('image');
         if ($image != null) {
-            $imageName = ImageManager::update('seller/', $old_image, 'png', $request->file('image'));
+            $imageName = ImageManager::update('cp-seller/', $old_image, 'png', $request->file('image'));
         } else {
             $imageName = $old_image;
         }

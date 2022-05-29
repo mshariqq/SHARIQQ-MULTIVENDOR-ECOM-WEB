@@ -123,7 +123,7 @@ Route::group(['namespace' => 'Seller', 'prefix' => 'cp-seller', 'as' => 'seller.
         Route::group(['prefix' => 'messages', 'as' => 'messages.'], function () {
             Route::get('/chat', 'ChattingController@chat')->name('chat');
             Route::get('/message-by-user', 'ChattingController@message_by_user')->name('message_by_user');
-            Route::post('/seller-message-store', 'ChattingController@seller_message_store')->name('seller_message_store');
+            Route::post('/cp-seller-message-store', 'ChattingController@seller_message_store')->name('seller_message_store');
         });
         // profile
 

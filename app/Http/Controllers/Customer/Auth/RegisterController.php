@@ -14,6 +14,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Session;
 use function App\CPU\translate;
@@ -60,8 +61,10 @@ class RegisterController extends Controller
             return redirect(route('customer.auth.check', [$user->id]));
         }
 
-        Toastr::success(translate('registration_success_login_now'));
-        return redirect(route('customer.auth.login'));
+        return Redirect::route('customer.auth.login')->withErrors(['errors' => 'Registration Succes, Please Login']);
+
+        // Toastr::success(translate('registration_success_login_now'));
+        // return redirect(route('customer.auth.login'));
     }
 
     public static function check($id)
@@ -122,8 +125,10 @@ class RegisterController extends Controller
                 Toastr::success(translate('verification_done_successfully'));
 
             } else {
-                Toastr::error(translate('Verification_code_or_OTP mismatched'));
-                return redirect()->back();
+                return Redirect::back()->withErrors(['errors' => 'Verification code is Incorrect']);
+
+                // Toastr::error(translate('Verification_code_or_OTP mismatched'));
+                // return redirect()->back();
             }
 
         } else {

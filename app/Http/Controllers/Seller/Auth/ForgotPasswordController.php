@@ -37,7 +37,7 @@ class ForgotPasswordController extends Controller
                 'token' => $token,
                 'created_at' => now(),
             ]);
-            $reset_url = url('/') . '/seller/auth/reset-password?token=' . $token;
+            $reset_url = url('/') . '/cp-seller/auth/reset-password?token=' . $token;
             Mail::to($seller['email'])->send(new \App\Mail\PasswordResetMail($reset_url));
 
             Toastr::success('Check your email. Password reset url sent.');
@@ -56,7 +56,7 @@ class ForgotPasswordController extends Controller
             return view('seller-views.auth.reset-password', compact('token'));
         }
         Toastr::error('Invalid URL.');
-        return redirect('/seller/auth/login');
+        return redirect('/cp-seller/auth/login');
     }
 
     public function reset_password_submit(Request $request)
@@ -72,9 +72,9 @@ class ForgotPasswordController extends Controller
             ]);
             Toastr::success('Password reset successfully.');
             DB::table('password_resets')->where(['token' => $request['reset_token']])->delete();
-            return redirect('/seller/auth/login');
+            return redirect('/cp-seller/auth/login');
         }
         Toastr::error('Invalid URL.');
-        return redirect('/seller/auth/login');
+        return redirect('/cp-seller/auth/login');
     }
 }

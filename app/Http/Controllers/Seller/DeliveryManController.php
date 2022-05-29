@@ -111,7 +111,7 @@ class DeliveryManController extends Controller
         $dm->save();
 
         Toastr::success('Delivery-man added successfully!');
-        return redirect('seller/delivery-man/list');
+        return redirect('cp-seller/delivery-man/list');
     }
 
     public function edit($id)
@@ -173,7 +173,7 @@ class DeliveryManController extends Controller
 
         Toastr::success('Delivery-man updated successfully!');
         
-        return redirect('seller/delivery-man/list');
+        return redirect('cp-seller/delivery-man/list');
     }
 
     public function delete(Request $request,$id)

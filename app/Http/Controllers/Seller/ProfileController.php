@@ -34,7 +34,7 @@ class ProfileController extends Controller
         $seller->l_name = $request->l_name;
         $seller->phone = $request->phone;
         if ($request->image) {
-            $seller->image = ImageManager::update('seller/', $seller->image, 'png', $request->file('image'));
+            $seller->image = ImageManager::update('cp-seller/', $seller->image, 'png', $request->file('image'));
         }
         $seller->save();
 

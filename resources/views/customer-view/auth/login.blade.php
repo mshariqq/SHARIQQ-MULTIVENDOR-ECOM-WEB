@@ -40,18 +40,18 @@
                     <h2 class="h4 mb-1">{{\App\CPU\translate('sing_in')}}</h2>
                                     <!-- errors -->
                                     @if($errors->any())
-            <div class="col-12">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <p class="text-white">
-                    {{$errors->first()}}
-                    </p>
-                </div>
-            </div>
-            @endif
+                                    <div class="col-12">
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                <span class="sr-only">Close</span>
+                                            </button>
+                                            <p class="text-white">
+                                            {{$errors->first()}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    @endif
                     </div>
                     <div class="card-body p-0">
 

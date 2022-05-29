@@ -90,7 +90,7 @@ class ShippingMethodController extends Controller
             $method = ShippingMethod::where(['id' => $id])->first();
             return view('seller-views.shipping-method.edit', compact('method'));
         }else{
-            return redirect('/seller/dashboard');
+            return redirect('/cp-seller/dashboard');
         }
     }
 

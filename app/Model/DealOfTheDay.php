@@ -29,7 +29,7 @@ class DealOfTheDay extends Model
 
     public function getTitleAttribute($title)
     {
-        if (strpos(url()->current(), '/cp-admin') || strpos(url()->current(), '/seller')) {
+        if (strpos(url()->current(), '/cp-admin') || strpos(url()->current(), '/cp-seller')) {
             return $title;
         }
 

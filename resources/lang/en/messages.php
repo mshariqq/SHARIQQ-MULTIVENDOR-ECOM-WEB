@@ -1956,4 +1956,7 @@
   '
                     items found ' => '
                     items found ',
+  'Login Now' => 'Login Now',
+  'Seller Info' => 'Seller Info',
+  'Apply for' => 'Apply for',
 );

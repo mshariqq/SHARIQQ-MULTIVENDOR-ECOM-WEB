@@ -150,7 +150,12 @@
                                             </div><!-- End .header-menu -->
                                         </div>
                                     </li>
-                                    <li><a href="#signin-modal" data-toggle="modal"> <i class="icon-user"></i> Sign in / Sign up</a></li>
+                                    @if(auth('customer')->check())
+                                        <li><a href="{{route('customer.auth.logout')}}"> <i class="fa fa-lock"></i> Logout</a></li>
+                                    @else
+                                    <li><a href="{{url('customer/auth/login')}}"> <i class="icon-user"></i> Sign in / Sign up</a></li>
+
+                                    @endif
                                 </ul>
                             </li>
                         </ul><!-- End .top-menu -->
@@ -181,46 +186,27 @@
                             <form action="{{route('products')}}" type="submit">
                                 <div class="header-search-wrapper search-wrapper-wide">
                                     <label for="q" class="sr-only">{{\App\CPU\translate('search')}}</label>
+
                                     <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
-                                    <input autocomplete="off" type="search" class="form-control search-bar-input" name="q" id="q" placeholder="Search product ..." required>
+                                    <input class="form-control appended-form-control search-bar-input" type="text"
+                                    autocomplete="off"
+                                    placeholder="{{\App\CPU\translate('search')}}"
+                                    name="name">
+                                    <!-- <input autocomplete="off" type="search" class="form-control search-bar-input" name="q" id="q" placeholder="Search product ..." required> -->
+                                    
                                     <input name="data_from" value="search" hidden>
                                     <input name="page" value="1" hidden>
-                                    <diV class="card search-card" style="margin-top: 40px;position: absolute;background: white;z-index: 999;width: 100%;display: none">
-                                        <div class="card-body search-result-box" id="" style="overflow:scroll; height:400px;overflow-x: hidden"></div>
-                                    </diV>
+                                    <diV class="card search-card"
+                                    style="position: absolute;background: white;z-index: 999;width: 100%;display: none">
+                                    <div class="card-body search-result-box"
+                                        style="overflow:scroll; height:400px;overflow-x: hidden"></div>
+                                </diV>
                                 </div><!-- End .header-search-wrapper -->
                             </form>
                         </div><!-- End .header-search -->
                     </div>
 
                     <div class="header-right">
-                        <div style="display: none;" class="dropdown compare-dropdown">
-                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Compare Products" aria-label="Compare Products">
-                                <div class="icon">
-                                    <i class="icon-random"></i>
-                                </div>
-                                <p>Compare</p>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <ul class="compare-products">
-                                    <li class="compare-product">
-                                        <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                        <h4 class="compare-product-title"><a href="product.html">Blue Night Dress</a></h4>
-                                    </li>
-                                    <li class="compare-product">
-                                        <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                        <h4 class="compare-product-title"><a href="product.html">White Long Skirt</a></h4>
-                                    </li>
-                                </ul>
-
-                                <div class="compare-actions">
-                                    <a href="#" class="action-link">Clear All</a>
-                                    <a href="#" class="btn btn-outline-primary-2"><span>Compare</span><i class="icon-long-arrow-right"></i></a>
-                                </div>
-                            </div>
-                            <!-- End .dropdown-menu -->
-                        </div><!-- End .compare-dropdown -->
 
                         <div class="wishlist">
                             <a href="{{route('wishlists')}}" title="Wishlist">
@@ -301,6 +287,30 @@
                                 </div><!-- End .dropdown-cart-total -->
                             </div><!-- End .dropdown-menu -->
                         </div><!-- End .cart-dropdown -->
+
+                        @if(auth('customer')->check())
+                        <div class="dropdown cart-dropdown">
+                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                <div class="icon">
+                                    <i class="icon-user"></i>
+                                    
+                                </div>
+                                <p>
+                                    Profile
+                                </p>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right">
+                               
+                                <ul class="widget-list">
+                                    <li> <a href="{{route('user-account')}}" class="text-dark nav-link"> <i class="fa fa-cog"></i> My Account</a></li>
+                                    <li> <a href="{{route('account-oder')}}" class="text-dark nav-link"> <i class="fa fa-shopping-bag"></i> Orders</a></li>
+                                    <li><a href="{{route('customer.auth.logout')}}" class="text-white btn btn-danger btn-sm">Logout</a></li>
+                                </ul>
+                            </div>
+                                
+                        </div><!-- End .cart-dropdown -->
+                        @endif
                     </div><!-- End .header-right -->
                 </div><!-- End .container -->
             </div><!-- End .header-middle -->
@@ -373,7 +383,7 @@
                                 </li>
                                 @php($business_mode=\App\CPU\Helpers::get_business_settings('business_mode'))
                                 @if ($business_mode == 'multi')
-                                <li class="{{request()->is('/sellers')?'active':''}}">
+                                <li class="{{request()->is('/cp-sellers')?'active':''}}">
                                     <a href="{{route('sellers')}}" class="">Browse Sellers</a>
                                 </li>
                                     
@@ -397,8 +407,8 @@
                                         <li><a href="elements-titles.html">Policies</a></li>
                                         <li><a href="elements-banners.html">Disclaimer</a></li>
                                         <li><a href="elements-product-category.html">Support</a></li>
-                                        <li><a href="elements-product-category.html">Become Seller</a></li>
-                                        <li><a class="btn btn-sm btn-secondary btn-round text-white" href="elements-product-category.html">Seller Login</a></li>
+                                        <li><a href="{{url('shop/apply')}}">Become Seller</a></li>
+                                        <li><a class="btn btn-sm btn-secondary btn-round text-white" href="{{url('cp-seller/auth/login')}}">Seller Login</a></li>
                                        
                                     </ul>
                                 </li>

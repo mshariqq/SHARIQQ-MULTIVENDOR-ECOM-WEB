@@ -116,8 +116,8 @@ class LoginController extends Controller
 
         return Redirect::back()->withErrors(['errors' => 'Credentials do not match or account has been suspended']);
 
-        Toastr::error('Credentials do not match or account has been suspended.');
-        return back()->withInput();
+        // Toastr::error('Credentials do not match or account has been suspended.');
+        // return back()->withInput();
     }
 
     public function logout(Request $request)

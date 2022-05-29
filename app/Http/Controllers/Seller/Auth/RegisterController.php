@@ -9,6 +9,7 @@ use App\Model\Shop;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class RegisterController extends Controller
 {
@@ -36,7 +37,7 @@ class RegisterController extends Controller
             $seller->l_name = $request->l_name;
             $seller->phone = $request->phone;
             $seller->email = $request->email;
-            $seller->image = ImageManager::upload('seller/', 'png', $request->file('image'));
+            $seller->image = ImageManager::upload('cp-seller/', 'png', $request->file('image'));
             $seller->password = bcrypt($request->password);
             $seller->status =  $request->status == 'approved'?'approved': "pending";
             $seller->save();
@@ -65,11 +66,16 @@ class RegisterController extends Controller
         });
 
         if($request->status == 'approved'){
-            Toastr::success('Shop apply successfully!');
-            return back();
+            
+            return Redirect::back()->withErrors(['errors' => 'Success, Shop Applied, Please wait for Approval!']);
+
+            // Toastr::success('Shop apply successfully!');
+            // return back();
         }else{
-            Toastr::success('Shop apply successfully!');
-            return redirect()->route('seller.auth.login');
+            return Redirect::back()->withErrors(['errors' => 'Success, Shop Applied, Please Login!']);
+
+            // Toastr::success('Shop apply successfully!');
+            // return redirect()->route('seller.auth.login');
         }
         
 

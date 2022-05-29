@@ -158,7 +158,7 @@
                                     </div>
                                     <div class="col-6 input-icons" style="background-color: #FFFFFF; border-radius: 5px;">
                                         <a onclick="javascript:re_captcha();">
-                                            <img src="{{ URL('/seller/auth/code/captcha/1') }}" class="input-field" id="default_recaptcha_id" style="display: inline;width: 90%; height: 75%">
+                                            <img src="{{ URL('/cp-seller/auth/code/captcha/1') }}" class="input-field" id="default_recaptcha_id" style="display: inline;width: 90%; height: 75%">
                                             <i class="tio-refresh icon"></i>
                                         </a>
                                     </div>
@@ -252,7 +252,7 @@
 @else
     <script type="text/javascript">
         function re_captcha() {
-            $url = "{{ URL('/seller/auth/code/captcha') }}";
+            $url = "{{ URL('/cp-seller/auth/code/captcha') }}";
             $url = $url + "/" + Math.random();
             document.getElementById('default_recaptcha_id').src = $url;
             console.log('url: '+ $url);
