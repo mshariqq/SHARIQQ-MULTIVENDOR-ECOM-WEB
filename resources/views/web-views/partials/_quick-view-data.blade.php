@@ -28,23 +28,35 @@ $productReviews = \App\CPU\ProductManager::get_product_review($product->id);
         cursor: pointer;
     }
 </style>
-<!-- <div class="modal-header rtl">
-    <div>
-        <h4 class="modal-title product-title">
-            <a class="product-title2" href="{{route('product',$product->slug)}}" data-toggle="tooltip" data-placement="right" title="Go to product page">{{$product['name']}}
-                <i class="czi-arrow-{{Session::get('direction') === "rtl" ? 'left mr-2' : 'right ml-2'}} font-size-lg" style="margin-right: 0px !important;"></i>
-            </a>
-        </h4>
-    </div>
-    <div>
-        <button class="close call-when-done" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-</div> -->
+<script>
+    // choices function 
+    function addChoiceToForm(el, val, formID, classes, spanID) {
+        // change all the elements color back to normal
+        var spans = $('.' + classes);
+        $(spans).css('border', '1px solid #54595f');
+        // change this item color
+        $('#' + spanID).css('border', "2px solid green");
+        // add the value to input
+        var fInput = $("#" + formID).val(val);
 
+    }
 
+    function addColorToForm(el, val, formID, classes, spanID) {
+        // change all the elements color back to normal
+        var spans = $('.' + classes);
+        $(spans).css('border', '1px solid #54595f');
+        $(spans).css('height', "35px");
+        $(spans).css('width', "35px");
 
+        // change this item color
+        $('#' +spanID).css('border', "4px solid orange");
+        $('#' +spanID).css('height', "40px");
+        $('#' +spanID).css('width', "40px");
+
+        // add the value to input
+        var fInput = $("#" + formID).val(val);
+    }
+</script>
 <div class="product-details-top p-5">
     <div class="row">
         <div class="col-md-12">
@@ -116,107 +128,125 @@ $productReviews = \App\CPU\ProductManager::get_product_review($product->id);
                 </div>
                 @endif
 
+
                 <form id="add-to-cart-form" class="mb-2">
-                @csrf
-                                    <input type="hidden" name="id" value="{{ $product->id }}">
-                                    <input type="hidden" name="color" value="" id="colorInput" autocomplete="off"/>
+                            @csrf
+                            <input type="hidden" id="FormHiddenUnitPrice" value="{{$product->unit_price}}">
+                            <input type="hidden" name="id" value="{{ $product->id }}">
+                            <input type="hidden" name="color" value="" id="colorInput" autocomplete="off" />
 
-                                    <div class="col-12 row align-items-center">
-                                        <label class="col-md-3">Colors:</label>
-                                        <div class="col-md-9">
+                            <div class="col-12 row align-items-center">
+                                <label class="col-md-4">Select Color:</label>
+                                <div class="col-md-8">
+
+                                    <div class="row">
+
+                                        @foreach (json_decode($product->colors) as $key => $color)
+                                            <span id="ColorSpan-{{$key}}" 
+                                            onclick="addColorToForm(this, '{{$color}}', 'colorInput', 'SelectColorSpan', 'ColorSpan-{{$key}}')" 
+                                            class="SelectColorSpan" style="background-color: {{$color}};"></span>
+                                            @if($key == 0 || $key == "0")
                                         
-                                            <div class="row">
+                                            <script>
+                                                addColorToForm(this, '{{$color}}', 'colorInput', 'SelectColorSpan', 'ColorSpan-{{$key}}');                                         
+                                            </script>
+                                        
+                                            @endif
+                                        @endforeach
+                                    </div>
 
-                                                @foreach (json_decode($product->colors) as $key => $color)
-                                                <span onclick="addColorToForm(this, '{{$color}}', 'colorInput', 'SelectColorSpan')" class="SelectColorSpan" style="background-color: {{$color}};"></span>
-                                                @endforeach
-                                            </div>
+                                </div><!-- End .product-nav -->
+                            </div><!-- End .details-filter-row -->
+                            <br>
+                            @foreach (json_decode($product->choice_options) as $key => $choice)
+                            <input type="hidden" id="{{ $choice->name }}-choiceFormInput" name="{{ $choice->name }}">
 
-                                        </div><!-- End .product-nav -->
-                                    </div><!-- End .details-filter-row -->
-                                    <br>
-                                    @foreach (json_decode($product->choice_options) as $key => $choice)
-                                    <input type="hidden" id="{{ $choice->name }}-choiceFormInput" name="{{ $choice->name }}">
+                            <div class="col-12 row align-items-center mb-3">
+                                <div class="col-md-4 col-12">
+                                    Select {{ $choice->title }}:
+                                </div>
+                                <div class="col-md-8 col-12 row align-items-center">
 
-                                    <div class="col-12 row align-items-center mb-3">
-                                        <div class="col-md-3 col-12">
-                                            {{ $choice->title }}:
-                                        </div>
-                                        <div class="col-md-9 col-12 row align-items-center">
-                                                
-                                                @foreach ($choice->options as $key => $option)
-                                                <!-- <span>
+                                    @foreach ($choice->options as $key => $option)
+                                    
+                                    <!-- <span>
                                                     <input type="radio" id="{{ $choice->name }}-{{ $option }}" name="{{ $choice->name }}" value="{{ $option }}" @if($key==0) checked @endif>
                                                     <label for="{{ $choice->name }}-{{ $option }}">{{ $option }}</label>
                                                 </span> -->
-                                                    <span onclick="addChoiceToForm(this, '{{ $option }}', '{{ $choice->name }}-choiceFormInput', '{{ $choice->name }}-selectChoiceSpan')" class="selectChoiceSpan {{ $choice->name }}-selectChoiceSpan col-3 text-wrap text-center">{{ $option }}</span>
-                                                @endforeach
-                                        </div>
-                                    </div>
+                                    <span 
+                                    id="{{ $choice->name }}-selectChoiceSpan-{{$key}}" 
+                                    onclick="addChoiceToForm(this, '{{ $option }}', '{{ $choice->name }}-choiceFormInput', '{{ $choice->name }}-selectChoiceSpan', '{{ $choice->name }}-selectChoiceSpan-{{$key}}')" 
+                                    class="selectChoiceSpan {{ $choice->name }}-selectChoiceSpan col-3 text-wrap text-center">{{ $option }}</span>
+                                    @if($key == 0 || $key == "0")
+                                        
+                                            <script>
+                                                addChoiceToForm("this", '{{ $option }}', '{{ $choice->name }}-choiceFormInput', '{{ $choice->name }}-selectChoiceSpan', '{{ $choice->name }}-selectChoiceSpan-{{$key}}');
+                                            </script>
+                                        
+                                    @endif
                                     @endforeach
-
-                    <!-- Quantity + Add to cart -->
-                    @php
-                    $qty = 0;
-                    foreach (json_decode($product->variation) as $key => $variation) {
-                    $qty += $variation->qty;
-                    }
-                    @endphp
-                    <div class="row no-gutters">
-                        <div class="col-2">
-                            <div class="product-description-label">{{\App\CPU\translate('Quantity')}}:</div>
-                        </div>
-                        <div class="col-10">
-                            <div class="product-quantity d-flex align-items-center">
-                                <div class="d-flex col-6 justify-content-between align-items-centre">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-number bt-sm btn-round btn-light border border-dark" type="button" data-type="minus" data-field="quantity" disabled="disabled">
-                                            -
-                                        </button>
-                                    </span>
-                                    <input type="text" name="quantity" class="form-control btn btn-round btn-white col-6 input-number text-center cart-qty-field" placeholder="1" value="1" min="1" max="100">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-number btn-sm btn-round btn-light border border-dark" type="button" data-type="plus" data-field="quantity">
-                                            +
-                                        </button>
-                                    </span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                            @endforeach
 
-                    <div class="row no-gutters d-none mt-2" id="chosen_price_div">
-                        <div class="col-2">
-                            <div class="product-description-label">{{\App\CPU\translate('Total Price')}}:</div>
-                        </div>
-                        <div class="col-10">
-                            <div class="product-price">
-                                <strong class="text-primary" id="chosen_price"></strong>
+                            <!-- Quantity + Add to cart -->
+                            @php
+                            $qty = 0;
+                            foreach (json_decode($product->variation) as $key => $variation) {
+                            $qty += $variation->qty;
+                            }
+                            @endphp
+                            <!-- <div class="row no-gutters">
+                                        <div class="col-2">
+                                            <div class="product-description-label">{{\App\CPU\translate('Quantity')}}:</div>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="product-quantity d-flex align-items-center">
+                                                <div class="d-flex col-6 justify-content-between align-items-centre">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-number bt-sm btn-round btn-light border border-dark" type="button" data-type="minus" data-field="quantity" disabled="disabled">
+                                                            -
+                                                        </button>
+                                                    </span>
+                                                    <input type="text" name="quantity" class="form-control btn btn-round btn-white col-6 input-number text-center cart-qty-field" placeholder="1" value="1" min="1" max="100">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-number btn-sm btn-round btn-light border border-dark" type="button" data-type="plus" data-field="quantity">
+                                                            +
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                            <div class="details-filter-row details-row-size">
+                                <label for="qty">Qty:</label>
+                                <div class="product-details-quantity">
+                                    <input name="quantity" type="number" class="form-control" value="1" min="1" max="500" step="1" data-decimals="0" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            @if($product['current_stock']<=0) <h5 class="mt-3" style="color: red">{{\App\CPU\translate('out_of_stock')}}</h5>
-                                @endif
-                        </div>
-                    </div>
-                    <div class="row justify-content-space-around mt-2">
-                        <button class="btn btn-secondary btn-round mr-md-2 mb-md-2" onclick="buy_now()" type="button">
-                            {{\App\CPU\translate('buy_now')}}
-                        </button>
-                        <button class="btn btn-secondary btn-round string-limit mr-md-2 mb-md-2" onclick="addToCart()" type="button">
-                            <i class="icon-cart"></i>
-                            {{\App\CPU\translate('add_to_cart')}}
-                        </button>
-                        <button type="button" onclick="addWishlist('{{$product['id']}}')" class="mb-md-2 btn btn-dark btn-round for-hover-bg string-limit">
-                            <i class="icon-heart" aria-hidden="true"></i>
-                            <span class="countWishlist-{{$product['id']}}">{{$countWishlist}}</span>
-                        </button>
-                        <a type="button" href="{{route('product',$product->slug)}}" class="mb-md-2  btn btn-dark btn-round for-hover-bg string-limit">
-                            <i class="icon-eye" aria-hidden="true"></i>
-                            <span class="countWishlist-{{$product['id']}}">Full Product View</span>
-                        </a>
-                    </div>
-                </form>
+
+                            <div class="col-12">
+                            @if($product['current_stock']<=0) <p class="mt-3 text-body text-danger" >{{\App\CPU\translate('out_of_stock')}}</p>
+                                        @endif
+                            </div>
+
+                            <div class="row justify-content-space-around mt-2">
+                                <button class="btn btn-secondary btn-round mr-md-2 mb-md-2" onclick="buy_now()" type="button">
+                                    {{\App\CPU\translate('buy_now')}}
+                                </button>
+                                <button class="btn btn-secondary btn-round string-limit mr-md-2 mb-md-2" onclick="addToCart()" type="button">
+                                    <i class="icon-cart"></i>
+                                    {{\App\CPU\translate('add_to_cart')}}
+                                </button>
+                                <button type="button" onclick="addWishlist('{{$product['id']}}')" class="mb-md-2 btn btn-dark btn-round for-hover-bg string-limit">
+                                    <i class="icon-heart" aria-hidden="true"></i>
+                                    <span class="countWishlist-{{$product['id']}}">{{$countWishlist}}</span>
+                                </button>
+
+                            </div>
+
+                        </form>
 
                 <div class="product-details-footer">
                     <div class="product-cat">
@@ -249,33 +279,6 @@ $productReviews = \App\CPU\ProductManager::get_product_review($product->id);
 </div><!-- End .product-details-top -->
 
 <script type="text/javascript">
-
-
-// choices function 
-function addChoiceToForm(el, val, formID, classes){
-    // change all the elements color back to normal
-    var spans = $('.'+classes);
-    $(spans).css('border', '1px solid #54595f');
-    // change this item color
-    $(el).css('border', "2px solid blue");
-    // add the value to input
-    var fInput = $("#"+formID).val(val);
-}
-
-function addColorToForm(el, val, formID, classes){
-    // change all the elements color back to normal
-    var spans = $('.'+classes);
-    $(spans).css('border', '1px solid #54595f');
-    $(spans).css('height', "35px");
-    $(spans).css('width', "35px");
-
-    // change this item color
-    $(el).css('border', "2px solid blue");
-    $(el).css('height', "40px");
-    $(el).css('width', "40px");
-    // add the value to input
-    var fInput = $("#"+formID).val(val);
-}
 
     cartQuantityInitialize();
     getVariantPrice();

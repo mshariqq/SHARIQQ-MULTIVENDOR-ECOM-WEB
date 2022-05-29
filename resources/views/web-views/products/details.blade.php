@@ -41,260 +41,7 @@ use App\Model\Category; ?>
 <meta property="twitter:url" content="{{route('product',[$product->slug])}}">
 
 <link rel="stylesheet" href="{{asset('public/assets/front-end/css/product-details.css')}}" />
-<style>
-    .msg-option {
-        display: none;
-    }
 
-    .chatInputBox {
-        width: 100%;
-    }
-
-    .go-to-chatbox {
-        width: 100%;
-        text-align: center;
-        padding: 5px 0px;
-        display: none;
-    }
-
-    .feature_header {
-        display: flex;
-        justify-content: center;
-    }
-
-    .btn-number:hover {
-        color: {
-                {
-                $web_config['secondary_color']
-            }
-        }
-
-        ;
-
-    }
-
-    .for-total-price {
-        margin- {
-                {
-                Session: :get('direction')==="rtl"? 'right': 'left'
-            }
-        }
-
-        : -30%;
-    }
-
-    .feature_header span {
-        padding- {
-                {
-                Session: :get('direction')==="rtl"? 'right': 'left'
-            }
-        }
-
-        : 15px;
-        font-weight: 700;
-        font-size: 25px;
-        background-color: #ffffff;
-        text-transform: uppercase;
-    }
-
-    .flash-deals-background-image {
-        background: {
-                {
-                $web_config['primary_color']
-            }
-        }
-
-        10;
-        border-radius:5px;
-        width:125px;
-        height:125px;
-    }
-
-    @media (max-width: 768px) {
-        .feature_header span {
-            margin-bottom: -40px;
-        }
-
-        .for-total-price {
-            padding- {
-                    {
-                    Session: :get('direction')==="rtl"? 'right': 'left'
-                }
-            }
-
-            : 30%;
-        }
-
-        .product-quantity {
-            padding- {
-                    {
-                    Session: :get('direction')==="rtl"? 'right': 'left'
-                }
-            }
-
-            : 4%;
-        }
-
-        .for-margin-bnt-mobile {
-            margin- {
-                    {
-                    Session: :get('direction')==="rtl"? 'left': 'right'
-                }
-            }
-
-            : 7px;
-        }
-
-        .font-for-tab {
-            font-size: 11px !important;
-        }
-
-        .pro {
-            font-size: 13px;
-        }
-    }
-
-    @media (max-width: 375px) {
-        .for-margin-bnt-mobile {
-            margin- {
-                    {
-                    Session: :get('direction')==="rtl"? 'left': 'right'
-                }
-            }
-
-            : 3px;
-        }
-
-        .for-discount {
-            margin- {
-                    {
-                    Session: :get('direction')==="rtl"? 'right': 'left'
-                }
-            }
-
-            : 10% !important;
-        }
-
-        .for-dicount-div {
-            margin-top: -5%;
-
-            margin- {
-                    {
-                    Session: :get('direction')==="rtl"? 'left': 'right'
-                }
-            }
-
-            : -7%;
-        }
-
-        .product-quantity {
-            margin- {
-                    {
-                    Session: :get('direction')==="rtl"? 'right': 'left'
-                }
-            }
-
-            : 4%;
-        }
-
-    }
-
-    @media (max-width: 500px) {
-        .for-dicount-div {
-            margin-top: -4%;
-
-            margin- {
-                    {
-                    Session: :get('direction')==="rtl"? 'left': 'right'
-                }
-            }
-
-            : -5%;
-        }
-
-        .for-total-price {
-            margin- {
-                    {
-                    Session: :get('direction')==="rtl"? 'right': 'left'
-                }
-            }
-
-            : -20%;
-        }
-
-        .view-btn-div {
-
-            margin-top: -9%;
-
-            float: {
-                    {
-                    Session: :get('direction')==="rtl"? 'left': 'right'
-                }
-            }
-
-            ;
-        }
-
-        .for-discount {
-            margin- {
-                    {
-                    Session: :get('direction')==="rtl"? 'right': 'left'
-                }
-            }
-
-            : 7%;
-        }
-
-        .viw-btn-a {
-            font-size: 10px;
-            font-weight: 600;
-        }
-
-        .feature_header span {
-            margin-bottom: -7px;
-        }
-
-        .for-mobile-capacity {
-            margin- {
-                    {
-                    Session: :get('direction')==="rtl"? 'right': 'left'
-                }
-            }
-
-            : 7%;
-        }
-    }
-</style>
-<style>
-    th,
-    td {
-        border-bottom: 1px solid #ddd;
-        padding: 5px;
-    }
-
-    thead {
-        background: {
-                {
-                $web_config['primary_color']
-            }
-        }
-
-         !important;
-        color: white;
-    }
-
-    .product-details-shipping-details {
-        background: #ffffff;
-        border-radius: 5px;
-        font-size: 14;
-        font-weight: 400;
-        color: #212629;
-    }
-
-    .shipping-details-bottom-border {
-        border-bottom: 1px #F9F9F9 solid;
-    }
-</style>
 
 <!-- new style -->
 <style>
@@ -306,6 +53,7 @@ use App\Model\Category; ?>
         margin: 5px;
         transition: ease-in-out;
         transition-duration: 0.5s;
+        cursor: pointer;
     }
 
     .selectChoiceSpan {
@@ -318,7 +66,35 @@ use App\Model\Category; ?>
     }
 </style>
 @endpush
+<script>
+    // choices function 
+    function addChoiceToForm(el, val, formID, classes, spanID) {
+        // change all the elements color back to normal
+        var spans = $('.' + classes);
+        $(spans).css('border', '1px solid #54595f');
+        // change this item color
+        $('#' + spanID).css('border', "2px solid green");
+        // add the value to input
+        var fInput = $("#" + formID).val(val);
 
+    }
+
+    function addColorToForm(el, val, formID, classes, spanID) {
+        // change all the elements color back to normal
+        var spans = $('.' + classes);
+        $(spans).css('border', '1px solid #54595f');
+        $(spans).css('height', "35px");
+        $(spans).css('width', "35px");
+
+        // change this item color
+        $('#' +spanID).css('border', "4px solid orange");
+        $('#' +spanID).css('height', "40px");
+        $('#' +spanID).css('width', "40px");
+
+        // add the value to input
+        var fInput = $("#" + formID).val(val);
+    }
+</script>
 @section('content')
 <?php
 $overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews);
@@ -427,13 +203,22 @@ $rating = \App\CPU\ProductManager::get_rating($product->reviews);
                             <input type="hidden" name="color" value="" id="colorInput" autocomplete="off" />
 
                             <div class="col-12 row align-items-center">
-                                <label class="col-md-3">Colors:</label>
-                                <div class="col-md-9">
+                                <label class="col-md-4">Select Color:</label>
+                                <div class="col-md-8">
 
                                     <div class="row">
 
                                         @foreach (json_decode($product->colors) as $key => $color)
-                                        <span onclick="addColorToForm(this, '{{$color}}', 'colorInput', 'SelectColorSpan')" class="SelectColorSpan" style="background-color: {{$color}};"></span>
+                                            <span id="ColorSpan-{{$key}}" 
+                                            onclick="addColorToForm(this, '{{$color}}', 'colorInput', 'SelectColorSpan', 'ColorSpan-{{$key}}')" 
+                                            class="SelectColorSpan" style="background-color: {{$color}};"></span>
+                                            @if($key == 0 || $key == "0")
+                                        
+                                            <script>
+                                                addColorToForm(this, '{{$color}}', 'colorInput', 'SelectColorSpan', 'ColorSpan-{{$key}}');                                         
+                                            </script>
+                                        
+                                            @endif
                                         @endforeach
                                     </div>
 
@@ -444,17 +229,28 @@ $rating = \App\CPU\ProductManager::get_rating($product->reviews);
                             <input type="hidden" id="{{ $choice->name }}-choiceFormInput" name="{{ $choice->name }}">
 
                             <div class="col-12 row align-items-center mb-3">
-                                <div class="col-md-3 col-12">
-                                    {{ $choice->title }}:
+                                <div class="col-md-4 col-12">
+                                    Select {{ $choice->title }}:
                                 </div>
-                                <div class="col-md-9 col-12 row align-items-center">
+                                <div class="col-md-8 col-12 row align-items-center">
 
                                     @foreach ($choice->options as $key => $option)
+                                    
                                     <!-- <span>
                                                     <input type="radio" id="{{ $choice->name }}-{{ $option }}" name="{{ $choice->name }}" value="{{ $option }}" @if($key==0) checked @endif>
                                                     <label for="{{ $choice->name }}-{{ $option }}">{{ $option }}</label>
                                                 </span> -->
-                                    <span onclick="addChoiceToForm(this, '{{ $option }}', '{{ $choice->name }}-choiceFormInput', '{{ $choice->name }}-selectChoiceSpan')" class="selectChoiceSpan {{ $choice->name }}-selectChoiceSpan col-3 text-wrap text-center">{{ $option }}</span>
+                                    <span 
+                                    id="{{ $choice->name }}-selectChoiceSpan-{{$key}}" 
+                                    onclick="addChoiceToForm(this, '{{ $option }}', '{{ $choice->name }}-choiceFormInput', '{{ $choice->name }}-selectChoiceSpan', '{{ $choice->name }}-selectChoiceSpan-{{$key}}')" 
+                                    class="selectChoiceSpan {{ $choice->name }}-selectChoiceSpan col-3 text-wrap text-center">{{ $option }}</span>
+                                    @if($key == 0 || $key == "0")
+                                        
+                                            <script>
+                                                addChoiceToForm("this", '{{ $option }}', '{{ $choice->name }}-choiceFormInput', '{{ $choice->name }}-selectChoiceSpan', '{{ $choice->name }}-selectChoiceSpan-{{$key}}');
+                                            </script>
+                                        
+                                    @endif
                                     @endforeach
                                 </div>
                             </div>
@@ -967,33 +763,7 @@ $rating = \App\CPU\ProductManager::get_rating($product->reviews);
         </div>
     </div>
 </div>
-<script>
-    // choices function 
-    function addChoiceToForm(el, val, formID, classes) {
-        // change all the elements color back to normal
-        var spans = $('.' + classes);
-        $(spans).css('border', '1px solid #54595f');
-        // change this item color
-        $(el).css('border', "2px solid blue");
-        // add the value to input
-        var fInput = $("#" + formID).val(val);
-    }
 
-    function addColorToForm(el, val, formID, classes) {
-        // change all the elements color back to normal
-        var spans = $('.' + classes);
-        $(spans).css('border', '1px solid #54595f');
-        $(spans).css('height', "35px");
-        $(spans).css('width', "35px");
-
-        // change this item color
-        $(el).css('border', "2px solid blue");
-        $(el).css('height', "40px");
-        $(el).css('width', "40px");
-        // add the value to input
-        var fInput = $("#" + formID).val(val);
-    }
-</script>
 @endsection
 
 @push('script')

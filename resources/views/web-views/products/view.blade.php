@@ -598,16 +598,11 @@
         $.get({
             url: '{{url(' / ')}}/products',
             data: {
-                id: '{{$data['
-                id ']}}',
-                name: '{{$data['
-                name ']}}',
-                data_from: '{{$data['
-                data_from ']}}',
-                min_price: '{{$data['
-                min_price ']}}',
-                max_price: '{{$data['
-                max_price ']}}',
+                id: '{{$data['id']}}',
+                name: '{{$data['name']}}',
+                data_from: '{{$data['data_from']}}',
+                min_price: '{{$data['min_price']}}',
+                max_price: '{{$data['max_price']}}',
                 sort_by: value
             },
             dataType: 'json',
@@ -629,14 +624,10 @@
         $.get({
             url: '{{url(' / ')}}/products',
             data: {
-                id: '{{$data['
-                id ']}}',
-                name: '{{$data['
-                name ']}}',
-                data_from: '{{$data['
-                data_from ']}}',
-                sort_by: '{{$data['
-                sort_by ']}}',
+                id: '{{$data['id']}}',
+                name: '{{$data['name']}}',
+                data_from: '{{$data['data_from']}}',
+                sort_by: '{{$data['sort_by']}}',
                 min_price: min,
                 max_price: max,
             },
