@@ -54,7 +54,7 @@
         </div>
         <div class="d-flex justify-content-between">
             <span class="cart_title">{{\App\CPU\translate('discount_on_product')}}</span>
-            <span class="cart_value">
+            <span class="cart_value text-danger">
                 - {{\App\CPU\Helpers::currency_converter($total_discount_on_product)}}
             </span>
         </div>
@@ -74,7 +74,7 @@
                                required>
                         <div class="invalid-feedback">{{\App\CPU\translate('please_provide_coupon_code')}}</div>
                     </div>
-                    <button class="btn btn-primary btn-block" type="button" onclick="couponCode()">{{\App\CPU\translate('apply_code')}}
+                    <button class="btn btn-primary btn-round btn-block" type="button" onclick="couponCode()">{{\App\CPU\translate('apply_code')}}
                     </button>
                 </form>
             </div>
@@ -82,10 +82,10 @@
         @endif
         <hr class="mt-2 mb-2">
         <div class="d-flex justify-content-between">
-            <span class="cart_title">{{\App\CPU\translate('total')}}</span>
-            <span class="cart_value">
+            <h6 class="cart_title">{{\App\CPU\translate('total')}}</h6>
+            <h5 class="cart_value">
                {{\App\CPU\Helpers::currency_converter($sub_total+$total_tax+$total_shipping_cost-$coupon_dis-$total_discount_on_product)}}
-            </span>
+            </h5>
         </div>
 
         {{-- <div class="d-flex justify-content-center">
@@ -94,25 +94,5 @@
             </span>
         </div> --}}
     </div>
-    <div class="container mt-2">
-        <div class="row p-0">
-            <div class="col-md-3 p-0 text-center mobile-padding">
-                <img class="order-summery-footer-image" src="{{asset("public/assets/front-end/png/delivery.png")}}" alt="">
-                <div class="deal-title">3 {{\App\CPU\translate('days_free_delivery')}} </div>
-            </div>
 
-            <div class="col-md-3 p-0 text-center">
-                <img class="order-summery-footer-image" src="{{asset("public/assets/front-end/png/money.png")}}" alt="">
-                <div class="deal-title">{{\App\CPU\translate('money_back_guarantee')}}</div>
-            </div>
-            <div class="col-md-3 p-0 text-center">
-                <img class="order-summery-footer-image" src="{{asset("public/assets/front-end/png/Genuine.png")}}" alt="">
-                <div class="deal-title">100% {{\App\CPU\translate('genuine')}} {{\App\CPU\translate('product')}}</div>
-            </div>
-            <div class="col-md-3 p-0 text-center">
-                <img class="order-summery-footer-image" src="{{asset("public/assets/front-end/png/Payment.png")}}" alt="">
-                <div class="deal-title">{{\App\CPU\translate('authentic_payment')}}</div>
-            </div>
-        </div>
-    </div>
 </aside>

@@ -1963,4 +1963,5 @@
   'Chat with this Vendor' => 'Chat with this Vendor',
   'Categories' => 'Categories',
   'Search products from this seller' => 'Search products from this seller',
+  'Proceed to Checkout' => 'Proceed to Checkout',
 );

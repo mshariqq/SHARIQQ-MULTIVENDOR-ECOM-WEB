@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
     .steps-light .step-item.active .step-count, .steps-light .step-item.active .step-progress {
         color: #fff;
         background-color: {{$web_config['primary_color']}};
@@ -19,30 +19,33 @@
         font-size: 14px;
         font-weight: 400;
     }
-</style>
+</style> -->
 <div class="steps steps-light pt-2 pb-2">
-    <a class="step-item {{$step>=1?'active':''}} {{$step==1?'current':''}}" href="{{route('checkout-details')}}">
+    <a class="step-item btn btn-round border {{$step>=1?'border-success':''}} {{$step==1?'current btn-primary':''}}" href="{{route('checkout-details')}}">
         <div class="step-progress">
-            <span class="step-count"><i class="czi-user-circle"></i></span>
+            <span class="step-count"><i class="fa fa-user"></i></span>
         </div>
         <div class="step-label">
-            {{\App\CPU\translate('sing_in')}} / {{\App\CPU\translate('sing_up')}}
+            {{\App\CPU\translate('sing_in')}} / {{\App\CPU\translate('sing_up')}} (<small>Step 1</small>)
+            
         </div>
     </a>
-    <a class="step-item {{$step>=2?'active':''}} {{$step==2?'current':''}}" href="{{route('checkout-details')}}">
+    <a class="step-item btn btn-round border {{$step>=2?'active ':''}} {{$step==2?'current btn-primary':''}}" href="{{route('checkout-details')}}">
         <div class="step-progress">
-            <span class="step-count"><i class="czi-package"></i></span>
+            <span class="step-count"><i class="fa fa-shopping-bag"></i></span>
         </div>
         <div class="step-label">
-            {{\App\CPU\translate('Shipping_and_billing')}}
+            {{\App\CPU\translate('Shipping_and_billing')}} (Step 2)
+            
         </div>
     </a>
-    <a class="step-item {{$step>=3?'active':''}} {{$step==3?'current':''}}" href="{{route('checkout-payment')}}">
+    <a class="step-item btn btn-round border {{$step>=3?'border':''}} {{$step==3?'current btn-primary':''}}" href="{{route('checkout-payment')}}">
         <div class="step-progress">
-            <span class="step-count"><i class="czi-card"></i></span>
+            <span class="step-count"><i class="fa fa-money"></i></span>
         </div>
         <div class="step-label">
-            {{\App\CPU\translate('Payment')}}
+            {{\App\CPU\translate('Payment')}} (Step 3)
+            
         </div>
     </a>
 </div>
