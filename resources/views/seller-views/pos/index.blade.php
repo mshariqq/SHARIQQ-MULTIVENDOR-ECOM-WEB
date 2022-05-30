@@ -162,7 +162,7 @@
                                 <div class="avatar avatar-sm avatar-circle">
                                     <img class="avatar-img"
                                         onerror="this.src='{{asset('public/assets/back-end/img/160x160/img1.jpg')}}'"
-                                        src="{{asset('storage/app/public/seller/')}}/{{auth('seller')->user()->image}}"
+                                        src="{{asset('storage/app/public/cp-seller/')}}/{{auth('seller')->user()->image}}"
                                         alt="Image">
                                     <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                                 </div>
@@ -176,7 +176,7 @@
                                         <div class="avatar avatar-sm avatar-circle mr-2">
                                             <img class="avatar-img"
                                                  onerror="this.src='{{asset('public/assets/back-end/img/160x160/img1.jpg')}}'"
-                                                 src="{{asset('storage/app/public/seller/')}}/{{auth('seller')->user()->image}}"
+                                                 src="{{asset('storage/app/public/cp-seller/')}}/{{auth('seller')->user()->image}}"
                                                  alt="Owner image">
                                         </div>
                                         <div class="media-body">

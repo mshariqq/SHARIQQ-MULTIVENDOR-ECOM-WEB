@@ -144,14 +144,6 @@ $rating = \App\CPU\ProductManager::get_rating($product->reviews);
                             <!-- End .product-main-image -->
 
                             @endif
-                            <!-- <figure class="product-main-image">
-                                <img id="product-zoom" src="assets/images/products/single/1.jpg" data-zoom-image="assets/images/products/single/1-big.jpg" alt="product image">
-
-                                <a href="#" id="btn-product-gallery" class="btn-product-gallery">
-                                    <i class="icon-arrows"></i>
-                                </a>
-                            </figure> -->
-
                             <div id="product-zoom-gallery" class="product-image-gallery">
                                 @if($product->images!=null && json_decode($product->images)>0)
                                 @foreach (json_decode($product->images) as $key => $photo)
@@ -263,28 +255,6 @@ $rating = \App\CPU\ProductManager::get_rating($product->reviews);
                             $qty += $variation->qty;
                             }
                             @endphp
-                            <!-- <div class="row no-gutters">
-                                        <div class="col-2">
-                                            <div class="product-description-label">{{\App\CPU\translate('Quantity')}}:</div>
-                                        </div>
-                                        <div class="col-10">
-                                            <div class="product-quantity d-flex align-items-center">
-                                                <div class="d-flex col-6 justify-content-between align-items-centre">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-number bt-sm btn-round btn-light border border-dark" type="button" data-type="minus" data-field="quantity" disabled="disabled">
-                                                            -
-                                                        </button>
-                                                    </span>
-                                                    <input type="text" name="quantity" class="form-control btn btn-round btn-white col-6 input-number text-center cart-qty-field" placeholder="1" value="1" min="1" max="100">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-number btn-sm btn-round btn-light border border-dark" type="button" data-type="plus" data-field="quantity">
-                                                            +
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
 
                             <div class="details-filter-row details-row-size">
                                 <label for="qty">Qty:</label>
@@ -546,102 +516,62 @@ $rating = \App\CPU\ProductManager::get_rating($product->reviews);
         @if($product->added_by=='seller')
             @if(isset($product->seller->shop))
             <div class="row">
-                <div class="col-md-4 col-12">
-                    <div class="card">
-                        <div class="card-header">
+                <div class="col-md-3 col-12 ">
+                    <?
+                    $products_for_review = App\Model\Product::where('added_by',$product->added_by)->where('user_id',$product->user_id)->withCount('reviews')->get();
+
+                    $total_reviews = 0;
+                    foreach ($products_for_review as $item) {
+                        $total_reviews += $item->reviews_count;
+                    }
+                    ?>
+                    <div class="card border">
+                        <div class="card-header bg-light text-primary p-3">
                             Seller Info
                         </div>
+                        <div class="card-body p-4">
+                            <img class="round" style="height: auto;width: 100px" src="{{asset('storage/app/public/shop')}}/{{$product->seller->shop->image}}" onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" alt="">
+                            <br>
+                            <h4>{{$product->seller->shop->name}}</h4>
+                            <p>Reviews ( {{$total_reviews}} )</p>
+                            <p>Products ( {{$products_for_review->count()}} )</p>
+                            
+                        </div>
+                        <div class="card-footer">
+                            <p class="mb-1">You can Browse all products listed by this seller on their store below</p>
+                            
+                            <!-- <p class="mb-1">
+                                <a href="{{route('customer.auth.login')}}" class="btn btn-outline-primary btn-round">
+                                        <i class="fa fa-envelope"></i>
+                                        <span>{{\App\CPU\translate('Chat with Seller')}}</span>
+                                </a>
+                            </p> -->
+                            
+                            <p>
+                            <a class="btn btn-round btn-secondary" href="{{ route('shop-view',[$product->seller->id]) }}">
+                                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                    {{\App\CPU\translate('Visit Store')}}
+                            </a>
+                            </p>
+                        </div>
                         
-                        <div class="card-body">
-                        <img style="height: 65px; width: 65px; border-radius: 50%" src="{{asset('storage/app/public/shop')}}/{{$product->seller->shop->image}}" onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" alt="">
-                        <span style="font-weight: 700;font-size: 16px;">
-                                {{$product->seller->shop->name}}
-                            </span><br>
-                            <span>{{\App\CPU\translate('Seller_info')}}</span>
-                        </div>
                     </div>
-
+                    
                 </div>
-                <div class="col-4">
-                    @if (auth('customer')->id() == '')
-                    <a href="{{route('customer.auth.login')}}">
-                        <div class="float-left">
-                            <i class="fa fa-envelope"></i>
-                            <span>{{\App\CPU\translate('chat')}}</span>
-                        </div>
-                    </a>
-                    @else
-                    <div id="contact-seller" >
-                        <i class="fa fa-envelope"></i>
-                        <span>{{\App\CPU\translate('chat')}}</span>
-                    </div>
-                    @endif
+                <div class="col-md-9 col-12">
+                    <h4>More Products by this Seller</h4>
+                    <?
+                    $more_product_from_seller = App\Model\Product::where('added_by',$product->added_by)->where('user_id',$product->user_id)->latest()->take(3)->get();
+                    ?>
 
-                </div>
-                <div class="col-md-4 msg-option mt-2" id="msg-option">
+                        @foreach($more_product_from_seller as $item)
 
-                    <form action="">
-                        <input type="text" class="seller_id" hidden seller-id="{{$product->seller->id }}">
-                        <textarea shop-id="{{$product->seller->shop->id}}" class="chatInputBox" id="chatInputBox" rows="5"> </textarea>
+                        @include('web-views.partials.seller-products-product-details',['product'=>$item])
+                        
 
+                        @endforeach
 
-                        <div class="row">
-                            <button class="btn btn-secondary" style="color: white;display: block;width: 47%;margin: 3px;" id="cancelBtn">{{\App\CPU\translate('cancel')}}
-                            </button>
-                            <button class="btn btn-success " style="color: white;display: block;width: 47%;margin: 3px;" id="sendBtn">{{\App\CPU\translate('send')}}</button>
-                        </div>
-
-                    </form>
-
-                </div>
-
-                <?
-                $products_for_review = App\Model\Product::where('added_by',$product->added_by)->where('user_id',$product->user_id)->withCount('reviews')->get();
-
-                $total_reviews = 0;
-                foreach ($products_for_review as $item) {
-                    $total_reviews += $item->reviews_count;
-                }
-                ?>
-                <div class="col-md-4 col-12 mt-2">
-                    <div class="row d-flex justify-content-between">
-                        <div class="col-6 ">
-                            <div class="d-flex justify-content-center align-items-center" style="height: 79px;background:{{$web_config['primary_color']}}10;border-radius:5px;">
-                                <div class="text-center">
-                                    <span>
-                                        {{$total_reviews}}
-                                    </span><br>
-                                    <span style="font-size: 12px;">
-                                        {{\App\CPU\translate('reviews')}}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="d-flex justify-content-center align-items-center" style="height: 79px;background:{{$web_config['primary_color']}}10;border-radius:5px;">
-                                <div class="text-center">
-                                    <span style="color: {{$web_config['primary_color']}};font-weight: 700;
-                                                font-size: 26px;">
-                                        {{$products_for_review->count()}}
-                                    </span><br>
-                                    <span style="font-size: 12px;">
-                                        {{\App\CPU\translate('products')}}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-3">
-                    <div>
-                        <a href="{{ route('shopView',[$product->seller->id]) }}" style="display: block;width:100%;text-align: center">
-                            <button class="btn btn-primary">
-                                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                {{\App\CPU\translate('Visit Store')}}
-                            </button>
-                        </a>
-                    </div>
-                </div>
+                 </div>
             </div>
             @endif
         @else
@@ -682,7 +612,7 @@ $rating = \App\CPU\ProductManager::get_rating($product->reviews);
                         <div class="card-footer">
                             <p>You can Browse all products listed by this seller on their store below</p>
                             <br>
-                            <a class="btn btn-round btn-secondary" href="{{ route('shopView',[0]) }}">
+                            <a class="btn btn-round btn-secondary" href="{{ route('shop-view',[0]) }}">
                                 <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                                         {{\App\CPU\translate('Visit Store')}}
                             </a>

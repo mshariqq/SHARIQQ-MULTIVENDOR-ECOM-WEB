@@ -162,7 +162,7 @@
     <script>
         function update_quantity(val) {
             $.get({
-                url: '{{url('/')}}/seller/product/get-variations?id='+val,
+                url: '{{url('/')}}/cp-seller/product/get-variations?id='+val,
                 dataType: 'json',
                 success: function (data) {
                     console.log(data)

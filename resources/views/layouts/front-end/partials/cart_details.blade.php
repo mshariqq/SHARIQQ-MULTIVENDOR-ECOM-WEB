@@ -37,12 +37,12 @@
                         @if($cartItem->seller_is=='admin')
                             <b>
                                 <span>{{ \App\CPU\translate('shop_name')}} : </span>
-                                <a href="{{route('shopView',['id'=>0])}}">{{\App\CPU\Helpers::get_business_settings('company_name')}}</a>
+                                <a href="{{route('shop-view',['id'=>0])}}">{{\App\CPU\Helpers::get_business_settings('company_name')}}</a>
                             </b>
                         @else
                             <b>
                                 <span>{{ \App\CPU\translate('shop_name')}}:</span>
-                                <a href="{{route('shopView',['id'=>$cartItem->seller_id])}}">
+                                <a href="{{route('shop-view',['id'=>$cartItem->seller_id])}}">
                                     {{\App\Model\Shop::where(['seller_id'=>$cartItem['seller_id']])->first()->name}}
                                 </a>
                             </b>

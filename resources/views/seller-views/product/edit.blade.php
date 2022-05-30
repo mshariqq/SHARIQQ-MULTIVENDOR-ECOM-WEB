@@ -95,7 +95,7 @@
                                             class="js-example-basic-multiple js-states js-example-responsive form-control"
                                             name="category_id"
                                             id="category_id"
-                                            onchange="getRequest('{{url('/')}}/seller/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
+                                            onchange="getRequest('{{url('/')}}/cp-seller/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
                                             <option value="0" selected disabled>---{{ \App\CPU\translate('Select')}}---</option>
                                             @foreach($categories as $category)
                                                 <option
@@ -109,7 +109,7 @@
                                             class="js-example-basic-multiple js-states js-example-responsive form-control"
                                             name="sub_category_id" id="sub-category-select"
                                             data-id="{{count($product_category)>=2?$product_category[1]->id:''}}"
-                                            onchange="getRequest('{{url('/')}}/seller/product/get-categories?parent_id='+this.value,'sub-sub-category-select','select')">
+                                            onchange="getRequest('{{url('/')}}/cp-seller/product/get-categories?parent_id='+this.value,'sub-sub-category-select','select')">
                                         </select>
                                     </div>
                                     <div class="col-md-4">
@@ -623,8 +623,8 @@
             let category = $("#category_id").val();
             let sub_category = $("#sub-category-select").attr("data-id");
             let sub_sub_category = $("#sub-sub-category-select").attr("data-id");
-            getRequest('{{url('/')}}/seller/product/get-categories?parent_id=' + category + '&sub_category=' + sub_category, 'sub-category-select', 'select');
-            getRequest('{{url('/')}}/seller/product/get-categories?parent_id=' + sub_category + '&sub_category=' + sub_sub_category, 'sub-sub-category-select', 'select');
+            getRequest('{{url('/')}}/cp-seller/product/get-categories?parent_id=' + category + '&sub_category=' + sub_category, 'sub-category-select', 'select');
+            getRequest('{{url('/')}}/cp-seller/product/get-categories?parent_id=' + sub_category + '&sub_category=' + sub_sub_category, 'sub-sub-category-select', 'select');
             // color select select2
             $('.color-var-select').select2({
                 templateResult: colorCodeSelect,

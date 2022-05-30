@@ -120,8 +120,8 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
     Route::get('contacts', 'WebController@contacts')->name('contacts');
 
     //sellerShop
-    Route::get('shopView/{id}', 'WebController@seller_shop')->name('shopView');
-    Route::post('shopView/{id}', 'WebController@seller_shop_product');
+    Route::get('shop-view/{id}', 'WebController@seller_shop')->name('shop-view');
+    Route::post('shop-view/{id}', 'WebController@seller_shop_product');
 
     //top Rated
     Route::get('top-rated', 'WebController@top_rated')->name('topRated');

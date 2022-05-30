@@ -711,7 +711,7 @@
         function addDeliveryMan(id) {
             $.ajax({
                 type: "GET",
-                url: '{{url('/')}}/seller/orders/add-delivery-man/{{$order['id']}}/' + id,
+                url: '{{url('/')}}/cp-seller/orders/add-delivery-man/{{$order['id']}}/' + id,
                 data: {
                     'order_id': '{{$order['id']}}',
                     'delivery_man_id': id

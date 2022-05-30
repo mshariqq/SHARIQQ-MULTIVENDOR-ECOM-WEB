@@ -134,10 +134,10 @@
                                      "type": "css-animation"
                                    }'>
                                 <div class="avatar avatar-sm avatar-circle">
-                                    {{-- <img src="{{asset('storage/app/public/seller/'.auth('seller')->user()->image)}}"  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" class="img-profile rounded-circle"> --}}
+                                    {{-- <img src="{{asset('storage/app/public/cp-seller/'.auth('seller')->user()->image)}}"  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" class="img-profile rounded-circle"> --}}
                                     <img class="avatar-img"
                                          onerror="this.src='{{asset('public/assets/back-end/img/160x160/img1.jpg')}}'"
-                                         src="{{asset('storage/app/public/seller/')}}/{{auth('seller')->user()->image}}"
+                                         src="{{asset('storage/app/public/cp-seller/')}}/{{auth('seller')->user()->image}}"
                                          alt="Image Description">
                                     <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                                 </div>
@@ -149,10 +149,10 @@
                                 <div class="dropdown-item-text">
                                     <div class="media align-items-center text-break">
                                         <div class="avatar avatar-sm avatar-circle mr-2">
-                                            {{-- <img src="{{asset('storage/app/public/seller/'.auth('seller')->user()->image)}}"  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" class="img-profile rounded-circle"> --}}
+                                            {{-- <img src="{{asset('storage/app/public/cp-seller/'.auth('seller')->user()->image)}}"  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" class="img-profile rounded-circle"> --}}
                                             <img class="avatar-img"
                                                  onerror="this.src='{{asset('public/assets/back-end/img/160x160/img1.jpg')}}'"
-                                                 src="{{asset('storage/app/public/seller/')}}/{{auth('seller')->user()->image}}"
+                                                 src="{{asset('storage/app/public/cp-seller/')}}/{{auth('seller')->user()->image}}"
                                                  alt="Image Description">
                                         </div>
                                         <div class="media-body">

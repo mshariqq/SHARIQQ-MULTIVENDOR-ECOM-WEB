@@ -76,7 +76,7 @@
                                         <select
                                             class="js-example-basic-multiple form-control"
                                             name="category_id"
-                                            onchange="getRequest('{{url('/')}}/seller/product/get-categories?parent_id='+this.value,'sub-category-select','select')"
+                                            onchange="getRequest('{{url('/')}}/cp-seller/product/get-categories?parent_id='+this.value,'sub-category-select','select')"
                                             required>
                                             <option value="{{old('category_id')}}" selected disabled>---{{\App\CPU\translate('Select')}}---</option>
                                             @foreach($cat as $c)
@@ -90,7 +90,7 @@
                                         <label for="name">{{\App\CPU\translate('Sub_category')}}</label>
                                         <select class="js-example-basic-multiple form-control"
                                                 name="sub_category_id" id="sub-category-select"
-                                                onchange="getRequest('{{url('/')}}/seller/product/get-categories?parent_id='+this.value,'sub-sub-category-select','select')">
+                                                onchange="getRequest('{{url('/')}}/cp-seller/product/get-categories?parent_id='+this.value,'sub-sub-category-select','select')">
                                         </select>
                                     </div>
                                     <div class="col-md-4">

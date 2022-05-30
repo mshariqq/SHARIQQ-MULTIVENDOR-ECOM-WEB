@@ -1959,4 +1959,8 @@
   'Login Now' => 'Login Now',
   'Seller Info' => 'Seller Info',
   'Apply for' => 'Apply for',
+  'Chat with Seller' => 'Chat with Seller',
+  'Chat with this Vendor' => 'Chat with this Vendor',
+  'Categories' => 'Categories',
+  'Search products from this seller' => 'Search products from this seller',
 );

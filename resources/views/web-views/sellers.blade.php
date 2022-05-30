@@ -67,7 +67,7 @@
                     @foreach($sellers as $shop)
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 px-2 pb-4 text-center">
                             <div class="card-body shadow">
-                                <a href="{{route('shopView',['id'=>$shop['seller_id']])}}">
+                                <a href="{{route('shop-view',['id'=>$shop['seller_id']])}}">
                                     <img style="vertical-align: middle;height: 6rem; border-radius: 3%;"
                                          onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                          src="{{asset("storage/app/public/shop/$shop->image")}}"

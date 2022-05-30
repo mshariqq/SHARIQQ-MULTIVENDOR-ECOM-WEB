@@ -2375,7 +2375,7 @@ $q->where('status',1);
                     @if($seller->shop)
                     <div style="margin: 5px;">
                         <center>
-                            <a href="{{route('shopView',['id'=>$seller['id']])}}">
+                            <a href="{{route('shop-view',['id'=>$seller['id']])}}">
                                 <img style="vertical-align: middle; padding: 2%;width:100px;height: 100px;border-radius: 50%" onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" src="{{asset("storage/app/public/shop")}}/{{$seller->shop->image}}">
                                 <p class="text-center small ">{{Str::limit($seller->shop->name, 14)}}</p>
                             </a>
