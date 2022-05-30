@@ -54,7 +54,7 @@
                     @endif
                 </div>
             </div>
-            <div class="col-12 border p-3 mt-2">
+            <div class="col-12 border-bottom pb-4 mt-2">
                 <div class="row">
                     <div class="col-md-8 col-12 row">
                             <div class="col-2">
@@ -151,10 +151,8 @@
 
                 
             <div class="row col-12 p-0 mt-3">
-                <div class="col-md-3">
-                    <div class="card bg-light p-3">
-                        <h5 class="">{{\App\CPU\translate('Categories')}}</h5>
-                        
+                <div class="col-md-3 bg-light p-4">
+                <h5 class="">{{\App\CPU\translate('Categories')}}</h5>
                         <ul class="p-3">
                             @foreach($categories as $category)
                                 <li class="row justify-content-between">
@@ -197,24 +195,31 @@
                                 </li>
                             @endforeach
                         </ul>
-                        
-                    </div>
 
                 </div>
-                <div class="col-md-9">
-                <div class="row col-12">
-                            <form class="{{--form-inline--}} md-form form-sm mt-0" method="get"
-                              action="{{route('shop-view',['id'=>$seller_id])}}">
-                                    <div class="header-search-wrapper search-wrapper-wide d-flex">                                
-                                        <input type="search" class="form-control" name="product_name" placeholder="Search product in this seller store" required="">
-                                        <p><button class="btn btn-primary btn-sm" type="submit"><i class="icon-search"></i></button></p>
-                                    </div><!-- End .header-search-wrapper -->
-                            </form>
-                </div>
-                <!-- Products grid-->
-                <div class="row" id="ajax-products">
-                    @include('web-views.products._ajax-products',['products'=>$products])
-                </div>
+                <div class="col-md-9 p-3">
+                    <div class="row col-12">
+                                <form class="{{--form-inline--}} md-form form-sm mt-0" method="get"
+                                action="{{route('shop-view',['id'=>$seller_id])}}">
+                                        <div class="header-search-wrapper search-wrapper-wide d-flex">                                
+                                            <input type="search" class="form-control" name="product_name" placeholder="Search product in this seller store" required="">
+                                            <p><button class="btn btn-primary btn-sm" type="submit"><i class="icon-search"></i></button></p>
+                                        </div><!-- End .header-search-wrapper -->
+                                </form>
+                    </div>
+                    <!-- Products grid-->
+                    <div class="row col-12" id="ajax-products">
+                        @if(empty($products) || count($products) == 0)
+                            <div class="alert alert-warning alert-dismissible fade show col-12" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                                <strong>Nothing found!</strong>
+                            </div>
+                        @endif
+                        @include('web-views.products._ajax-products',['products'=>$products])
+                    </div>
                 </div>
             </div>
         
