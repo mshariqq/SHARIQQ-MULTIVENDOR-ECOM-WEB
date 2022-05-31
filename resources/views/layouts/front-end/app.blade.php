@@ -188,7 +188,7 @@
                                     <label for="q" class="sr-only">{{\App\CPU\translate('search')}}</label>
 
                                     <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
-                                    <input class="form-control appended-form-control search-bar-input" type="text"
+                                    <input class="form-control appended-form-control search-bar-input col-10" type="text"
                                     autocomplete="off"
                                     placeholder="{{\App\CPU\translate('search')}}"
                                     name="name">
@@ -378,25 +378,19 @@
                     <div class="header-center">
                         <nav class="main-nav">
                             <ul class="menu sf-arrows">
-                                <li class="active">
+                                <li class="{{request()->is('/')?'active':''}}">
                                     <a href="{{url('/')}}" class="{{request()->is('/')?'active':''}}">Home</a>
                                 </li>
                                 @php($business_mode=\App\CPU\Helpers::get_business_settings('business_mode'))
                                 @if ($business_mode == 'multi')
-                                <li class="{{request()->is('/cp-sellers')?'active':''}}">
-                                    <a href="{{route('sellers')}}" class="">Browse Sellers</a>
+                                <li class="{{request()->is('sellers')?'active':''}}">
+                                    <a href="{{route('sellers')}}" class="{{request()->is('/sellers')?'active':''}}">Browse Sellers</a>
                                 </li>
                                     
                                 @endif
-
                                 
-                                <li>
-                                    <a href="product.html" class="">Latest</a>
-
-                                </li>
-                                
-                                <li>
-                                    <a href="blog.html" class="">Best Sellings</a>
+                                <li class="{{request()->is('categories')?'active':''}}">
+                                    <a href="{{url('categories')}}" class="">Browse Products</a>
                                 </li>
                                 <li>
                                     <a href="#" class="sf-with-ul">Company</a>
@@ -428,7 +422,6 @@
 
         @yield('content')
         @include('layouts.front-end.partials._quick-view-modal')
-
         @include('layouts.front-end.partials._footer')
 
         </body>

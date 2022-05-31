@@ -1999,4 +1999,9 @@
   'Shop by Sellers Products' => 'Shop by Sellers Products',
   'Shop by Sellers' => 'Shop by Sellers',
   'Shop by Top Sellers' => 'Shop by Top Sellers',
+  'Browse from Categories' => 'Browse from Categories',
+  'Browse by Categories' => 'Browse by Categories',
+  'Select your desired category to view the products' => 'Select your desired category to view the products',
+  'Select your desired category to view the products based on that category' => 'Select your desired category to view the products based on that category',
+  'Select a category from sidebar menu' => 'Select a category from sidebar menu',
 );

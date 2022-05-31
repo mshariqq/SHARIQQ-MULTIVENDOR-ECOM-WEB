@@ -128,7 +128,7 @@
                 </div>
             @endif
             </div>
-            <div class="col-6 row justify-content-end align-items-center">
+            <div class="col-md-6 col-12 row justify-content-end align-items-center">
                 <p class="p-1">
                 <a href="{{route('home')}}" class="btn btn-outline-primary btn-round">
                     <i class="fa fa-{{Session::get('direction') === "rtl" ? 'forward' : 'backward'}} px-1"></i> {{\App\CPU\translate('continue_shopping')}}

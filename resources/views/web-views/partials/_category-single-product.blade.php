@@ -1,25 +1,5 @@
 @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
 
-<style>
-    .quick-view{
-        display: none;
-        padding-bottom: 8px;
-    }
-    .product-single-hover{
-        box-shadow: 0px 0px 5px rgba(0, 113, 220, 0.15);
-        border-radius: 5px;
-    }
-    .quick-view , .single-product-details{
-        background: #ffffff;
-    }
-    .product-single-hover:hover > .single-product-details {
-        
-        margin-top:-39px;
-    }
-    .product-single-hover:hover >  .quick-view{
-        display: block;
-    }
-</style>
 
 <div class="product-single-hover" >
     <div class=" inline_product clickable d-flex justify-content-center" 

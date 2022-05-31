@@ -1,5 +1,27 @@
+
+
 @if($category->childes->count()>0)
-    @foreach($category->childes as $c)
+<div class="col-12 bg-light p-3">
+    <ul class="">
+        @foreach($category->childes as $c)
+            <li class="pointer pb-1" style="cursor: pointer" onclick="location.href='{{route('products',['id'=> $c['id'],'data_from'=>'category','page'=>1])}}'">
+            <i class="fa fa-plus"></i> {{$c['name']}}
+                <div class="col-12 pl-5">
+                    <ul class="">
+                        @foreach($c->childes as $child)
+                            <li class="pointer" style="cursor: pointer"
+                                onclick="location.href='{{route('products',['id'=> $child['id'],'data_from'=>'category','page'=>1])}}'">
+                                 <i class="fa fa-chevron-right"></i> {{$child['name']}}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </li>
+        @endforeach
+    </ul>
+</div>
+
+    <!-- @foreach($category->childes as $c)
         <div class="col-md-3 mt-4">
             <label class="text-center"
                    onclick="location.href='{{route('products',['id'=> $c['id'],'data_from'=>'category','page'=>1])}}'"
@@ -15,9 +37,9 @@
                 @endforeach
             </ul>
         </div>
-    @endforeach
+    @endforeach -->
 @else
     <div class="col-md-12 text-center mt-5">
-        <a href="{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}" class="btn btn-primary">{{\App\CPU\translate('View Products')}}</a>
+        <a href="{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}" class="btn btn-primary btn-round">{{\App\CPU\translate('View Products on this Category')}}</a>
     </div>
 @endif

@@ -1,7 +1,6 @@
 @extends('layouts.front-end.app')
 
 @section('title',\App\CPU\translate('All Category Page'))
-
 @push('css_or_js')
     <meta property="og:image" content="{{asset('storage/app/public/company')}}/{{$web_config['web_logo']->value}}"/>
     <meta property="og:title" content="Categories of {{$web_config['name']->value}} "/>
@@ -13,61 +12,50 @@
     <meta property="twitter:url" content="{{env('APP_URL')}}">
     <meta property="twitter:description" content="{!! substr($web_config['about']->value,0,100) !!}">
 
-    <style>
-        .active{
-            background: {{$web_config['secondary_color']}};
-            color: gray!important;
-        }
-        .active-category-text{
-            color: white!important;
-        }
-
-        .side-category-bar{
-            border: 1px solid #0000001f;
-            border-radius: 6px;
-            cursor: pointer;
-            background: white;
-        }
-
-    </style>
 @endpush
 
 @section('content')
     <!-- Page Content-->
-    <div class="container p-3 rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-9">
-                <h4>{{\App\CPU\translate('category')}}</h4>
-            </div>
-        </div>
+    <div class="jumbotron bg-light text-center">
+        <h4>{{\App\CPU\translate('Browse by Categories')}}</h4>
+        <p>{{\App\CPU\translate('Select your desired category to view the products based on that category')}}</p>
+    </div>
+    <div class="container">
         <div class="row">
             <!-- Sidebar-->
             <div class="col-lg-3 col-md-4">
+                <div class="list-group">
                 @foreach(\App\CPU\CategoryManager::parents() as $category)
-                    <div class="card-header mb-2 p-2 side-category-bar" onclick="get_categories('{{route('category-ajax',[$category['id']])}}')">
-                        <img src="{{asset("storage/app/public/category/$category->icon")}}" onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" style="width: 18px; height: 18px; margin-right: 5px;">
-                        {{-- <label class="ml-2 category-name-{{$key}}" style="cursor: pointer"> --}}
-                            {{$category['name']}}
-                        {{-- </label> --}}
-                    </div>
+                    <a onclick="get_categories('{{route('category-ajax',[$category['id']])}}')" href="#" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+                        <span class="d-flex align-items-center">
+                            <img class="" src="{{asset("storage/app/public/category/$category->icon")}}" onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" style="width: 20%; height: auto;">
+                            <span class="p-3"></span>
+                            <span class="">{{$category['name']}}</span>
+                        </span>
+                        <span class="text-right">
+                            <i class="fa fa-chevron-right"></i>
+                        </span>
+                    </a>
                 @endforeach
+                    
+                </div>
+                
             </div>
             <!-- Content  -->
             <div class="col-lg-9 col-md-8">
                 <!-- Products grid-->
-                <hr>
                 <div class="row" id="ajax-categories">
-                    <label class="col-md-12 text-center mt-5">{{\App\CPU\translate('Select your desire category')}}.</label>
+                    <label class="col-md-12 text-center mt-5">{{\App\CPU\translate('Select a category from sidebar menu')}}.</label>
                 </div>
                 <!-- Pagination-->
             </div>
         </div>
     </div>
-@endsection
+    <br>
+    <br>
 
-@push('script')
-    <script>
+<!-- script -->
+<script>
         $(document).ready(function () {
             $('.card-header').click(function() {
                 $('.card-header').removeClass('active');
@@ -92,4 +80,4 @@
             });
         }
     </script>
-@endpush
+@endsection

@@ -29,6 +29,7 @@
 @endpush
 
 @section('content')
+
     <!-- Page Content-->
     <div class="container mb-5">
         <div class="row">

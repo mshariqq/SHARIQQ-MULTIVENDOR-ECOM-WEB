@@ -162,7 +162,7 @@
                                                 <span>{{ \App\CPU\translate('address')}} : {{$address['address']}}, {{$address['city']}}, {{$address['zip']}}.</span>
                                             </li>
                                         @endforeach
-                                        <li class="list-group-item bg-light border-primary" onclick="anotherAddress()">
+                                        <li class="list-group-item bg-light" onclick="anotherAddress()">
                                             <input type="radio" name="shipping_method_id"
                                                 id="sh-0" value="0" data-toggle="collapse"
                                                 data-target="#collapseThree" {{$shipping_addresses->count()==0?'checked':''}}>
@@ -430,11 +430,11 @@
             <div class="col-12 bg-light p-5 mt-3">
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6 col-12">
                             <h5>Everything done? Let's move to the next step</h5>
                         </div>
-                        <div class="col-6 row justify-content-end">
-                            <a class="btn btn-outline-primary btn-round mr-md-3" href="{{route('shop-cart')}}">
+                        <div class="col-md-6 col-12 row justify-content-end">
+                            <a class="btn btn-outline-primary btn-round mr-md-3 mb-md-0 mb-2" href="{{route('shop-cart')}}">
                                 <i class="fa fa-shopping-bag"></i>
                                 <span class="">{{ \App\CPU\translate('Go back to Cart')}}</span>
                             </a>
