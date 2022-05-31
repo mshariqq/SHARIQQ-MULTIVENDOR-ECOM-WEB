@@ -1979,4 +1979,8 @@
   'Go Back' => 'Go Back',
   'Shop more' => 'Shop more',
   'Check Orders' => 'Check Orders',
+  'tansction_history' => 'Tansction history',
+  'My Orders' => 'My Orders',
+  'Shipping Address' => 'Shipping Address',
+  'Billing Address' => 'Billing Address',
 );
