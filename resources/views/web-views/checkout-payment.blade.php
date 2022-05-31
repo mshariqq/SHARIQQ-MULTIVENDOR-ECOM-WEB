@@ -34,7 +34,7 @@
                     <div class="row">
                         @php($config=\App\CPU\Helpers::get_business_settings('cash_on_delivery'))
                         @if($config['status'])
-                            <div class="col-md-6 mb-4 pointer">
+                            <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         <form action="{{route('checkout-complete',['payment_method'=>'cash_on_delivery'])}}" method="get" class="needs-validation">
@@ -50,7 +50,7 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('ssl_commerz_payment'))
                         @if($config['status'])
-                            <div class="col-md-6 mb-4 pointer">
+                            <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         <form action="{{ url('/pay-ssl') }}" method="POST" class="needs-validation">
@@ -67,7 +67,7 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('paypal'))
                         @if($config['status'])
-                            <div class="col-md-6 mb-4 pointer">
+                            <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         <form class="needs-validation" method="POST" id="payment-form"
@@ -88,7 +88,7 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('stripe'))
                         @if($config['status'])
-                         <div class="col-md-6 mb-4 pointer">
+                         <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         <button class="btn btn-block click-if-alone" type="button" id="checkout-button">
@@ -128,7 +128,7 @@
                         @php($usd=\App\Model\Currency::where(['code'=>'USD'])->first())
                         @if(isset($inr) && isset($usd) && $config['status'])
                         
-                            <div class="col-md-6 mb-4 pointer">
+                            <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         <form action="{!!route('payment-razor')!!}" method="POST">
@@ -159,7 +159,7 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('paystack'))
                         @if($config['status'])
-                            <div class="col-md-6 mb-4 pointer">
+                            <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         @php($config=\App\CPU\Helpers::get_business_settings('paystack'))
@@ -205,7 +205,7 @@
                         @php($usd=\App\Model\Currency::where(['code'=>'usd'])->first())
                         @php($config=\App\CPU\Helpers::get_business_settings('senang_pay'))
                         @if(isset($myr) && isset($usd) && $config['status'])
-                            <div class="col-md-6 mb-4 pointer">
+                            <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         @php($config=\App\CPU\Helpers::get_business_settings('senang_pay'))
@@ -244,7 +244,7 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('paymob_accept'))
                         @if($config['status'])
-                            <div class="col-md-6 mb-4 pointer">
+                            <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         <form class="needs-validation" method="POST" id="payment-form-paymob"
@@ -262,7 +262,7 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('bkash'))
                         @if(isset($config)  && $config['status'])
-                            <div class="col-md-6 mb-4 pointer">
+                            <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         <button class="btn btn-block click-if-alone" id="bKash_button"
@@ -276,7 +276,7 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('paytabs'))
                         @if(isset($config)  && $config['status'])
-                            <div class="col-md-6 mb-4 pointer">
+                            <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         <button class="btn btn-block click-if-alone"
@@ -292,7 +292,7 @@
 
                         {{--@php($config=\App\CPU\Helpers::get_business_settings('fawry_pay'))
                         @if(isset($config)  && $config['status'])
-                        <div class="col-md-6 mb-4 pointer">
+                        <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         <button class="btn btn-block" onclick="location.href='{{route('fawry')}}'" style="margin-top: -11px">
@@ -305,7 +305,7 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('mercadopago'))
                         @if(isset($config) && $config['status'])
-                            <div class="col-md-6 mb-4 pointer">
+                            <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         <a class="btn btn-block click-if-alone" href="{{route('mercadopago.index')}}">
@@ -319,7 +319,7 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('flutterwave'))
                         @if(isset($config) && $config['status'])
-                        <div class="col-md-6 mb-4 pointer">
+                        <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         <form method="POST" action="{{ route('flutterwave_pay') }}">
@@ -337,7 +337,7 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('paytm'))
                         @if(isset($config) && $config['status'])
-                        <div class="col-md-6 mb-4 pointer">
+                        <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                 <div class="card-body" style="height: 100px;">
                                         <a class="btn btn-block click-if-alone" href="{{route('paytm-payment')}}">
@@ -351,7 +351,7 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('liqpay'))
                         @if(isset($config) && $config['status'])
-                        <div class="col-md-6 mb-4 pointer">
+                        <div class="col-md-4 mb-4 pointer">
                                 <div class="card border p-2">
                                     <div class="card-body" style="height: 100px;">
                                         <a class="btn btn-block click-if-alone" href="{{route('liqpay-payment')}}">
@@ -365,11 +365,12 @@
                     </div>
                     <!-- Navigation (desktop)-->
                     <div class="row">
-                        <div class="col-4"></div>
-                        <div class="col-4">
-                            <a class="btn btn-secondary btn-block" href="{{route('checkout-details')}}">
-                                <span class="d-none d-sm-inline">{{\App\CPU\translate('Back to Shipping')}}</span>
-                                <span class="d-inline d-sm-none">{{\App\CPU\translate('Back')}}</span>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6">
+                            <a class="btn btn-primary btn-round" href="{{route('checkout-details')}}">
+                                <i class="fa fa-chevron-left"></i>
+                                <span class="d-none d-sm-inline">{{\App\CPU\translate('Back to Shipping & Billing')}}</span>
+                                <span class="d-inline d-sm-none">{{\App\CPU\translate('Go Back')}}</span>
                             </a>
                         </div>
                         <div class="col-4"></div>

@@ -1975,4 +1975,6 @@
   'issuer' => 'Issuer',
   'Choose payment method to proceed' => 'Choose payment method to proceed',
   'Pay on Delivery' => 'Pay on Delivery',
+  'Back to Shipping & Billing' => 'Back to Shipping & Billing',
+  'Go Back' => 'Go Back',
 );
