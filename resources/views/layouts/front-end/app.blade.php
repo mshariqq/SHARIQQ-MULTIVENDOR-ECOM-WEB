@@ -71,7 +71,7 @@
         @endif
 
         <!-- header -->
-        <header class="header header-intro-clearance header-3">
+        <header class="header header-intro-clearance header-2">
             <div class="header-top">
                 <div class="container">
                     <div class="header-left">

@@ -248,17 +248,17 @@
                 </div>
                 
                 {{--Calculation--}}
-                <div class="row d-flex justify-content-end">
-                    <div class="col-md-8 col-lg-5">
+                <div class="row d-flex justify-content-start">
+                    <div class="col-md-8 col-lg-5 summary summary-cart">
                         <table class="table table-borderless">
                             <tbody class="totals">
                             <tr>
                                 <td>
-                                    <div class="text-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}"><span
+                                    <div class=""><span
                                             class="product-qty ">{{\App\CPU\translate('Item')}}</span></div>
                                 </td>
                                 <td>
-                                    <div class="text-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}">
+                                    <div class="">
                                         <span>{{$order->details->count()}}</span>
                                     </div>
                                 </td>
@@ -371,17 +371,19 @@
 @push('script')
     <script>
         function review_message() {
-            toastr.info('{{\App\CPU\translate('you_can_review_after_the_product_is_delivered!')}}', {
-                CloseButton: true,
-                ProgressBar: true
-            });
+            alert("{{\App\CPU\translate('you_can_review_after_the_product_is_delivered!')}}");
+            // toastr.info('{{\App\CPU\translate('you_can_review_after_the_product_is_delivered!')}}', {
+            //     CloseButton: true,
+            //     ProgressBar: true
+            // });
         }
 
         function refund_message(){
-            toastr.info('{{\App\CPU\translate('you_can_refund_request_after_the_product_is_delivered!')}}', {
-                CloseButton: true,
-                ProgressBar: true
-            });
+            alert("You can refund request after the product is delivered");
+            // toastr.info('{{\App\CPU\translate('you_can_refund_request_after_the_product_is_delivered!')}}', {
+            //     CloseButton: true,
+            //     ProgressBar: true
+            // });
         }
     </script>
 @endpush

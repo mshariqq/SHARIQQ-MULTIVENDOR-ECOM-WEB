@@ -58,39 +58,7 @@
 
 <div class="mb-4"></div><!-- End .mb-4 -->
 
-<div class="container">
-    <div class="row justify-content-center">
-
-        @php($main_banner=\App\Model\Banner::where('banner_type','Main Section Banner')->where('published',1)->orderBy('id','desc')->get())
-        @foreach($main_banner as $key=>$banner)
-
-        <div class="col-md-6 col-lg-4">
-            <div class="banner banner-overlay banner-overlay-light">
-                <a href="#">
-                    <img src="{{asset('storage/app/public/banner')}}/{{$banner['photo']}}" alt="Banner">
-                </a>
-
-                <div style="display: none" class="banner-content">
-                    <h4 class="banner-subtitle"><a href="#">Smart Offer</a></h4><!-- End .banner-subtitle -->
-                    <h3 class="banner-title"><a href="#">Save $150 <strong>on Samsung <br>Galaxy Note9</strong></a></h3><!-- End .banner-title -->
-                    <a href="#" class="banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
-                </div>
-            </div><!-- End .banner -->
-        </div><!-- End .col-md-4 -->
-        <!-- <div class="carousel-item {{$key==0?'active':''}}" style="height: 400px;background-color: #fff;">
-                    <a href="{{$banner['url']}}">
-                        <img class="d-block w-100" style="width: auto;height: auto;"
-                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                            src="{{asset('storage/app/public/banner')}}/{{$banner['photo']}}"
-                            alt="">
-                    </a>
-                </div> -->
-        @endforeach
-
-    </div><!-- End .row -->
-</div><!-- End .container -->
-
-<div class="mb-3"></div><!-- End .mb-5 -->
+<!-- Featured products -->
 
 @if ($featured_products->count() > 0 )
 <div class="bg-light pt-5 pb-6">
@@ -163,6 +131,41 @@
 </div><!-- End .container -->
 </div>
 @endif
+
+<div class="container">
+    <div class="row justify-content-center">
+
+        @php($main_banner=\App\Model\Banner::where('banner_type','Main Section Banner')->where('published',1)->orderBy('id','desc')->get())
+        @foreach($main_banner as $key=>$banner)
+
+        <div class="col-md-6 col-lg-4">
+            <div class="banner banner-overlay banner-overlay-light">
+                <a href="#">
+                    <img src="{{asset('storage/app/public/banner')}}/{{$banner['photo']}}" alt="Banner">
+                </a>
+
+                <div style="display: none" class="banner-content">
+                    <h4 class="banner-subtitle"><a href="#">Smart Offer</a></h4><!-- End .banner-subtitle -->
+                    <h3 class="banner-title"><a href="#">Save $150 <strong>on Samsung <br>Galaxy Note9</strong></a></h3><!-- End .banner-title -->
+                    <a href="#" class="banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
+                </div>
+            </div><!-- End .banner -->
+        </div><!-- End .col-md-4 -->
+        <!-- <div class="carousel-item {{$key==0?'active':''}}" style="height: 400px;background-color: #fff;">
+                    <a href="{{$banner['url']}}">
+                        <img class="d-block w-100" style="width: auto;height: auto;"
+                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                            src="{{asset('storage/app/public/banner')}}/{{$banner['photo']}}"
+                            alt="">
+                    </a>
+                </div> -->
+        @endforeach
+
+    </div><!-- End .row -->
+</div><!-- End .container -->
+
+<div class="mb-3"></div><!-- End .mb-5 -->
+
 
 <div class="mb-6"></div><!-- End .mb-6 -->
 
@@ -1349,7 +1352,7 @@ $q->where('status',1);
     <!-- Products grid (featured products)-->
     @if ($featured_products->count() > 0 )
     <div class="container mb-4">
-        <div class="row">
+        <div class="row" >
             <div class="col-md-12">
                 <div class="feature-product-title">
                     {{ \App\CPU\translate('featured_products')}}
