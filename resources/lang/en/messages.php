@@ -1995,4 +1995,8 @@
   'purchase_statement' => 'Purchase statement',
   'Tranx' => 'Tranx',
   'Transactions & Purchases' => 'Transactions & Purchases',
+  'Todays Deal' => 'Todays Deal',
+  'Shop by Sellers Products' => 'Shop by Sellers Products',
+  'Shop by Sellers' => 'Shop by Sellers',
+  'Shop by Top Sellers' => 'Shop by Top Sellers',
 );
