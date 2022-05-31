@@ -12,11 +12,11 @@
     .cart_total_value {
         font-weight: 700 !important;
         font-size: 25px !important;
-        color: {{$web_config['primary_color']}}     !important;
+        color: {{$web_config['primary_color']}} !important;
     }
 </style>
 
-<aside class="col-lg-4 pt-4 pt-lg-0">
+<aside class="col-lg-4 pt-md-2 summary summary-cart">
     <div class="cart_total">
         @php($sub_total=0)
         @php($total_tax=0)
@@ -70,7 +70,7 @@
             <div class="mt-2">
                 <form class="needs-validation" action="javascript:" method="post" novalidate id="coupon-code-ajax">
                     <div class="form-group">
-                        <input class="form-control input_code" type="text" name="code" placeholder="{{\App\CPU\translate('Coupon code')}}"
+                        <input class="form-control bg-white input_code" type="text" name="code" placeholder="{{\App\CPU\translate('Coupon code')}}"
                                required>
                         <div class="invalid-feedback">{{\App\CPU\translate('please_provide_coupon_code')}}</div>
                     </div>

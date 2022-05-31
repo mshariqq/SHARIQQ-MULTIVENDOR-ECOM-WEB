@@ -20,8 +20,8 @@
         font-weight: 400;
     }
 </style> -->
-<div class="steps steps-light pt-2 pb-2">
-    <a class="step-item btn btn-round border {{$step>=1?'border-success':''}} {{$step==1?'current btn-primary':''}}" href="{{route('checkout-details')}}">
+<div class="steps steps-light pt-2 pb-2 row justify-content-center">
+    <a class="mr-md-4 step-item btn btn-round border {{$step>=1?'border-success':''}} {{$step==1?'current btn-primary':''}}" href="{{route('checkout-details')}}">
         <div class="step-progress">
             <span class="step-count"><i class="fa fa-user"></i></span>
         </div>
@@ -30,7 +30,7 @@
             
         </div>
     </a>
-    <a class="step-item btn btn-round border {{$step>=2?'active ':''}} {{$step==2?'current btn-primary':''}}" href="{{route('checkout-details')}}">
+    <a class="mr-md-4 step-item btn btn-round border {{$step>=2?'active ':''}} {{$step==2?'current btn-primary':''}}" href="{{route('checkout-details')}}">
         <div class="step-progress">
             <span class="step-count"><i class="fa fa-shopping-bag"></i></span>
         </div>

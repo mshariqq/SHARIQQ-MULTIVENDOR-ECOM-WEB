@@ -21,27 +21,22 @@
 
 @section('content')
     <!-- Page Content-->
-    <div class="container pb-5 mb-2 mb-md-4 rtl"
-         style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
+    <div class="container">
         <div class="row">
-            <div class="col-md-12 mb-5 pt-5">
-                <div class="feature_header" style="background: #dcdcdc;line-height: 1px">
-                    <span>{{ \App\CPU\translate('payment_method')}}</span>
-                </div>
+            <div class="col-12 mt-md-2 mb-md-2">
+                @include('web-views.partials._checkout-steps',['step'=>3])
             </div>
             <section class="col-lg-8">
-                <hr>
                 <div class="checkout_details mt-3">
-                @include('web-views.partials._checkout-steps',['step'=>3])
                 <!-- Payment methods accordion-->
-                    <h2 class="h6 pb-3 mb-2 mt-5">{{\App\CPU\translate('choose_payment')}}</h2>
+                    <h4>{{\App\CPU\translate('Choose payment method to proceed')}}</h4>
 
                     <div class="row">
                         @php($config=\App\CPU\Helpers::get_business_settings('cash_on_delivery'))
                         @if($config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body" style="height: 100px">
+                            <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         <form action="{{route('checkout-complete',['payment_method'=>'cash_on_delivery'])}}" method="get" class="needs-validation">
                                             <button class="btn btn-block click-if-alone" type="submit">
                                                 <img width="150" style="margin-top: -10px"
@@ -55,9 +50,9 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('ssl_commerz_payment'))
                         @if($config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body" style="height: 100px">
+                            <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         <form action="{{ url('/pay-ssl') }}" method="POST" class="needs-validation">
                                             <input type="hidden" value="{{ csrf_token() }}" name="_token"/>
                                             <button class="btn btn-block click-if-alone" type="submit">
@@ -72,9 +67,9 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('paypal'))
                         @if($config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body" style="height: 100px">
+                            <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         <form class="needs-validation" method="POST" id="payment-form"
                                               action="{{route('pay-paypal')}}">
                                             {{ csrf_field() }}
@@ -93,9 +88,9 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('stripe'))
                         @if($config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body" style="height: 100px">
+                         <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         <button class="btn btn-block click-if-alone" type="button" id="checkout-button">
                                             {{-- <i class="czi-card"></i> {{\App\CPU\translate('Credit / Debit card ( Stripe )')}} --}}
                                             <img width="150"
@@ -133,9 +128,9 @@
                         @php($usd=\App\Model\Currency::where(['code'=>'USD'])->first())
                         @if(isset($inr) && isset($usd) && $config['status'])
                         
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body" style="height: 100px">
+                            <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         <form action="{!!route('payment-razor')!!}" method="POST">
                                         @csrf
                                         <!-- Note that the amount is in paise = 50 INR -->
@@ -164,9 +159,9 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('paystack'))
                         @if($config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body" style="height: 100px">
+                            <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         @php($config=\App\CPU\Helpers::get_business_settings('paystack'))
                                         @php($order=\App\Model\Order::find(session('order_id')))
                                         <form method="POST" action="{{ route('paystack-pay') }}" accept-charset="UTF-8"
@@ -210,9 +205,9 @@
                         @php($usd=\App\Model\Currency::where(['code'=>'usd'])->first())
                         @php($config=\App\CPU\Helpers::get_business_settings('senang_pay'))
                         @if(isset($myr) && isset($usd) && $config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body" style="height: 100px">
+                            <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         @php($config=\App\CPU\Helpers::get_business_settings('senang_pay'))
                                         @php($user=auth('customer')->user())
                                         @php($secretkey = $config['secret_key'])
@@ -249,9 +244,9 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('paymob_accept'))
                         @if($config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body" style="height: 100px">
+                            <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         <form class="needs-validation" method="POST" id="payment-form-paymob"
                                               action="{{route('paymob-credit')}}">
                                             {{ csrf_field() }}
@@ -267,9 +262,9 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('bkash'))
                         @if(isset($config)  && $config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body" style="height: 100px">
+                            <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         <button class="btn btn-block click-if-alone" id="bKash_button"
                                                 onclick="BkashPayment()">
                                             <img width="100" src="{{asset('public/assets/front-end/img/bkash.png')}}"/>
@@ -281,9 +276,9 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('paytabs'))
                         @if(isset($config)  && $config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body" style="height: 100px">
+                            <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         <button class="btn btn-block click-if-alone"
                                                 onclick="location.href='{{route('paytabs-payment')}}'"
                                                 style="margin-top: -11px">
@@ -297,9 +292,9 @@
 
                         {{--@php($config=\App\CPU\Helpers::get_business_settings('fawry_pay'))
                         @if(isset($config)  && $config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body" style="height: 100px">
+                        <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         <button class="btn btn-block" onclick="location.href='{{route('fawry')}}'" style="margin-top: -11px">
                                             <img width="150" src="{{asset('public/assets/front-end/img/fawry.svg')}}"/>
                                         </button>
@@ -310,9 +305,9 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('mercadopago'))
                         @if(isset($config) && $config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body pt-2" style="height: 100px">
+                            <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         <a class="btn btn-block click-if-alone" href="{{route('mercadopago.index')}}">
                                             <img width="150"
                                                  src="{{asset('public/assets/front-end/img/MercadoPago_(Horizontal).svg')}}"/>
@@ -324,9 +319,9 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('flutterwave'))
                         @if(isset($config) && $config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body pt-2" style="height: 100px">
+                        <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         <form method="POST" action="{{ route('flutterwave_pay') }}">
                                             {{ csrf_field() }}
 
@@ -342,9 +337,9 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('paytm'))
                         @if(isset($config) && $config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body" style="height: 100px">
+                        <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                <div class="card-body" style="height: 100px;">
                                         <a class="btn btn-block click-if-alone" href="{{route('paytm-payment')}}">
                                             <img style="max-width: 150px; margin-top: -10px"
                                                  src="{{asset('public/assets/front-end/img/paytm.png')}}"/>
@@ -356,9 +351,9 @@
 
                         @php($config=\App\CPU\Helpers::get_business_settings('liqpay'))
                         @if(isset($config) && $config['status'])
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
-                                <div class="card">
-                                    <div class="card-body" style="height: 100px">
+                        <div class="col-md-6 mb-4 pointer">
+                                <div class="card border p-2">
+                                    <div class="card-body" style="height: 100px;">
                                         <a class="btn btn-block click-if-alone" href="{{route('liqpay-payment')}}">
                                             <img style="max-width: 150px; margin-top: 0px"
                                                  src="{{asset('public/assets/front-end/img/liqpay4.png')}}"/>
