@@ -1977,4 +1977,6 @@
   'Pay on Delivery' => 'Pay on Delivery',
   'Back to Shipping & Billing' => 'Back to Shipping & Billing',
   'Go Back' => 'Go Back',
+  'Shop more' => 'Shop more',
+  'Check Orders' => 'Check Orders',
 );
