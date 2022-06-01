@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 18, 2022 at 04:16 PM
+-- Generation Time: May 31, 2022 at 10:37 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `users_shariqq_6valley_9_0`
+-- Database: `users_shariqq_shariqq_multivendor_ecom_9_0_f`
 --
 
 -- --------------------------------------------------------
@@ -127,6 +127,18 @@ CREATE TABLE `attributes` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `attributes`
+--
+
+INSERT INTO `attributes` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'CPU', '2022-05-24 22:50:53', '2022-05-24 22:50:53'),
+(2, 'Ram', '2022-05-24 22:50:57', '2022-05-24 22:50:57'),
+(3, 'Hard Disk', '2022-05-24 22:51:03', '2022-05-24 22:51:03'),
+(4, 'Driver', '2022-05-24 22:51:09', '2022-05-24 22:51:09'),
+(5, 'Color', '2022-05-24 22:51:15', '2022-05-24 22:51:15'),
+(6, 'Model', '2022-05-24 22:51:23', '2022-05-24 22:51:23');
+
 -- --------------------------------------------------------
 
 --
@@ -144,6 +156,18 @@ CREATE TABLE `banners` (
   `resource_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `resource_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `banners`
+--
+
+INSERT INTO `banners` (`id`, `photo`, `banner_type`, `published`, `created_at`, `updated_at`, `url`, `resource_type`, `resource_id`) VALUES
+(3, '2022-05-25-628dfee5cb440.png', 'Main Banner', 1, '2022-05-25 04:33:17', '2022-05-25 04:33:52', '#', 'category', 1),
+(4, '2022-05-25-628dff00b8b32.png', 'Main Banner', 1, '2022-05-25 04:33:44', '2022-05-25 04:33:53', '#', 'category', 1),
+(5, '2022-05-25-628dff2d43b46.png', 'Main Banner', 1, '2022-05-25 04:34:29', '2022-05-25 04:34:41', '#', 'category', 1),
+(8, '2022-05-25-628e03721f315.png', 'Main Section Banner', 1, '2022-05-25 04:52:42', '2022-05-25 04:53:37', '#', 'product', 82),
+(9, '2022-05-25-628e0389576c5.png', 'Main Section Banner', 1, '2022-05-25 04:53:05', '2022-05-25 04:53:36', '#', 'category', 1),
+(10, '2022-05-25-628e03a49e0c5.png', 'Main Section Banner', 1, '2022-05-25 04:53:32', '2022-05-25 04:53:36', '#', 'category', 3);
 
 -- --------------------------------------------------------
 
@@ -188,7 +212,11 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`id`, `name`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Apple', '2022-03-06-62245e494afae.png', 1, '2022-03-06 07:40:01', '2022-03-06 07:40:01');
+(1, 'Apple', '2022-03-06-62245e494afae.png', 1, '2022-03-06 07:40:01', '2022-03-06 07:40:01'),
+(2, 'HP', '2022-05-25-628dac63c7e2f.png', 1, '2022-05-24 22:41:15', '2022-05-24 22:41:15'),
+(3, 'Dell', '2022-05-25-628dac7e2d8c1.png', 1, '2022-05-24 22:41:42', '2022-05-24 22:41:42'),
+(4, 'Asus', '2022-05-25-628daca2b3917.png', 1, '2022-05-24 22:42:18', '2022-05-24 22:42:18'),
+(5, 'Boat', '2022-05-25-628dad066c6f1.png', 1, '2022-05-24 22:43:58', '2022-05-24 22:43:58');
 
 -- --------------------------------------------------------
 
@@ -209,7 +237,7 @@ CREATE TABLE `business_settings` (
 --
 
 INSERT INTO `business_settings` (`id`, `type`, `value`, `created_at`, `updated_at`) VALUES
-(1, 'system_default_currency', '1', '2020-10-11 07:43:44', '2021-06-04 18:25:29'),
+(1, 'system_default_currency', '3', '2020-10-11 07:43:44', '2022-05-24 23:46:31'),
 (2, 'language', '[{\"id\":\"1\",\"name\":\"english\",\"code\":\"en\",\"status\":1},{\"id\":4,\"name\":\"Hindi\",\"code\":\"hn\",\"status\":0}]', '2020-10-11 07:53:02', '2021-06-10 21:16:25'),
 (3, 'mail_config', '{\"status\":0,\"name\":\"demo\",\"host\":\"mail.demo.com\",\"driver\":\"SMTP\",\"port\":\"587\",\"username\":\"info@demo.com\",\"email_id\":\"info@demo.com\",\"encryption\":\"TLS\",\"password\":\"demo\"}', '2020-10-12 10:29:18', '2021-07-06 12:32:01'),
 (4, 'cash_on_delivery', '{\"status\":\"1\"}', NULL, '2021-05-25 21:21:15'),
@@ -219,18 +247,18 @@ INSERT INTO `business_settings` (`id`, `type`, `value`, `created_at`, `updated_a
 (9, 'paytm', '{\"status\":\"0\",\"environment\":\"sandbox\",\"paytm_merchant_key\":\"sdfbsdfb\",\"paytm_merchant_mid\":\"\",\"paytm_merchant_website\":\"dsfbsdf\",\"paytm_refund_url\":\"\"}', '2020-11-09 09:19:08', '2022-05-18 08:41:45'),
 (10, 'company_phone', '+91 0258841693', NULL, '2020-12-08 14:15:01'),
 (11, 'company_name', 'Multi Vendor', NULL, '2021-02-27 18:11:53'),
-(12, 'company_web_logo', '2021-05-25-60ad1b313a9d4.png', NULL, '2021-05-25 21:43:45'),
-(13, 'company_mobile_logo', '2021-02-20-6030c88c91911.png', NULL, '2021-02-20 14:30:04'),
+(12, 'company_web_logo', '2022-05-28-629198e2a482e.png', NULL, '2022-05-27 22:07:06'),
+(13, 'company_mobile_logo', '2022-05-28-629198e2a72de.png', NULL, '2022-05-27 22:07:06'),
 (14, 'terms_condition', '<p>eeverferfervtsS</p>', NULL, '2021-06-11 01:51:36'),
 (15, 'about_us', '<p>this is about us page. hello and hi from about page description..</p>', NULL, '2021-06-11 01:42:53'),
 (16, 'sms_nexmo', '{\"status\":\"0\",\"nexmo_key\":\"custo5cc042f7abf4c\",\"nexmo_secret\":\"custo5cc042f7abf4c@ssl\"}', NULL, NULL),
 (17, 'company_email', 'Copy@XXXX.com', NULL, '2021-03-15 12:29:51'),
-(18, 'colors', '{\"primary\":\"#0091ff\",\"secondary\":\"#7a569f\"}', '2020-10-11 13:53:02', '2022-05-04 07:37:52'),
-(19, 'company_footer_logo', '2021-02-20-6030c8a02a5f9.png', NULL, '2021-02-20 14:30:24'),
+(18, 'colors', '{\"primary\":\"#0006ad\",\"secondary\":\"#ff0088\"}', '2020-10-11 13:53:02', '2022-05-27 22:07:06'),
+(19, 'company_footer_logo', '2022-05-28-629198e2ad8b6.png', NULL, '2022-05-27 22:07:06'),
 (20, 'company_copyright_text', 'CopyRight XXXX@2021', NULL, '2021-03-15 12:30:47'),
 (21, 'download_app_apple_stroe', '{\"status\":\"1\",\"link\":\"https:\\/\\/www.target.com\\/s\\/apple+store++now?ref=tgt_adv_XS000000&AFID=msn&fndsrc=tgtao&DFA=71700000012505188&CPNG=Electronics_Portable+Computers&adgroup=Portable+Computers&LID=700000001176246&LNM=apple+store+near+me+now&MT=b&network=s&device=c&location=12&targetid=kwd-81913773633608:loc-12&ds_rl=1246978&ds_rl=1248099&gclsrc=ds\"}', NULL, '2020-12-08 12:54:53'),
 (22, 'download_app_google_stroe', '{\"status\":\"1\",\"link\":\"https:\\/\\/play.google.com\\/store?hl=en_US&gl=US\"}', NULL, '2020-12-08 12:54:48'),
-(23, 'company_fav_icon', '2021-03-02-603df1634614f.png', '2020-10-11 13:53:02', '2021-03-02 14:03:48'),
+(23, 'company_fav_icon', '2022-05-28-629198e2b078b.png', '2020-10-11 13:53:02', '2022-05-27 22:07:06'),
 (24, 'fcm_topic', '', NULL, NULL),
 (25, 'fcm_project_id', '', NULL, NULL),
 (26, 'push_notification_key', 'Put your firebase server key here.', NULL, NULL),
@@ -256,7 +284,7 @@ INSERT INTO `business_settings` (`id`, `type`, `value`, `created_at`, `updated_a
 (48, 'shop_banner', 'def.png', NULL, NULL),
 (49, 'paymob_accept', '{\"status\":\"0\",\"api_key\":\"\",\"iframe_id\":\"\",\"integration_id\":\"\",\"hmac\":\"\"}', NULL, NULL),
 (50, 'bkash', '{\"status\":\"0\",\"environment\":\"sandbox\",\"api_key\":\"\",\"api_secret\":\"\",\"username\":\"\",\"password\":\"\"}', NULL, '2022-05-18 08:41:45'),
-(51, 'social_login', '[{\"login_medium\":\"google\",\"client_id\":\"\",\"client_secret\":\"\",\"status\":\"\"},{\"login_medium\":\"facebook\",\"client_id\":\"\",\"client_secret\":\"\",\"status\":\"\"}]', NULL, NULL),
+(51, 'social_login', '[{\"login_medium\":\"google\",\"client_id\":null,\"client_secret\":null,\"status\":\"1\"},{\"login_medium\":\"facebook\",\"client_id\":null,\"client_secret\":null,\"status\":\"1\"}]', NULL, '2022-05-25 11:35:22'),
 (52, 'digital_payment', '{\"status\":\"1\"}', NULL, NULL),
 (53, 'currency_model', 'multi_currency', NULL, NULL),
 (54, 'phone_verification', '0', NULL, NULL),
@@ -273,15 +301,17 @@ INSERT INTO `business_settings` (`id`, `type`, `value`, `created_at`, `updated_a
 (65, 'refund_day_limit', '0', NULL, NULL),
 (66, 'business_mode', 'multi', NULL, NULL),
 (67, 'decimal_point_settings', '2', NULL, NULL),
-(68, 'shop_address', '', NULL, NULL),
+(68, 'shop_address', 'example street', NULL, NULL),
 (69, 'billing_input_by_customer', '1', NULL, NULL),
 (70, 'flutterwave', '{\"status\":1,\"public_key\":\"\",\"secret_key\":\"\",\"hash\":\"\"}', NULL, NULL),
 (71, 'mercadopago', '{\"status\":1,\"public_key\":\"\",\"access_token\":\"\"}', NULL, NULL),
-(72, 'announcement', '{\"status\":null,\"color\":null,\"text_color\":null,\"announcement\":null}', NULL, NULL),
+(72, 'announcement', '{\"status\":\"0\",\"color\":\"#000000\",\"text_color\":\"#000000\",\"announcement\":null}', NULL, NULL),
 (73, 'mail_config_sendgrid', '{\"status\":0,\"name\":\"\",\"host\":\"\",\"driver\":\"\",\"port\":\"\",\"username\":\"\",\"email_id\":\"\",\"encryption\":\"\",\"password\":\"\"}', NULL, NULL),
 (74, 'fawry_pay', '{\"status\":0,\"merchant_code\":\"\",\"security_key\":\"\"}', NULL, '2022-05-18 08:41:45'),
 (75, 'recaptcha', '{\"status\":0,\"site_key\":\"\",\"secret_key\":\"\"}', NULL, '2022-05-18 08:41:45'),
-(76, 'liqpay', '{\"status\":0,\"public_key\":\"\",\"private_key\":\"\"}', NULL, NULL);
+(76, 'liqpay', '{\"status\":0,\"public_key\":\"\",\"private_key\":\"\"}', NULL, NULL),
+(77, 'loader_gif', '2022-05-28-629198e2b31a6.png', NULL, NULL),
+(78, 'default_location', '{\"lat\":null,\"lng\":null}', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -347,6 +377,29 @@ CREATE TABLE `categories` (
   `home_status` tinyint(1) NOT NULL DEFAULT 0,
   `priority` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `slug`, `icon`, `parent_id`, `position`, `created_at`, `updated_at`, `home_status`, `priority`) VALUES
+(1, 'Computers', 'computers', '2022-05-25-628dad2de04d2.png', 0, 0, '2022-05-24 22:44:37', '2022-05-25 04:35:48', 1, 0),
+(2, 'Laptops', 'laptops', '2022-05-25-628dad59826ff.png', 0, 0, '2022-05-24 22:45:21', '2022-05-25 04:35:48', 1, 0),
+(3, 'Headphones', 'headphones', '2022-05-25-628dada7b02e7.png', 0, 0, '2022-05-24 22:46:39', '2022-05-25 04:35:47', 1, 0),
+(4, 'Keyboards', 'keyboards', '2022-05-25-628dadff874cb.png', 0, 0, '2022-05-24 22:48:07', '2022-05-25 04:35:46', 1, 0),
+(5, 'Gaming Pc\'s', 'gaming-pcs', NULL, 1, 1, '2022-05-24 22:48:40', '2022-05-24 22:48:40', 0, 0),
+(6, 'Office Computers', 'office-computers', NULL, 1, 1, '2022-05-24 22:48:51', '2022-05-24 22:48:51', 0, 0),
+(7, 'Custom Pc\'s', 'custom-pcs', NULL, 1, 1, '2022-05-24 22:49:02', '2022-05-24 22:49:02', 0, 0),
+(8, 'Notebooks', 'notebooks', NULL, 2, 1, '2022-05-24 22:49:12', '2022-05-24 22:49:12', 0, 0),
+(9, 'Gaming Laptops', 'gaming-laptops', NULL, 2, 1, '2022-05-24 22:49:20', '2022-05-24 22:49:20', 0, 0),
+(10, 'Earphones', 'earphones', NULL, 3, 1, '2022-05-24 22:49:37', '2022-05-24 22:49:37', 0, 0),
+(11, 'Over ear heaphones', 'over-ear-heaphones', NULL, 3, 1, '2022-05-24 22:49:45', '2022-05-24 22:49:45', 0, 0),
+(12, 'Gaming Headphones', 'gaming-headphones', NULL, 3, 1, '2022-05-24 22:49:53', '2022-05-24 22:49:53', 0, 0),
+(13, 'Bluetooth Headphones', 'bluetooth-headphones', NULL, 3, 1, '2022-05-24 22:50:04', '2022-05-24 22:50:04', 0, 0),
+(14, 'Mechanical keyboards', 'mechanical-keyboards', NULL, 4, 1, '2022-05-24 22:50:14', '2022-05-24 22:50:14', 0, 0),
+(15, 'Butterfly Keyboards', 'butterfly-keyboards', NULL, 4, 1, '2022-05-24 22:50:22', '2022-05-24 22:50:22', 0, 0),
+(16, 'Intel PC\'s', 'intel-pcs', NULL, 7, 2, '2022-05-31 14:02:43', '2022-05-31 14:02:43', 0, 0),
+(17, 'AMD Ryzen PC\'s', 'amd-ryzen-pcs', NULL, 5, 2, '2022-05-31 14:02:51', '2022-05-31 14:02:51', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -612,13 +665,11 @@ CREATE TABLE `currencies` (
 --
 
 INSERT INTO `currencies` (`id`, `name`, `symbol`, `code`, `exchange_rate`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'USD', 'USD', 'USD', '1', 1, NULL, '2021-06-27 13:39:37'),
-(2, 'BDT', '৳', 'BDT', '84', 1, NULL, '2021-07-06 11:52:58'),
-(3, 'Indian Rupi', '₹', 'INR', '60', 1, '2020-10-15 17:23:04', '2021-06-04 18:26:38'),
-(4, 'Euro', '€', 'EUR', '100', 1, '2021-05-25 21:00:23', '2021-06-04 18:25:29'),
-(5, 'YEN', '¥', 'JPY', '110', 1, '2021-06-10 22:08:31', '2021-06-26 14:21:10'),
-(6, 'Ringgit', 'RM', 'MYR', '4.16', 1, '2021-07-03 11:08:33', '2021-07-03 11:10:37'),
-(7, 'Rand', 'R', 'ZAR', '14.26', 1, '2021-07-03 11:12:38', '2021-07-03 11:12:42');
+(1, 'USD', 'USD', 'USD', '0.016666666666667', 1, NULL, '2022-05-24 23:46:38'),
+(2, 'BDT', '৳', 'BDT', '1.4', 0, NULL, '2022-05-24 23:46:31'),
+(3, 'Indian Rupi', '₹', 'INR', '1', 1, '2020-10-15 17:23:04', '2022-05-24 23:46:31'),
+(4, 'Euro', '€', 'EUR', '1.6666666666667', 0, '2021-05-25 21:00:23', '2022-05-24 23:46:31'),
+(5, 'YEN', '¥', 'JPY', '1.8333333333333', 0, '2021-06-10 22:08:31', '2022-05-24 23:46:31');
 
 -- --------------------------------------------------------
 
@@ -668,6 +719,13 @@ CREATE TABLE `deal_of_the_days` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `deal_of_the_days`
+--
+
+INSERT INTO `deal_of_the_days` (`id`, `title`, `product_id`, `discount`, `discount_type`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'May Day', 83, '20.82', 'flat', 1, '2022-05-31 08:22:33', '2022-05-31 08:22:36');
 
 -- --------------------------------------------------------
 
@@ -765,6 +823,13 @@ CREATE TABLE `flash_deals` (
   `deal_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `flash_deals`
+--
+
+INSERT INTO `flash_deals` (`id`, `title`, `start_date`, `end_date`, `status`, `featured`, `background_color`, `text_color`, `banner`, `slug`, `created_at`, `updated_at`, `product_id`, `deal_type`) VALUES
+(1, 'FLash Deal example', '2022-05-31', '2022-06-05', 1, 0, NULL, NULL, '2022-05-25-628dafea4a4b2.png', 'flash-deal-example', '2022-05-24 22:56:18', '2022-05-31 08:22:36', NULL, 'flash_deal');
+
 -- --------------------------------------------------------
 
 --
@@ -780,6 +845,14 @@ CREATE TABLE `flash_deal_products` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `flash_deal_products`
+--
+
+INSERT INTO `flash_deal_products` (`id`, `flash_deal_id`, `product_id`, `discount`, `discount_type`, `created_at`, `updated_at`) VALUES
+(1, 1, 83, '0.00', NULL, '2022-05-30 04:57:07', '2022-05-30 04:57:07'),
+(2, 1, 82, '0.00', NULL, '2022-05-31 08:19:26', '2022-05-31 08:19:26');
 
 -- --------------------------------------------------------
 
@@ -1154,6 +1227,16 @@ CREATE TABLE `orders` (
   `third_party_delivery_tracking_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `customer_id`, `customer_type`, `payment_status`, `order_status`, `payment_method`, `transaction_ref`, `order_amount`, `shipping_address`, `created_at`, `updated_at`, `discount_amount`, `discount_type`, `coupon_code`, `shipping_method_id`, `shipping_cost`, `order_group_id`, `verification_code`, `seller_id`, `seller_is`, `shipping_address_data`, `delivery_man_id`, `order_note`, `billing_address`, `billing_address_data`, `order_type`, `extra_discount`, `extra_discount_type`, `checked`, `shipping_type`, `delivery_type`, `delivery_service_name`, `third_party_delivery_tracking_id`) VALUES
+(100001, '3', 'customer', 'unpaid', 'pending', 'cash_on_delivery', '', 42814, '1', '2022-05-24 23:08:18', '2022-05-24 23:08:25', 0, NULL, '0', 4, 10.00, '3144-jpqjj-1653453498', '387552', 1, 'admin', '{\"id\":1,\"customer_id\":3,\"contact_person_name\":\"john\",\"address_type\":\"permanent\",\"address\":\"doctor street\",\"city\":\"Hyd\",\"zip\":\"404004\",\"phone\":\"9874563210\",\"created_at\":\"2022-05-25T04:38:12.000000Z\",\"updated_at\":\"2022-05-25T04:38:12.000000Z\",\"state\":null,\"country\":null,\"latitude\":\"0\",\"longitude\":\"0\",\"is_billing\":0}', NULL, NULL, NULL, NULL, 'default_type', 0.00, NULL, 1, 'order_wise', NULL, NULL, NULL),
+(100002, '11', 'customer', 'unpaid', 'pending', 'cash_on_delivery', '', 42904, '2', '2022-05-31 04:31:53', '2022-05-31 04:32:01', 0, NULL, '0', 5, 100.00, '1020-57oOm-1653991313', '274032', 1, 'admin', '{\"id\":2,\"customer_id\":11,\"contact_person_name\":\"john doe\",\"address_type\":\"permanent\",\"address\":\"john str streetm block 34\",\"city\":\"mumbai\",\"zip\":\"5050002\",\"phone\":\"9874563210\",\"created_at\":\"2022-05-31T09:29:08.000000Z\",\"updated_at\":\"2022-05-31T09:29:08.000000Z\",\"state\":null,\"country\":null,\"latitude\":null,\"longitude\":null,\"is_billing\":0}', NULL, NULL, 2, '{\"id\":2,\"customer_id\":11,\"contact_person_name\":\"john doe\",\"address_type\":\"permanent\",\"address\":\"john str streetm block 34\",\"city\":\"mumbai\",\"zip\":\"5050002\",\"phone\":\"9874563210\",\"created_at\":\"2022-05-31T09:29:08.000000Z\",\"updated_at\":\"2022-05-31T09:29:08.000000Z\",\"state\":null,\"country\":null,\"latitude\":null,\"longitude\":null,\"is_billing\":0}', 'default_type', 0.00, NULL, 1, 'order_wise', NULL, NULL, NULL),
+(100003, '11', 'customer', 'unpaid', 'pending', 'cash_on_delivery', '', 929.55033333334, '2', '2022-05-31 04:31:58', '2022-05-31 04:32:01', 0, NULL, '0', 5, 100.00, '1020-57oOm-1653991313', '840761', 1, 'seller', '{\"id\":2,\"customer_id\":11,\"contact_person_name\":\"john doe\",\"address_type\":\"permanent\",\"address\":\"john str streetm block 34\",\"city\":\"mumbai\",\"zip\":\"5050002\",\"phone\":\"9874563210\",\"created_at\":\"2022-05-31T09:29:08.000000Z\",\"updated_at\":\"2022-05-31T09:29:08.000000Z\",\"state\":null,\"country\":null,\"latitude\":null,\"longitude\":null,\"is_billing\":0}', NULL, NULL, 2, '{\"id\":2,\"customer_id\":11,\"contact_person_name\":\"john doe\",\"address_type\":\"permanent\",\"address\":\"john str streetm block 34\",\"city\":\"mumbai\",\"zip\":\"5050002\",\"phone\":\"9874563210\",\"created_at\":\"2022-05-31T09:29:08.000000Z\",\"updated_at\":\"2022-05-31T09:29:08.000000Z\",\"state\":null,\"country\":null,\"latitude\":null,\"longitude\":null,\"is_billing\":0}', 'default_type', 0.00, NULL, 1, 'order_wise', NULL, NULL, NULL),
+(100004, '11', 'customer', 'unpaid', 'pending', 'cash_on_delivery', '', 42904, '2', '2022-05-31 14:30:02', '2022-05-31 14:30:59', 0, NULL, '0', 5, 100.00, '1652-WNrWa-1654027202', '846852', 1, 'admin', '{\"id\":2,\"customer_id\":11,\"contact_person_name\":\"john doe\",\"address_type\":\"permanent\",\"address\":\"john str streetm block 34\",\"city\":\"mumbai\",\"zip\":\"5050002\",\"phone\":\"9874563210\",\"created_at\":\"2022-05-31T12:59:03.000000Z\",\"updated_at\":\"2022-05-31T12:59:03.000000Z\",\"state\":null,\"country\":null,\"latitude\":null,\"longitude\":null,\"is_billing\":0}', NULL, NULL, 2, '{\"id\":2,\"customer_id\":11,\"contact_person_name\":\"john doe\",\"address_type\":\"permanent\",\"address\":\"john str streetm block 34\",\"city\":\"mumbai\",\"zip\":\"5050002\",\"phone\":\"9874563210\",\"created_at\":\"2022-05-31T12:59:03.000000Z\",\"updated_at\":\"2022-05-31T12:59:03.000000Z\",\"state\":null,\"country\":null,\"latitude\":null,\"longitude\":null,\"is_billing\":0}', 'default_type', 0.00, NULL, 1, 'order_wise', NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -1181,6 +1264,16 @@ CREATE TABLE `order_details` (
   `is_stock_decreased` tinyint(1) NOT NULL DEFAULT 1,
   `refund_request` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `seller_id`, `product_details`, `qty`, `price`, `tax`, `discount`, `delivery_status`, `payment_status`, `created_at`, `updated_at`, `shipping_method_id`, `variant`, `variation`, `discount_type`, `is_stock_decreased`, `refund_request`) VALUES
+(1, 100001, 82, 1, '{\"id\":82,\"added_by\":\"admin\",\"user_id\":1,\"name\":\"HP 15s-Ryzen 3 5300U 8GB SDRAM\\/256GB SSD 15.6 inch(39.6cm) FHD, Micro-Edge, Anti\",\"slug\":\"hp-15s-ryzen-3-5300u-8gb-sdram256gb-ssd-156-inch396cm-fhd-micro-edge-anti-glare-displayamd-radeon-graphicsdual-speakersw\",\"category_ids\":\"[{\\\"id\\\":\\\"2\\\",\\\"position\\\":1},{\\\"id\\\":\\\"8\\\",\\\"position\\\":2}]\",\"brand_id\":2,\"unit\":\"kg\",\"min_qty\":1,\"refundable\":1,\"images\":\"[\\\"2022-05-25-628db1138c0ea.png\\\",\\\"2022-05-25-628db1138d2a1.png\\\",\\\"2022-05-25-628db1138d3ee.png\\\",\\\"2022-05-25-628db1138d509.png\\\"]\",\"thumbnail\":\"2022-05-25-628db1138d758.png\",\"featured\":1,\"flash_deal\":null,\"video_provider\":\"youtube\",\"video_url\":null,\"colors\":\"[\\\"#000000\\\",\\\"#C0C0C0\\\"]\",\"variant_product\":0,\"attributes\":\"[\\\"3\\\",\\\"2\\\"]\",\"choice_options\":\"[{\\\"name\\\":\\\"choice_3\\\",\\\"title\\\":\\\"HardDisk\\\",\\\"options\\\":[\\\"1TB\\\"]},{\\\"name\\\":\\\"choice_2\\\",\\\"title\\\":\\\"Ram\\\",\\\"options\\\":[\\\"8GB\\\"]}]\",\"variation\":\"[{\\\"type\\\":\\\"Black-1TB-8GB\\\",\\\"price\\\":36900,\\\"sku\\\":\\\"H1358SS1iFMADRGS1OC1-Black-1TB-8GB\\\",\\\"qty\\\":100},{\\\"type\\\":\\\"Silver-1TB-8GB\\\",\\\"price\\\":36800,\\\"sku\\\":\\\"H1358SS1iFMADRGS1OC1-Silver-1TB-8GB\\\",\\\"qty\\\":100}]\",\"published\":0,\"unit_price\":36800,\"purchase_price\":32000,\"tax\":18,\"tax_type\":\"percent\",\"discount\":2,\"discount_type\":\"percent\",\"current_stock\":200,\"details\":\"<h1>About this item<\\/h1>\\r\\n\\r\\n<ul>\\r\\n\\t<li>Do Check Partner offer section for Exciting offers from HP.<\\/li>\\r\\n\\t<li>Processor: AMD Ryzen 3 5300U (up to 3.8 GHz max boost clock(2i),4 MB L3 cache, 4 cores, 8 threads)| Memory &amp; Storage: 8 GB DDR4-3200 SDRAM (1 x 8 GB), Upto 16 GB DDR4-3200 MHz RAM (2 x 8 GB)| Storage: 256 GB PCIe NVMe M.2 SSD<\\/li>\\r\\n\\t<li>Display &amp; Graphics: (15.6&quot;) diagonal FHD, micro-edge, anti-glare, 250 nits, 141 ppi, 45%NTSC |Graphics: AMD Radeon Graphics<\\/li>\\r\\n\\t<li>Operating System &amp; Pre-installed Software: Pre-loaded Windows 11 Home 64 Single Language| Microsoft Office 2019 &amp; Office 365|McAfee LiveSafe (30 days free trial as default)<\\/li>\\r\\n\\t<li>Ports: 1 SuperSpeed USB Type-C 5Gbps signaling rate, 2 SuperSpeed USB Type-A 5Gbps signaling rate,1 Headphone\\/microphone Combo,1 AC Smart pin, 1 HDMI 1.4b<\\/li>\\r\\n\\t<li>Features: Camera: HP True Vision 720p HD camera with integrated dual array digital microphones| Audio: Dual Speakers| Keyboard: Full-size island-style natural silver keyboard with numeric keypad,HP Imagepad with multi-touch gesture support, Precision Touchpad Support | Alexa Built In| Battery: 3-cell, 41 Wh Li-ion, Support battery fast charge| Networking: Realtek RTL8821CE 802.11b\\/g\\/n\\/ac (1x1) and Bluetooth 4.2 combo<\\/li>\\r\\n<\\/ul>\",\"free_shipping\":0,\"attachment\":null,\"created_at\":\"2022-05-25T04:31:15.000000Z\",\"updated_at\":\"2022-05-25T04:31:24.000000Z\",\"status\":1,\"featured_status\":1,\"meta_title\":\"HP 15s-Ryzen 3 5300U 8GB SDRAM\\/256GB SSD 15.6 inch(39.6cm) FHD, Micro-Edge, Anti-Glare Display\\/AMD Radeon Graphics\\/Dual Speakers\\/Win 11\\/Alexa\\/MS Office\\/Fast Charge\\/Silver\\/1.69Kg, 15s-ey2000au\",\"meta_description\":\"About this item\\r\\nDo Check Partner offer section for Exciting offers from HP.\\r\\nProcessor: AMD Ryzen 3 5300U (up to 3.8 GHz max boost clock(2i),4 MB L3 cache, 4 cores, 8 threads)| Memory & Stor\",\"meta_image\":\"def.png\",\"request_status\":1,\"denied_note\":null,\"shipping_cost\":250,\"multiply_qty\":1,\"temp_shipping_cost\":null,\"is_shipping_cost_updated\":null,\"reviews_count\":0,\"translations\":[],\"reviews\":[]}', 1, 36900, 6642, 738, 'pending', 'unpaid', '2022-05-24 23:08:19', '2022-05-24 23:08:19', NULL, 'Black-1TB-8GB', '{\"color\":\"Black\",\"HardDisk\":\"1TB\",\"Ram\":\"8GB\"}', 'discount_on_product', 1, 0),
+(2, 100002, 82, 1, '{\"id\":82,\"added_by\":\"admin\",\"user_id\":1,\"name\":\"HP 15s-Ryzen 3 5300U 8GB SDRAM\\/256GB SSD 15.6 inch(39.6cm) FHD, Micro-Edge, Anti\",\"slug\":\"hp-15s-ryzen-3-5300u-8gb-sdram256gb-ssd-156-inch396cm-fhd-micro-edge-anti-glare-displayamd-radeon-graphicsdual-speakersw\",\"category_ids\":\"[{\\\"id\\\":\\\"2\\\",\\\"position\\\":1},{\\\"id\\\":\\\"8\\\",\\\"position\\\":2}]\",\"brand_id\":2,\"unit\":\"kg\",\"min_qty\":1,\"refundable\":1,\"images\":\"[\\\"2022-05-25-628db1138c0ea.png\\\",\\\"2022-05-25-628db1138d2a1.png\\\",\\\"2022-05-25-628db1138d3ee.png\\\",\\\"2022-05-25-628db1138d509.png\\\"]\",\"thumbnail\":\"2022-05-25-628db1138d758.png\",\"featured\":1,\"flash_deal\":null,\"video_provider\":\"youtube\",\"video_url\":null,\"colors\":\"[\\\"#000000\\\",\\\"#C0C0C0\\\"]\",\"variant_product\":0,\"attributes\":\"[\\\"3\\\",\\\"2\\\"]\",\"choice_options\":\"[{\\\"name\\\":\\\"choice_3\\\",\\\"title\\\":\\\"HardDisk\\\",\\\"options\\\":[\\\"1TB\\\"]},{\\\"name\\\":\\\"choice_2\\\",\\\"title\\\":\\\"Ram\\\",\\\"options\\\":[\\\"8GB\\\"]}]\",\"variation\":\"[{\\\"type\\\":\\\"Black-1TB-8GB\\\",\\\"price\\\":36900,\\\"sku\\\":\\\"H1358SS1iFMADRGS1OC1-Black-1TB-8GB\\\",\\\"qty\\\":99},{\\\"type\\\":\\\"Silver-1TB-8GB\\\",\\\"price\\\":36800,\\\"sku\\\":\\\"H1358SS1iFMADRGS1OC1-Silver-1TB-8GB\\\",\\\"qty\\\":100}]\",\"published\":0,\"unit_price\":36800,\"purchase_price\":32000,\"tax\":18,\"tax_type\":\"percent\",\"discount\":2,\"discount_type\":\"percent\",\"current_stock\":199,\"details\":\"<h1>About this item<\\/h1>\\r\\n\\r\\n<ul>\\r\\n\\t<li>Do Check Partner offer section for Exciting offers from HP.<\\/li>\\r\\n\\t<li>Processor: AMD Ryzen 3 5300U (up to 3.8 GHz max boost clock(2i),4 MB L3 cache, 4 cores, 8 threads)| Memory &amp; Storage: 8 GB DDR4-3200 SDRAM (1 x 8 GB), Upto 16 GB DDR4-3200 MHz RAM (2 x 8 GB)| Storage: 256 GB PCIe NVMe M.2 SSD<\\/li>\\r\\n\\t<li>Display &amp; Graphics: (15.6&quot;) diagonal FHD, micro-edge, anti-glare, 250 nits, 141 ppi, 45%NTSC |Graphics: AMD Radeon Graphics<\\/li>\\r\\n\\t<li>Operating System &amp; Pre-installed Software: Pre-loaded Windows 11 Home 64 Single Language| Microsoft Office 2019 &amp; Office 365|McAfee LiveSafe (30 days free trial as default)<\\/li>\\r\\n\\t<li>Ports: 1 SuperSpeed USB Type-C 5Gbps signaling rate, 2 SuperSpeed USB Type-A 5Gbps signaling rate,1 Headphone\\/microphone Combo,1 AC Smart pin, 1 HDMI 1.4b<\\/li>\\r\\n\\t<li>Features: Camera: HP True Vision 720p HD camera with integrated dual array digital microphones| Audio: Dual Speakers| Keyboard: Full-size island-style natural silver keyboard with numeric keypad,HP Imagepad with multi-touch gesture support, Precision Touchpad Support | Alexa Built In| Battery: 3-cell, 41 Wh Li-ion, Support battery fast charge| Networking: Realtek RTL8821CE 802.11b\\/g\\/n\\/ac (1x1) and Bluetooth 4.2 combo<\\/li>\\r\\n<\\/ul>\",\"free_shipping\":0,\"attachment\":null,\"created_at\":\"2022-05-25T04:31:15.000000Z\",\"updated_at\":\"2022-05-25T04:38:19.000000Z\",\"status\":1,\"featured_status\":1,\"meta_title\":\"HP 15s-Ryzen 3 5300U 8GB SDRAM\\/256GB SSD 15.6 inch(39.6cm) FHD, Micro-Edge, Anti-Glare Display\\/AMD Radeon Graphics\\/Dual Speakers\\/Win 11\\/Alexa\\/MS Office\\/Fast Charge\\/Silver\\/1.69Kg, 15s-ey2000au\",\"meta_description\":\"About this item\\r\\nDo Check Partner offer section for Exciting offers from HP.\\r\\nProcessor: AMD Ryzen 3 5300U (up to 3.8 GHz max boost clock(2i),4 MB L3 cache, 4 cores, 8 threads)| Memory & Stor\",\"meta_image\":\"def.png\",\"request_status\":1,\"denied_note\":null,\"shipping_cost\":250,\"multiply_qty\":1,\"temp_shipping_cost\":null,\"is_shipping_cost_updated\":null,\"reviews_count\":0,\"translations\":[],\"reviews\":[]}', 1, 36900, 6642, 738, 'pending', 'unpaid', '2022-05-31 04:31:53', '2022-05-31 04:31:53', NULL, 'Black-1TB-8GB', '{\"color\":\"Black\",\"HardDisk\":\"1TB\",\"Ram\":\"8GB\"}', 'discount_on_product', 1, 0),
+(3, 100003, 83, 1, '{\"id\":83,\"added_by\":\"seller\",\"user_id\":1,\"name\":\"Dell New Vostro 3401 Laptop Intel i3-1115G4, 8GB DDR4, 256GB SSD, 14\\\" (35.56Cms)\",\"slug\":\"dell-new-vostro-3401-laptop-intel-i3-1115g4-8gb-ddr4-256gb-ssd-14-3556cms-fhd-display-integrated-graphics-win-10-mso-bla\",\"category_ids\":\"[{\\\"id\\\":\\\"2\\\",\\\"position\\\":1},{\\\"id\\\":\\\"8\\\",\\\"position\\\":2}]\",\"brand_id\":3,\"unit\":\"pc\",\"min_qty\":1,\"refundable\":1,\"images\":\"[\\\"2022-05-30-6294946e12821.png\\\",\\\"2022-05-30-6294946e1563c.png\\\",\\\"2022-05-30-6294946e1573e.png\\\",\\\"2022-05-30-6294946e1584e.png\\\",\\\"2022-05-30-6294946e15946.png\\\",\\\"2022-05-30-6294946e15a2b.png\\\"]\",\"thumbnail\":\"2022-05-30-6294946e15b3c.png\",\"featured\":1,\"flash_deal\":null,\"video_provider\":\"youtube\",\"video_url\":null,\"colors\":\"[\\\"#000000\\\",\\\"#0000FF\\\",\\\"#CD5C5C\\\",\\\"#C0C0C0\\\"]\",\"variant_product\":0,\"attributes\":\"[\\\"1\\\",\\\"3\\\"]\",\"choice_options\":\"[{\\\"name\\\":\\\"choice_1\\\",\\\"title\\\":\\\"CPU\\\",\\\"options\\\":[\\\"i3 7th\\\",\\\"i3 3rd\\\",\\\"i3 9th\\\",\\\"i5 3rd\\\",\\\"i5 7th\\\",\\\"i5 9th\\\"]},{\\\"name\\\":\\\"choice_3\\\",\\\"title\\\":\\\"HardDisk\\\",\\\"options\\\":[\\\"1TB\\\",\\\"2TB\\\",\\\"3TB\\\"]}]\",\"variation\":\"[{\\\"type\\\":\\\"Black-i37th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i37th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i37th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i37th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i37th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i37th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i33rd-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i33rd-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i33rd-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i33rd-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i33rd-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i33rd-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i39th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i39th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i39th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i39th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i39th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i39th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i53rd-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i53rd-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i53rd-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i53rd-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i53rd-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i53rd-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i57th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i57th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i57th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i57th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i57th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i57th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i59th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i59th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i59th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i59th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Black-i59th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i59th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i37th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i37th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i37th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i37th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i37th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i37th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i33rd-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i33rd-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i33rd-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i33rd-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i33rd-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i33rd-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i39th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i39th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i39th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i39th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i39th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i39th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i53rd-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i53rd-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i53rd-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i53rd-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i53rd-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i53rd-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i57th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i57th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i57th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i57th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i57th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i57th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i59th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i59th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i59th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i59th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Blue-i59th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i59th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i37th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i37th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i37th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i37th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i37th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i37th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i33rd-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i33rd-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i33rd-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i33rd-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i33rd-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i33rd-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i39th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i39th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i39th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i39th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i39th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i39th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i53rd-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i53rd-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i53rd-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i53rd-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i53rd-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i53rd-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i57th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i57th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i57th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i57th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i57th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i57th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i59th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i59th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i59th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i59th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"IndianRed-i59th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i59th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i37th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i37th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i37th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i37th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i37th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i37th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i33rd-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i33rd-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i33rd-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i33rd-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i33rd-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i33rd-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i39th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i39th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i39th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i39th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i39th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i39th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i53rd-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i53rd-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i53rd-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i53rd-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i53rd-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i53rd-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i57th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i57th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i57th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i57th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i57th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i57th-3TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i59th-1TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i59th-1TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i59th-2TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i59th-2TB\\\",\\\"qty\\\":1},{\\\"type\\\":\\\"Silver-i59th-3TB\\\",\\\"price\\\":720.650000000014415491023100912570953369140625,\\\"sku\\\":\\\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i59th-3TB\\\",\\\"qty\\\":1}]\",\"published\":0,\"unit_price\":720.6500000000099817043519578874111175537109375,\"purchase_price\":553.9833333333400560150039382278919219970703125,\"tax\":18,\"tax_type\":\"percent\",\"discount\":20.816666666667000384904895327053964138031005859375,\"discount_type\":\"flat\",\"current_stock\":72,\"details\":\"<table>\\r\\n\\t<tbody>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Brand<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Dell<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Manufacturer<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Dell India Pvt Ltd, Dell India Pvt Ltd<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Series<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Vostro 3400<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Colour<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Black<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Form Factor<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Traditional Laptop<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Item Height<\\/th>\\r\\n\\t\\t\\t<td>&lrm;20 Millimeters<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Item Width<\\/th>\\r\\n\\t\\t\\t<td>&lrm;23.9 Centimeters<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Standing screen display size<\\/th>\\r\\n\\t\\t\\t<td>&lrm;14<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Resolution<\\/th>\\r\\n\\t\\t\\t<td>&lrm;1920 x 1080 Pixels<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Product Dimensions<\\/th>\\r\\n\\t\\t\\t<td>&lrm;32.8 x 23.9 x 2 cm; 1.59 Kilograms<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Batteries<\\/th>\\r\\n\\t\\t\\t<td>&lrm;1 Lithium ion batteries required. (included)<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Item model number<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Vostro 3400<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Processor Brand<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Intel<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Processor Type<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Core i3 Family<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Processor Speed<\\/th>\\r\\n\\t\\t\\t<td>&lrm;4.1 GHz<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Processor Count<\\/th>\\r\\n\\t\\t\\t<td>&lrm;1<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>RAM Size<\\/th>\\r\\n\\t\\t\\t<td>&lrm;8 GB<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Memory Technology<\\/th>\\r\\n\\t\\t\\t<td>&lrm;DDR4<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Computer Memory Type<\\/th>\\r\\n\\t\\t\\t<td>&lrm;DDR4 SDRAM<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Maximum Memory Supported<\\/th>\\r\\n\\t\\t\\t<td>&lrm;16 GB<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Memory Clock Speed<\\/th>\\r\\n\\t\\t\\t<td>&lrm;2666 MHz<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Hard Drive Size<\\/th>\\r\\n\\t\\t\\t<td>&lrm;256 GB<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Hard Disk Description<\\/th>\\r\\n\\t\\t\\t<td>&lrm;SSD<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Hard Drive Interface<\\/th>\\r\\n\\t\\t\\t<td>&lrm;USB 3.2<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Graphics Coprocessor<\\/th>\\r\\n\\t\\t\\t<td>&lrm;AMD Radeon 520<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Graphics Chipset Brand<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Intel<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Graphics Card Description<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Integrated<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Graphics RAM Type<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Shared<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Graphics Card Interface<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Integrated<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Number of USB 2.0 Ports<\\/th>\\r\\n\\t\\t\\t<td>&lrm;1<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Number of USB 3.0 Ports<\\/th>\\r\\n\\t\\t\\t<td>&lrm;2<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Number of HDMI Ports<\\/th>\\r\\n\\t\\t\\t<td>&lrm;1<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Optical Drive Type<\\/th>\\r\\n\\t\\t\\t<td>&lrm;DVD<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Operating System<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Windows 10<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Average Battery Life (in hours)<\\/th>\\r\\n\\t\\t\\t<td>&lrm;4 Hours<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Are Batteries Included<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Yes<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Lithium Battery Energy Content<\\/th>\\r\\n\\t\\t\\t<td>&lrm;2.6 Watt Hours<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Number Of Lithium Ion Cells<\\/th>\\r\\n\\t\\t\\t<td>&lrm;3<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Included Components<\\/th>\\r\\n\\t\\t\\t<td>&lrm;&lrm;Laptop, Power Cable, Adaptor<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Manufacturer<\\/th>\\r\\n\\t\\t\\t<td>&lrm;Dell India Pvt Ltd<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Country of Origin<\\/th>\\r\\n\\t\\t\\t<td>&lrm;China<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<th>Item Weight<\\/th>\\r\\n\\t\\t\\t<td>&lrm;1 kg 590 g<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t<\\/tbody>\\r\\n<\\/table>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<hr \\/>\\r\\n<h2>From the manufacturer<\\/h2>\\r\\n\\r\\n<p><img alt=\\\"Module 1\\\" src=\\\"https:\\/\\/m.media-amazon.com\\/images\\/S\\/aplus-media-library-service-media\\/1b565cd9-f3fb-4b0a-b06b-410dffe8b31b.__CR0,0,1000,1000_PT0_SX135_V1___.jpg\\\" \\/><\\/p>\\r\\n\\r\\n<h3>Experience Uninterrupted Productivity<\\/h3>\\r\\n\\r\\n<p>Amplified display: A brilliant FHD panel offers more brightness and vivid color for an enhanced front-of-screen experience, and a 2-sided narrow border emphasizes your screen while helping minimize distractions.<\\/p>\\r\\n\\r\\n<p>Express Charge: Take your battery charge level from 0% up to 80% within an hour1 so you&rsquo;re not tied down to an outlet while working on the go.<\\/p>\\r\\n\\r\\n<p>Dell Mobile Connect: Experience seamless wireless integration between your laptop and Android or iOS smartphone. Dell Mobile Connect allows you to access multiple devices and applications without dividing your attention.<\\/p>\\r\\n\\r\\n<p><img alt=\\\"Module 2\\\" src=\\\"https:\\/\\/m.media-amazon.com\\/images\\/S\\/aplus-media-library-service-media\\/bc119930-660c-43be-9e6d-d27e21b56417.__CR0,0,1000,1000_PT0_SX135_V1___.jpg\\\" \\/><\\/p>\\r\\n\\r\\n<h3>Powerful processing and Ample Storage<\\/h3>\\r\\n\\r\\n<p>Tackle your workday with the power of the Intel processors. Store all your important documents for easy access to 256GB SSD of storage<\\/p>\\r\\n\\r\\n<p><img alt=\\\"Module 3\\\" src=\\\"https:\\/\\/m.media-amazon.com\\/images\\/S\\/aplus-media-library-service-media\\/657ae646-26c9-45f9-9455-464d96aa463a.__CR0,0,1000,1000_PT0_SX135_V1___.jpg\\\" \\/><\\/p>\\r\\n\\r\\n<h3>Design You Can Depend On<\\/h3>\\r\\n\\r\\n<p>Ports galore: Your laptop is equipped with an array of ports and an SD card reader to keep you connected to what matters most.<\\/p>\\r\\n\\r\\n<p><img alt=\\\"Module 4\\\" src=\\\"https:\\/\\/m.media-amazon.com\\/images\\/S\\/aplus-media-library-service-media\\/6deb9779-6fee-48d1-9530-43ad77211131.__CR0,0,1000,1000_PT0_SX135_V1___.jpg\\\" \\/><\\/p>\\r\\n\\r\\n<h3>Serious Security<\\/h3>\\r\\n\\r\\n<p>TPM 2.0: The Trusted Platform Module 2.0 is a commercial-grade security chip installed on the motherboard that creates and stores passwords and encryption keys. It verifies that the computer has not been tampered with before booting up and protects your data against external software attacks.<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<ul>\\r\\n\\t<li>Free upgrade to Windows 11 when available. Disclaimer-Upgrade rollout plan is being finalized and is scheduled to begin late in 2021 and continue into 2022. Specific timing will vary by device<\\/li>\\r\\n\\t<li>Processor: 11th Generation Intel Core i3-1115G4 Processor (6MB Cache, up to 4.1 GHz), Memory &amp; Storage:8GB, 4Gx1, DDR4, 2666MHz |256GB M.2 PCIe NVMe Solid State Drive (Boot)<\\/li>\\r\\n\\t<li>Display:14.0-inch FHD (1920 x 1080) Anti-glare LED Backlight Narrow Border WVA Display<\\/li>\\r\\n\\t<li>Graphics:Intel UHD Graphics with shared graphics memory<\\/li>\\r\\n\\t<li>Operating System &amp; Software:Windows 10 Home Single Language | Microsoft Office Home and Student 2019<\\/li>\\r\\n\\t<li>I\\/O ports: 2x USB 3.2 Gen-1, 1xUSB 2.0, 1xHDMI port, 1xEthernet port,1x Headset jack, 1xSD Media Card Reader<\\/li>\\r\\n<\\/ul>\",\"free_shipping\":0,\"attachment\":null,\"created_at\":\"2022-05-30T09:54:54.000000Z\",\"updated_at\":\"2022-05-30T09:55:24.000000Z\",\"status\":1,\"featured_status\":1,\"meta_title\":\"Dell New Vostro 3401 Laptop Intel i3-1115G4, 8GB DDR4, 256GB SSD, 14\\\" (35.56Cms) FHD Display, Integrated Graphics, Win 10 + MSO, Black (D552190WIN9BE), 1.59Kg\",\"meta_description\":\"Free upgrade to Windows 11 when available. Disclaimer-Upgrade rollout plan is being finalized and is scheduled to begin late in 2021 and continue into 2022. \\r\\n\\r\\nSpecific timing will vary by d\",\"meta_image\":\"2022-05-30-6294946e15ce3.png\",\"request_status\":1,\"denied_note\":null,\"shipping_cost\":9.3699999999999992184029906638897955417633056640625,\"multiply_qty\":0,\"temp_shipping_cost\":null,\"is_shipping_cost_updated\":null,\"reviews_count\":0,\"translations\":[],\"reviews\":[]}', 1, 720.65000000001, 129.717, 20.816666666667, 'pending', 'unpaid', '2022-05-31 04:31:58', '2022-05-31 04:31:58', NULL, 'Black-i37th-1TB', '{\"color\":\"Black\",\"CPU\":\"i3 7th\",\"HardDisk\":\"1TB\"}', 'discount_on_product', 1, 0),
+(4, 100004, 82, 1, '{\"id\":82,\"added_by\":\"admin\",\"user_id\":1,\"name\":\"HP 15s-Ryzen 3 5300U 8GB SDRAM\\/256GB SSD 15.6 inch(39.6cm) FHD, Micro-Edge, Anti\",\"slug\":\"hp-15s-ryzen-3-5300u-8gb-sdram256gb-ssd-156-inch396cm-fhd-micro-edge-anti-glare-displayamd-radeon-graphicsdual-speakersw\",\"category_ids\":\"[{\\\"id\\\":\\\"2\\\",\\\"position\\\":1},{\\\"id\\\":\\\"8\\\",\\\"position\\\":2}]\",\"brand_id\":2,\"unit\":\"kg\",\"min_qty\":1,\"refundable\":1,\"images\":\"[\\\"2022-05-25-628db1138c0ea.png\\\",\\\"2022-05-25-628db1138d2a1.png\\\",\\\"2022-05-25-628db1138d3ee.png\\\",\\\"2022-05-25-628db1138d509.png\\\"]\",\"thumbnail\":\"2022-05-25-628db1138d758.png\",\"featured\":1,\"flash_deal\":null,\"video_provider\":\"youtube\",\"video_url\":null,\"colors\":\"[\\\"#000000\\\",\\\"#C0C0C0\\\"]\",\"variant_product\":0,\"attributes\":\"[\\\"3\\\",\\\"2\\\"]\",\"choice_options\":\"[{\\\"name\\\":\\\"choice_3\\\",\\\"title\\\":\\\"HardDisk\\\",\\\"options\\\":[\\\"1TB\\\"]},{\\\"name\\\":\\\"choice_2\\\",\\\"title\\\":\\\"Ram\\\",\\\"options\\\":[\\\"8GB\\\"]}]\",\"variation\":\"[{\\\"type\\\":\\\"Black-1TB-8GB\\\",\\\"price\\\":36900,\\\"sku\\\":\\\"H1358SS1iFMADRGS1OC1-Black-1TB-8GB\\\",\\\"qty\\\":98},{\\\"type\\\":\\\"Silver-1TB-8GB\\\",\\\"price\\\":36800,\\\"sku\\\":\\\"H1358SS1iFMADRGS1OC1-Silver-1TB-8GB\\\",\\\"qty\\\":100}]\",\"published\":0,\"unit_price\":36800,\"purchase_price\":32000,\"tax\":18,\"tax_type\":\"percent\",\"discount\":2,\"discount_type\":\"percent\",\"current_stock\":198,\"details\":\"<h1>About this item<\\/h1>\\r\\n\\r\\n<ul>\\r\\n\\t<li>Do Check Partner offer section for Exciting offers from HP.<\\/li>\\r\\n\\t<li>Processor: AMD Ryzen 3 5300U (up to 3.8 GHz max boost clock(2i),4 MB L3 cache, 4 cores, 8 threads)| Memory &amp; Storage: 8 GB DDR4-3200 SDRAM (1 x 8 GB), Upto 16 GB DDR4-3200 MHz RAM (2 x 8 GB)| Storage: 256 GB PCIe NVMe M.2 SSD<\\/li>\\r\\n\\t<li>Display &amp; Graphics: (15.6&quot;) diagonal FHD, micro-edge, anti-glare, 250 nits, 141 ppi, 45%NTSC |Graphics: AMD Radeon Graphics<\\/li>\\r\\n\\t<li>Operating System &amp; Pre-installed Software: Pre-loaded Windows 11 Home 64 Single Language| Microsoft Office 2019 &amp; Office 365|McAfee LiveSafe (30 days free trial as default)<\\/li>\\r\\n\\t<li>Ports: 1 SuperSpeed USB Type-C 5Gbps signaling rate, 2 SuperSpeed USB Type-A 5Gbps signaling rate,1 Headphone\\/microphone Combo,1 AC Smart pin, 1 HDMI 1.4b<\\/li>\\r\\n\\t<li>Features: Camera: HP True Vision 720p HD camera with integrated dual array digital microphones| Audio: Dual Speakers| Keyboard: Full-size island-style natural silver keyboard with numeric keypad,HP Imagepad with multi-touch gesture support, Precision Touchpad Support | Alexa Built In| Battery: 3-cell, 41 Wh Li-ion, Support battery fast charge| Networking: Realtek RTL8821CE 802.11b\\/g\\/n\\/ac (1x1) and Bluetooth 4.2 combo<\\/li>\\r\\n<\\/ul>\",\"free_shipping\":0,\"attachment\":null,\"created_at\":\"2022-05-25T04:31:15.000000Z\",\"updated_at\":\"2022-05-31T10:01:53.000000Z\",\"status\":1,\"featured_status\":1,\"meta_title\":\"HP 15s-Ryzen 3 5300U 8GB SDRAM\\/256GB SSD 15.6 inch(39.6cm) FHD, Micro-Edge, Anti-Glare Display\\/AMD Radeon Graphics\\/Dual Speakers\\/Win 11\\/Alexa\\/MS Office\\/Fast Charge\\/Silver\\/1.69Kg, 15s-ey2000au\",\"meta_description\":\"About this item\\r\\nDo Check Partner offer section for Exciting offers from HP.\\r\\nProcessor: AMD Ryzen 3 5300U (up to 3.8 GHz max boost clock(2i),4 MB L3 cache, 4 cores, 8 threads)| Memory & Stor\",\"meta_image\":\"def.png\",\"request_status\":1,\"denied_note\":null,\"shipping_cost\":250,\"multiply_qty\":1,\"temp_shipping_cost\":null,\"is_shipping_cost_updated\":null,\"reviews_count\":0,\"translations\":[],\"reviews\":[]}', 1, 36900, 6642, 738, 'pending', 'unpaid', '2022-05-31 14:30:02', '2022-05-31 14:30:02', NULL, 'Black-1TB-8GB', '{\"color\":\"Black\",\"HardDisk\":\"1TB\",\"Ram\":\"8GB\"}', 'discount_on_product', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1333,7 +1426,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `added_by`, `user_id`, `name`, `slug`, `category_ids`, `brand_id`, `unit`, `min_qty`, `refundable`, `images`, `thumbnail`, `featured`, `flash_deal`, `video_provider`, `video_url`, `colors`, `variant_product`, `attributes`, `choice_options`, `variation`, `published`, `unit_price`, `purchase_price`, `tax`, `tax_type`, `discount`, `discount_type`, `current_stock`, `details`, `free_shipping`, `attachment`, `created_at`, `updated_at`, `status`, `featured_status`, `meta_title`, `meta_description`, `meta_image`, `request_status`, `denied_note`, `shipping_cost`, `multiply_qty`, `temp_shipping_cost`, `is_shipping_cost_updated`) VALUES
-(80, 'admin', 1, 'Demo Product 22', 'demo-product-22-j89QgR', '[{\"id\":\"1\",\"position\":1}]', 17, 'pc', 23, 0, '[\"def.png\"]', 'def.png', NULL, NULL, 'youtube', 'https://www.youtube.com/embed/2D-rr4gv3fk', '[]', 0, 'null', '[]', '[]', 0, 55, 59, '5', 'percent', '10', 'percent', 100, '<p>hhhhh</p>', 0, NULL, NULL, '2021-07-04 16:46:06', 1, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL);
+(82, 'admin', 1, 'HP 15s-Ryzen 3 5300U 8GB SDRAM/256GB SSD 15.6 inch(39.6cm) FHD, Micro-Edge, Anti', 'hp-15s-ryzen-3-5300u-8gb-sdram256gb-ssd-156-inch396cm-fhd-micro-edge-anti-glare-displayamd-radeon-graphicsdual-speakersw', '[{\"id\":\"2\",\"position\":1},{\"id\":\"8\",\"position\":2}]', 2, 'kg', 1, 1, '[\"2022-05-25-628db1138c0ea.png\",\"2022-05-25-628db1138d2a1.png\",\"2022-05-25-628db1138d3ee.png\",\"2022-05-25-628db1138d509.png\"]', '2022-05-25-628db1138d758.png', '1', NULL, 'youtube', NULL, '[\"#000000\",\"#C0C0C0\"]', 0, '[\"3\",\"2\"]', '[{\"name\":\"choice_3\",\"title\":\"HardDisk\",\"options\":[\"1TB\"]},{\"name\":\"choice_2\",\"title\":\"Ram\",\"options\":[\"8GB\"]}]', '[{\"type\":\"Black-1TB-8GB\",\"price\":36900,\"sku\":\"H1358SS1iFMADRGS1OC1-Black-1TB-8GB\",\"qty\":97},{\"type\":\"Silver-1TB-8GB\",\"price\":36800,\"sku\":\"H1358SS1iFMADRGS1OC1-Silver-1TB-8GB\",\"qty\":100}]', 0, 36800, 32000, '18', 'percent', '2', 'percent', 197, '<h1>About this item</h1>\r\n\r\n<ul>\r\n	<li>Do Check Partner offer section for Exciting offers from HP.</li>\r\n	<li>Processor: AMD Ryzen 3 5300U (up to 3.8 GHz max boost clock(2i),4 MB L3 cache, 4 cores, 8 threads)| Memory &amp; Storage: 8 GB DDR4-3200 SDRAM (1 x 8 GB), Upto 16 GB DDR4-3200 MHz RAM (2 x 8 GB)| Storage: 256 GB PCIe NVMe M.2 SSD</li>\r\n	<li>Display &amp; Graphics: (15.6&quot;) diagonal FHD, micro-edge, anti-glare, 250 nits, 141 ppi, 45%NTSC |Graphics: AMD Radeon Graphics</li>\r\n	<li>Operating System &amp; Pre-installed Software: Pre-loaded Windows 11 Home 64 Single Language| Microsoft Office 2019 &amp; Office 365|McAfee LiveSafe (30 days free trial as default)</li>\r\n	<li>Ports: 1 SuperSpeed USB Type-C 5Gbps signaling rate, 2 SuperSpeed USB Type-A 5Gbps signaling rate,1 Headphone/microphone Combo,1 AC Smart pin, 1 HDMI 1.4b</li>\r\n	<li>Features: Camera: HP True Vision 720p HD camera with integrated dual array digital microphones| Audio: Dual Speakers| Keyboard: Full-size island-style natural silver keyboard with numeric keypad,HP Imagepad with multi-touch gesture support, Precision Touchpad Support | Alexa Built In| Battery: 3-cell, 41 Wh Li-ion, Support battery fast charge| Networking: Realtek RTL8821CE 802.11b/g/n/ac (1x1) and Bluetooth 4.2 combo</li>\r\n</ul>', 0, NULL, '2022-05-24 23:01:15', '2022-05-31 14:30:02', 1, 1, 'HP 15s-Ryzen 3 5300U 8GB SDRAM/256GB SSD 15.6 inch(39.6cm) FHD, Micro-Edge, Anti-Glare Display/AMD Radeon Graphics/Dual Speakers/Win 11/Alexa/MS Office/Fast Charge/Silver/1.69Kg, 15s-ey2000au', 'About this item\r\nDo Check Partner offer section for Exciting offers from HP.\r\nProcessor: AMD Ryzen 3 5300U (up to 3.8 GHz max boost clock(2i),4 MB L3 cache, 4 cores, 8 threads)| Memory & Stor', 'def.png', 1, NULL, 250.00, 1, NULL, NULL),
+(83, 'seller', 1, 'Dell New Vostro 3401 Laptop Intel i3-1115G4, 8GB DDR4, 256GB SSD, 14\" (35.56Cms)', 'dell-new-vostro-3401-laptop-intel-i3-1115g4-8gb-ddr4-256gb-ssd-14-3556cms-fhd-display-integrated-graphics-win-10-mso-bla', '[{\"id\":\"2\",\"position\":1},{\"id\":\"8\",\"position\":2}]', 3, 'pc', 1, 1, '[\"2022-05-30-6294946e12821.png\",\"2022-05-30-6294946e1563c.png\",\"2022-05-30-6294946e1573e.png\",\"2022-05-30-6294946e1584e.png\",\"2022-05-30-6294946e15946.png\",\"2022-05-30-6294946e15a2b.png\"]', '2022-05-30-6294946e15b3c.png', '1', NULL, 'youtube', NULL, '[\"#000000\",\"#0000FF\",\"#CD5C5C\",\"#C0C0C0\"]', 0, '[\"1\",\"3\"]', '[{\"name\":\"choice_1\",\"title\":\"CPU\",\"options\":[\"i3 7th\",\"i3 3rd\",\"i3 9th\",\"i5 3rd\",\"i5 7th\",\"i5 9th\"]},{\"name\":\"choice_3\",\"title\":\"HardDisk\",\"options\":[\"1TB\",\"2TB\",\"3TB\"]}]', '[{\"type\":\"Black-i37th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i37th-1TB\",\"qty\":0},{\"type\":\"Black-i37th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i37th-2TB\",\"qty\":1},{\"type\":\"Black-i37th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i37th-3TB\",\"qty\":1},{\"type\":\"Black-i33rd-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i33rd-1TB\",\"qty\":1},{\"type\":\"Black-i33rd-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i33rd-2TB\",\"qty\":1},{\"type\":\"Black-i33rd-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i33rd-3TB\",\"qty\":1},{\"type\":\"Black-i39th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i39th-1TB\",\"qty\":1},{\"type\":\"Black-i39th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i39th-2TB\",\"qty\":1},{\"type\":\"Black-i39th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i39th-3TB\",\"qty\":1},{\"type\":\"Black-i53rd-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i53rd-1TB\",\"qty\":1},{\"type\":\"Black-i53rd-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i53rd-2TB\",\"qty\":1},{\"type\":\"Black-i53rd-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i53rd-3TB\",\"qty\":1},{\"type\":\"Black-i57th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i57th-1TB\",\"qty\":1},{\"type\":\"Black-i57th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i57th-2TB\",\"qty\":1},{\"type\":\"Black-i57th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i57th-3TB\",\"qty\":1},{\"type\":\"Black-i59th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i59th-1TB\",\"qty\":1},{\"type\":\"Black-i59th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i59th-2TB\",\"qty\":1},{\"type\":\"Black-i59th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Black-i59th-3TB\",\"qty\":1},{\"type\":\"Blue-i37th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i37th-1TB\",\"qty\":1},{\"type\":\"Blue-i37th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i37th-2TB\",\"qty\":1},{\"type\":\"Blue-i37th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i37th-3TB\",\"qty\":1},{\"type\":\"Blue-i33rd-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i33rd-1TB\",\"qty\":1},{\"type\":\"Blue-i33rd-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i33rd-2TB\",\"qty\":1},{\"type\":\"Blue-i33rd-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i33rd-3TB\",\"qty\":1},{\"type\":\"Blue-i39th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i39th-1TB\",\"qty\":1},{\"type\":\"Blue-i39th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i39th-2TB\",\"qty\":1},{\"type\":\"Blue-i39th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i39th-3TB\",\"qty\":1},{\"type\":\"Blue-i53rd-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i53rd-1TB\",\"qty\":1},{\"type\":\"Blue-i53rd-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i53rd-2TB\",\"qty\":1},{\"type\":\"Blue-i53rd-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i53rd-3TB\",\"qty\":1},{\"type\":\"Blue-i57th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i57th-1TB\",\"qty\":1},{\"type\":\"Blue-i57th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i57th-2TB\",\"qty\":1},{\"type\":\"Blue-i57th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i57th-3TB\",\"qty\":1},{\"type\":\"Blue-i59th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i59th-1TB\",\"qty\":1},{\"type\":\"Blue-i59th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i59th-2TB\",\"qty\":1},{\"type\":\"Blue-i59th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Blue-i59th-3TB\",\"qty\":1},{\"type\":\"IndianRed-i37th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i37th-1TB\",\"qty\":1},{\"type\":\"IndianRed-i37th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i37th-2TB\",\"qty\":1},{\"type\":\"IndianRed-i37th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i37th-3TB\",\"qty\":1},{\"type\":\"IndianRed-i33rd-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i33rd-1TB\",\"qty\":1},{\"type\":\"IndianRed-i33rd-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i33rd-2TB\",\"qty\":1},{\"type\":\"IndianRed-i33rd-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i33rd-3TB\",\"qty\":1},{\"type\":\"IndianRed-i39th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i39th-1TB\",\"qty\":1},{\"type\":\"IndianRed-i39th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i39th-2TB\",\"qty\":1},{\"type\":\"IndianRed-i39th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i39th-3TB\",\"qty\":1},{\"type\":\"IndianRed-i53rd-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i53rd-1TB\",\"qty\":1},{\"type\":\"IndianRed-i53rd-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i53rd-2TB\",\"qty\":1},{\"type\":\"IndianRed-i53rd-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i53rd-3TB\",\"qty\":1},{\"type\":\"IndianRed-i57th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i57th-1TB\",\"qty\":1},{\"type\":\"IndianRed-i57th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i57th-2TB\",\"qty\":1},{\"type\":\"IndianRed-i57th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i57th-3TB\",\"qty\":1},{\"type\":\"IndianRed-i59th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i59th-1TB\",\"qty\":1},{\"type\":\"IndianRed-i59th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i59th-2TB\",\"qty\":1},{\"type\":\"IndianRed-i59th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-IndianRed-i59th-3TB\",\"qty\":1},{\"type\":\"Silver-i37th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i37th-1TB\",\"qty\":1},{\"type\":\"Silver-i37th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i37th-2TB\",\"qty\":1},{\"type\":\"Silver-i37th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i37th-3TB\",\"qty\":1},{\"type\":\"Silver-i33rd-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i33rd-1TB\",\"qty\":1},{\"type\":\"Silver-i33rd-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i33rd-2TB\",\"qty\":1},{\"type\":\"Silver-i33rd-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i33rd-3TB\",\"qty\":1},{\"type\":\"Silver-i39th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i39th-1TB\",\"qty\":1},{\"type\":\"Silver-i39th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i39th-2TB\",\"qty\":1},{\"type\":\"Silver-i39th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i39th-3TB\",\"qty\":1},{\"type\":\"Silver-i53rd-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i53rd-1TB\",\"qty\":1},{\"type\":\"Silver-i53rd-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i53rd-2TB\",\"qty\":1},{\"type\":\"Silver-i53rd-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i53rd-3TB\",\"qty\":1},{\"type\":\"Silver-i57th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i57th-1TB\",\"qty\":1},{\"type\":\"Silver-i57th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i57th-2TB\",\"qty\":1},{\"type\":\"Silver-i57th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i57th-3TB\",\"qty\":1},{\"type\":\"Silver-i59th-1TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i59th-1TB\",\"qty\":1},{\"type\":\"Silver-i59th-2TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i59th-2TB\",\"qty\":1},{\"type\":\"Silver-i59th-3TB\",\"price\":720.650000000014415491023100912570953369140625,\"sku\":\"DNV3LIi8D2S1(FDIGW1+MB(1-Silver-i59th-3TB\",\"qty\":1}]', 0, 720.65000000001, 553.98333333334, '18', 'percent', '20.816666666667', 'flat', 71, '<table>\r\n	<tbody>\r\n		<tr>\r\n			<th>Brand</th>\r\n			<td>&lrm;Dell</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Manufacturer</th>\r\n			<td>&lrm;Dell India Pvt Ltd, Dell India Pvt Ltd</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Series</th>\r\n			<td>&lrm;Vostro 3400</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Colour</th>\r\n			<td>&lrm;Black</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Form Factor</th>\r\n			<td>&lrm;Traditional Laptop</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Item Height</th>\r\n			<td>&lrm;20 Millimeters</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Item Width</th>\r\n			<td>&lrm;23.9 Centimeters</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Standing screen display size</th>\r\n			<td>&lrm;14</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Resolution</th>\r\n			<td>&lrm;1920 x 1080 Pixels</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Product Dimensions</th>\r\n			<td>&lrm;32.8 x 23.9 x 2 cm; 1.59 Kilograms</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Batteries</th>\r\n			<td>&lrm;1 Lithium ion batteries required. (included)</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Item model number</th>\r\n			<td>&lrm;Vostro 3400</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Processor Brand</th>\r\n			<td>&lrm;Intel</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Processor Type</th>\r\n			<td>&lrm;Core i3 Family</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Processor Speed</th>\r\n			<td>&lrm;4.1 GHz</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Processor Count</th>\r\n			<td>&lrm;1</td>\r\n		</tr>\r\n		<tr>\r\n			<th>RAM Size</th>\r\n			<td>&lrm;8 GB</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Memory Technology</th>\r\n			<td>&lrm;DDR4</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Computer Memory Type</th>\r\n			<td>&lrm;DDR4 SDRAM</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Maximum Memory Supported</th>\r\n			<td>&lrm;16 GB</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Memory Clock Speed</th>\r\n			<td>&lrm;2666 MHz</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Hard Drive Size</th>\r\n			<td>&lrm;256 GB</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Hard Disk Description</th>\r\n			<td>&lrm;SSD</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Hard Drive Interface</th>\r\n			<td>&lrm;USB 3.2</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Graphics Coprocessor</th>\r\n			<td>&lrm;AMD Radeon 520</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Graphics Chipset Brand</th>\r\n			<td>&lrm;Intel</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Graphics Card Description</th>\r\n			<td>&lrm;Integrated</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Graphics RAM Type</th>\r\n			<td>&lrm;Shared</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Graphics Card Interface</th>\r\n			<td>&lrm;Integrated</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Number of USB 2.0 Ports</th>\r\n			<td>&lrm;1</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Number of USB 3.0 Ports</th>\r\n			<td>&lrm;2</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Number of HDMI Ports</th>\r\n			<td>&lrm;1</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Optical Drive Type</th>\r\n			<td>&lrm;DVD</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Operating System</th>\r\n			<td>&lrm;Windows 10</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Average Battery Life (in hours)</th>\r\n			<td>&lrm;4 Hours</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Are Batteries Included</th>\r\n			<td>&lrm;Yes</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Lithium Battery Energy Content</th>\r\n			<td>&lrm;2.6 Watt Hours</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Number Of Lithium Ion Cells</th>\r\n			<td>&lrm;3</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Included Components</th>\r\n			<td>&lrm;&lrm;Laptop, Power Cable, Adaptor</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Manufacturer</th>\r\n			<td>&lrm;Dell India Pvt Ltd</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Country of Origin</th>\r\n			<td>&lrm;China</td>\r\n		</tr>\r\n		<tr>\r\n			<th>Item Weight</th>\r\n			<td>&lrm;1 kg 590 g</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<hr />\r\n<h2>From the manufacturer</h2>\r\n\r\n<p><img alt=\"Module 1\" src=\"https://m.media-amazon.com/images/S/aplus-media-library-service-media/1b565cd9-f3fb-4b0a-b06b-410dffe8b31b.__CR0,0,1000,1000_PT0_SX135_V1___.jpg\" /></p>\r\n\r\n<h3>Experience Uninterrupted Productivity</h3>\r\n\r\n<p>Amplified display: A brilliant FHD panel offers more brightness and vivid color for an enhanced front-of-screen experience, and a 2-sided narrow border emphasizes your screen while helping minimize distractions.</p>\r\n\r\n<p>Express Charge: Take your battery charge level from 0% up to 80% within an hour1 so you&rsquo;re not tied down to an outlet while working on the go.</p>\r\n\r\n<p>Dell Mobile Connect: Experience seamless wireless integration between your laptop and Android or iOS smartphone. Dell Mobile Connect allows you to access multiple devices and applications without dividing your attention.</p>\r\n\r\n<p><img alt=\"Module 2\" src=\"https://m.media-amazon.com/images/S/aplus-media-library-service-media/bc119930-660c-43be-9e6d-d27e21b56417.__CR0,0,1000,1000_PT0_SX135_V1___.jpg\" /></p>\r\n\r\n<h3>Powerful processing and Ample Storage</h3>\r\n\r\n<p>Tackle your workday with the power of the Intel processors. Store all your important documents for easy access to 256GB SSD of storage</p>\r\n\r\n<p><img alt=\"Module 3\" src=\"https://m.media-amazon.com/images/S/aplus-media-library-service-media/657ae646-26c9-45f9-9455-464d96aa463a.__CR0,0,1000,1000_PT0_SX135_V1___.jpg\" /></p>\r\n\r\n<h3>Design You Can Depend On</h3>\r\n\r\n<p>Ports galore: Your laptop is equipped with an array of ports and an SD card reader to keep you connected to what matters most.</p>\r\n\r\n<p><img alt=\"Module 4\" src=\"https://m.media-amazon.com/images/S/aplus-media-library-service-media/6deb9779-6fee-48d1-9530-43ad77211131.__CR0,0,1000,1000_PT0_SX135_V1___.jpg\" /></p>\r\n\r\n<h3>Serious Security</h3>\r\n\r\n<p>TPM 2.0: The Trusted Platform Module 2.0 is a commercial-grade security chip installed on the motherboard that creates and stores passwords and encryption keys. It verifies that the computer has not been tampered with before booting up and protects your data against external software attacks.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<ul>\r\n	<li>Free upgrade to Windows 11 when available. Disclaimer-Upgrade rollout plan is being finalized and is scheduled to begin late in 2021 and continue into 2022. Specific timing will vary by device</li>\r\n	<li>Processor: 11th Generation Intel Core i3-1115G4 Processor (6MB Cache, up to 4.1 GHz), Memory &amp; Storage:8GB, 4Gx1, DDR4, 2666MHz |256GB M.2 PCIe NVMe Solid State Drive (Boot)</li>\r\n	<li>Display:14.0-inch FHD (1920 x 1080) Anti-glare LED Backlight Narrow Border WVA Display</li>\r\n	<li>Graphics:Intel UHD Graphics with shared graphics memory</li>\r\n	<li>Operating System &amp; Software:Windows 10 Home Single Language | Microsoft Office Home and Student 2019</li>\r\n	<li>I/O ports: 2x USB 3.2 Gen-1, 1xUSB 2.0, 1xHDMI port, 1xEthernet port,1x Headset jack, 1xSD Media Card Reader</li>\r\n</ul>', 0, NULL, '2022-05-30 04:24:54', '2022-05-31 04:31:58', 1, 1, 'Dell New Vostro 3401 Laptop Intel i3-1115G4, 8GB DDR4, 256GB SSD, 14\" (35.56Cms) FHD Display, Integrated Graphics, Win 10 + MSO, Black (D552190WIN9BE), 1.59Kg', 'Free upgrade to Windows 11 when available. Disclaimer-Upgrade rollout plan is being finalized and is scheduled to begin late in 2021 and continue into 2022. \r\n\r\nSpecific timing will vary by d', '2022-05-30-6294946e15ce3.png', 1, NULL, 9.37, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1470,39 +1564,39 @@ CREATE TABLE `search_functions` (
 --
 
 INSERT INTO `search_functions` (`id`, `key`, `url`, `visible_for`, `created_at`, `updated_at`) VALUES
-(1, 'Dashboard', 'cp-admin/dashboard', 'admin', NULL, NULL),
-(2, 'Order All', 'cp-admin/orders/list/all', 'admin', NULL, NULL),
-(3, 'Order Pending', 'cp-admin/orders/list/pending', 'admin', NULL, NULL),
-(4, 'Order Processed', 'cp-admin/orders/list/processed', 'admin', NULL, NULL),
-(5, 'Order Delivered', 'cp-admin/orders/list/delivered', 'admin', NULL, NULL),
-(6, 'Order Returned', 'cp-admin/orders/list/returned', 'admin', NULL, NULL),
-(7, 'Order Failed', 'cp-admin/orders/list/failed', 'admin', NULL, NULL),
-(8, 'Brand Add', 'cp-admin/brand/add-new', 'admin', NULL, NULL),
-(9, 'Brand List', 'cp-admin/brand/list', 'admin', NULL, NULL),
-(10, 'Banner', 'cp-admin/banner/list', 'admin', NULL, NULL),
-(11, 'Category', 'cp-admin/category/view', 'admin', NULL, NULL),
-(12, 'Sub Category', 'cp-admin/category/sub-category/view', 'admin', NULL, NULL),
-(13, 'Sub sub category', 'cp-admin/category/sub-sub-category/view', 'admin', NULL, NULL),
-(14, 'Attribute', 'cp-admin/attribute/view', 'admin', NULL, NULL),
-(15, 'Product', 'cp-admin/product/list', 'admin', NULL, NULL),
-(16, 'Coupon', 'cp-admin/coupon/add-new', 'admin', NULL, NULL),
-(17, 'Custom Role', 'cp-admin/custom-role/create', 'admin', NULL, NULL),
-(18, 'Employee', 'cp-admin/employee/add-new', 'admin', NULL, NULL),
-(19, 'Seller', 'cp-admin/sellers/seller-list', 'admin', NULL, NULL),
-(20, 'Contacts', 'cp-admin/contact/list', 'admin', NULL, NULL),
-(21, 'Flash Deal', 'cp-admin/deal/flash', 'admin', NULL, NULL),
-(22, 'Deal of the day', 'cp-admin/deal/day', 'admin', NULL, NULL),
-(23, 'Language', 'cp-admin/business-settings/language', 'admin', NULL, NULL),
-(24, 'Mail', 'cp-admin/business-settings/mail', 'admin', NULL, NULL),
-(25, 'Shipping method', 'cp-admin/business-settings/shipping-method/add', 'admin', NULL, NULL),
-(26, 'Currency', 'cp-admin/currency/view', 'admin', NULL, NULL),
-(27, 'Payment method', 'cp-admin/business-settings/payment-method', 'admin', NULL, NULL),
-(28, 'SMS Gateway', 'cp-admin/business-settings/sms-gateway', 'admin', NULL, NULL),
-(29, 'Support Ticket', 'cp-admin/support-ticket/view', 'admin', NULL, NULL),
-(30, 'FAQ', 'cp-admin/helpTopic/list', 'admin', NULL, NULL),
-(31, 'About Us', 'cp-admin/business-settings/about-us', 'admin', NULL, NULL),
-(32, 'Terms and Conditions', 'cp-admin/business-settings/terms-condition', 'admin', NULL, NULL),
-(33, 'Web Config', 'cp-admin/business-settings/web-config', 'admin', NULL, NULL);
+(1, 'Dashboard', 'admin/dashboard', 'admin', NULL, NULL),
+(2, 'Order All', 'admin/orders/list/all', 'admin', NULL, NULL),
+(3, 'Order Pending', 'admin/orders/list/pending', 'admin', NULL, NULL),
+(4, 'Order Processed', 'admin/orders/list/processed', 'admin', NULL, NULL),
+(5, 'Order Delivered', 'admin/orders/list/delivered', 'admin', NULL, NULL),
+(6, 'Order Returned', 'admin/orders/list/returned', 'admin', NULL, NULL),
+(7, 'Order Failed', 'admin/orders/list/failed', 'admin', NULL, NULL),
+(8, 'Brand Add', 'admin/brand/add-new', 'admin', NULL, NULL),
+(9, 'Brand List', 'admin/brand/list', 'admin', NULL, NULL),
+(10, 'Banner', 'admin/banner/list', 'admin', NULL, NULL),
+(11, 'Category', 'admin/category/view', 'admin', NULL, NULL),
+(12, 'Sub Category', 'admin/category/sub-category/view', 'admin', NULL, NULL),
+(13, 'Sub sub category', 'admin/category/sub-sub-category/view', 'admin', NULL, NULL),
+(14, 'Attribute', 'admin/attribute/view', 'admin', NULL, NULL),
+(15, 'Product', 'admin/product/list', 'admin', NULL, NULL),
+(16, 'Coupon', 'admin/coupon/add-new', 'admin', NULL, NULL),
+(17, 'Custom Role', 'admin/custom-role/create', 'admin', NULL, NULL),
+(18, 'Employee', 'admin/employee/add-new', 'admin', NULL, NULL),
+(19, 'Seller', 'admin/sellers/seller-list', 'admin', NULL, NULL),
+(20, 'Contacts', 'admin/contact/list', 'admin', NULL, NULL),
+(21, 'Flash Deal', 'admin/deal/flash', 'admin', NULL, NULL),
+(22, 'Deal of the day', 'admin/deal/day', 'admin', NULL, NULL),
+(23, 'Language', 'admin/business-settings/language', 'admin', NULL, NULL),
+(24, 'Mail', 'admin/business-settings/mail', 'admin', NULL, NULL),
+(25, 'Shipping method', 'admin/business-settings/shipping-method/add', 'admin', NULL, NULL),
+(26, 'Currency', 'admin/currency/view', 'admin', NULL, NULL),
+(27, 'Payment method', 'admin/business-settings/payment-method', 'admin', NULL, NULL),
+(28, 'SMS Gateway', 'admin/business-settings/sms-gateway', 'admin', NULL, NULL),
+(29, 'Support Ticket', 'admin/support-ticket/view', 'admin', NULL, NULL),
+(30, 'FAQ', 'admin/helpTopic/list', 'admin', NULL, NULL),
+(31, 'About Us', 'admin/business-settings/about-us', 'admin', NULL, NULL),
+(32, 'Terms and Conditions', 'admin/business-settings/terms-condition', 'admin', NULL, NULL),
+(33, 'Web Config', 'admin/business-settings/web-config', 'admin', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1533,6 +1627,13 @@ CREATE TABLE `sellers` (
   `pos_status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `sellers`
+--
+
+INSERT INTO `sellers` (`id`, `f_name`, `l_name`, `phone`, `image`, `email`, `password`, `status`, `remember_token`, `created_at`, `updated_at`, `bank_name`, `branch`, `account_no`, `holder_name`, `auth_token`, `sales_commission_percentage`, `gst`, `cm_firebase_token`, `pos_status`) VALUES
+(1, 'john', 'doe', '9874563210', '2022-05-29-6293878a08085.png', 'john@email.com', '$2y$10$KHrDxLwHohqBz7OpfagBGuLLYGR4smKGslseIMmD8rekYfSBpcRv6', 'approved', '5vhxMEUxynH8BSRloL1IKF3Ly5jblXQI3KVjpCrR4sDwcTDTolZcj2PAyIey', '2022-05-29 09:17:38', '2022-05-30 04:14:50', 'Kotak mahindra', 'hyderabad', '8080523611', 'John doe', NULL, NULL, NULL, NULL, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -1552,6 +1653,13 @@ CREATE TABLE `seller_wallets` (
   `collected_cash` double(8,2) NOT NULL DEFAULT 0.00,
   `total_tax_collected` double(8,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `seller_wallets`
+--
+
+INSERT INTO `seller_wallets` (`id`, `seller_id`, `total_earning`, `withdrawn`, `created_at`, `updated_at`, `commission_given`, `pending_withdraw`, `delivery_charge_earned`, `collected_cash`, `total_tax_collected`) VALUES
+(1, 1, 0, 0, '2022-05-29 09:17:38', '2022-05-29 09:17:38', 0.00, 0.00, 0.00, 0.00, 0.00);
 
 -- --------------------------------------------------------
 
@@ -1593,6 +1701,14 @@ CREATE TABLE `shipping_addresses` (
   `longitude` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_billing` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `shipping_addresses`
+--
+
+INSERT INTO `shipping_addresses` (`id`, `customer_id`, `contact_person_name`, `address_type`, `address`, `city`, `zip`, `phone`, `created_at`, `updated_at`, `state`, `country`, `latitude`, `longitude`, `is_billing`) VALUES
+(1, '3', 'john', 'permanent', 'doctor street', 'Hyd', '404004', '9874563210', '2022-05-24 23:08:12', '2022-05-24 23:08:12', NULL, NULL, '0', '0', 0),
+(2, '11', 'john doe', 'permanent', 'john str streetm block 34', 'mumbai', '5050002', '9874563210', '2022-05-31 07:29:03', '2022-05-31 07:29:03', NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1654,6 +1770,13 @@ CREATE TABLE `shops` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `banner` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `shops`
+--
+
+INSERT INTO `shops` (`id`, `seller_id`, `name`, `address`, `contact`, `image`, `created_at`, `updated_at`, `banner`) VALUES
+(1, 1, 'John Electronics', 'John City\r\nStreet 3444', '9874563210', '2022-05-29-6293878a1f5bb.png', '2022-05-29 09:17:38', '2022-05-29 09:17:38', '2022-05-29-6293878a1f877.png');
 
 -- --------------------------------------------------------
 
@@ -1824,8 +1947,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `f_name`, `l_name`, `phone`, `image`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `street_address`, `country`, `city`, `zip`, `house_no`, `apartment_no`, `cm_firebase_token`, `is_active`, `login_medium`, `social_id`, `is_phone_verified`, `temporary_token`, `is_email_verified`) VALUES
-(0, 'walking customer', 'walking', 'customer', '000000000000', 'def.png', 'walking@customer.com', NULL, '', NULL, NULL, '2022-05-18 08:41:45', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 0, NULL, 0),
-(1, NULL, 'John', 'Doe', '+917997807419', 'def.png', 'jon@email.com', NULL, '$2y$10$w/syHOOcMRsJJ7pVVSiJvOcFclr48TmZDQPBa7/sZULtNbNDUBdQa', NULL, '2022-03-12 13:13:27', '2022-03-12 13:13:27', NULL, NULL, NULL, NULL, NULL, NULL, 'fxkEGMLCRAqoDiTfgZ9fvN:APA91bHO46Sdh55lth58GUw3DvAG5yts_2cKz-ksdM-BsiHYTICPGqsrfeAg713mSB7erPmBkDNyXjMNiO3Yulxh2NmbpqJrP4Gvz8yIaO2ZwU5SeQH4T2yYUoeQtWnMi_5WBP7cyVFw', 1, NULL, NULL, 0, 'Vty2MNMmAbGGB8NQFcr6AQt18Ml9Gb1hqZyBaWNx', 0);
+(11, NULL, 'john', 'doe', '9874563210', 'def.png', 'john@email.com', NULL, '$2y$10$SQC2GUX5USuFZxdYWkloPels/rAoI8bDfc7eI31TYUldNZ9oqDCAu', 'Bxb2h8N2MyiZlponfgJYw6jCG0fwLRVT6RBVDXGww2AkTLnxpqBSsR4GC7Lm', '2022-05-29 07:30:48', '2022-05-29 07:30:48', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1840,6 +1962,14 @@ CREATE TABLE `wishlists` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wishlists`
+--
+
+INSERT INTO `wishlists` (`id`, `customer_id`, `product_id`, `created_at`, `updated_at`) VALUES
+(1, 11, 82, '2022-05-29 07:45:23', '2022-05-29 07:45:23'),
+(2, 11, 83, '2022-05-30 04:59:23', '2022-05-30 04:59:23');
 
 -- --------------------------------------------------------
 
@@ -2309,13 +2439,13 @@ ALTER TABLE `admin_wallet_histories`
 -- AUTO_INCREMENT for table `attributes`
 --
 ALTER TABLE `attributes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `banners`
 --
 ALTER TABLE `banners`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `billing_addresses`
@@ -2327,31 +2457,31 @@ ALTER TABLE `billing_addresses`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `business_settings`
 --
 ALTER TABLE `business_settings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `cart_shippings`
 --
 ALTER TABLE `cart_shippings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `category_shipping_costs`
@@ -2405,7 +2535,7 @@ ALTER TABLE `customer_wallet_histories`
 -- AUTO_INCREMENT for table `deal_of_the_days`
 --
 ALTER TABLE `deal_of_the_days`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `delivery_histories`
@@ -2435,13 +2565,13 @@ ALTER TABLE `feature_deals`
 -- AUTO_INCREMENT for table `flash_deals`
 --
 ALTER TABLE `flash_deals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `flash_deal_products`
 --
 ALTER TABLE `flash_deal_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `help_topics`
@@ -2483,13 +2613,13 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100005;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order_transactions`
@@ -2519,7 +2649,7 @@ ALTER TABLE `phone_or_email_verifications`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `product_stocks`
@@ -2561,13 +2691,13 @@ ALTER TABLE `search_functions`
 -- AUTO_INCREMENT for table `sellers`
 --
 ALTER TABLE `sellers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `seller_wallets`
 --
 ALTER TABLE `seller_wallets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `seller_wallet_histories`
@@ -2579,7 +2709,7 @@ ALTER TABLE `seller_wallet_histories`
 -- AUTO_INCREMENT for table `shipping_addresses`
 --
 ALTER TABLE `shipping_addresses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `shipping_methods`
@@ -2597,7 +2727,7 @@ ALTER TABLE `shipping_types`
 -- AUTO_INCREMENT for table `shops`
 --
 ALTER TABLE `shops`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `social_medias`
@@ -2639,13 +2769,13 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `withdraw_requests`
